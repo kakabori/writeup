@@ -1,0 +1,86 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Kiyo Akabori}
+\title{Area Compressibility Modulus}
+%-------------------------------------Package-----------------------
+\usepackage{graphicx}
+\usepackage{epstopdf}
+
+\usepackage{tabularx}
+\usepackage[lofdepth,lotdepth]{subfig}%subfloat
+\usepackage{bm}%bold math
+\usepackage{color}
+\usepackage[centertags]{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amssymb}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{newlfont}
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
+\graphicspath{{./figures/}}
+
+%------------------------------new command------------------------             
+\newcommand{\dg}{$^{\circ}$}%degree symbol
+\newcommand{\iang}{\AA$^{-1}$}%inverse Angstrom symbol
+
+%\setlength{\oddsidemargin}{0cm} \setlength{\topmargin}{0cm}
+%\setlength{\textheight}{22cm} \setlength{\textwidth}{16cm}
+%-----------------------------------------------------------------
+
+\begin{document}
+%\title{Ripple Phase}
+%\author{Kiyo Akabori}
+%\today
+
+%\tableofcontents
+%\listoffigures
+%\listoftables
+
+%\newpage
+%\section{Notation}
+%\begin{itemize}
+%\item $\omega$: angle of incidence
+%\item $\hat{\theta}$: angle measured from equator in q-space
+%\item $S$, S-distance: distance between the center of the sample and the CCD screen
+%\item $D$, D-spacing: repeat spacing of lipid bilayers
+%\item $d$, d-spacing: distance between lipid chains
+%\item $\theta_t$: chain tilt angle
+%\item $\gamma$: $\gamma$ angle of ripple phase [refer to Figure \ref{fig:Sun1996}]
+%\item $\xi$: the angle between the midplane of the major side and the ripple direction
+%\item X-axis: horizontal axis through the beam in the CCD frame
+%\item Z-axis: vertical axis through the beam in the CCD frame
+%\item (X,Z): position on the CCD detector with respect to the beam
+%\end{itemize}
+
+
+\section{Area Compressibility}
+In thermodynamics, the volume compressibility is defined via its inverse, the volume susceptibility, by
+\begin{equation}
+  \chi_V \equiv -\frac{1}{V}\left( \frac{\partial V}{\partial P} \right)_T,
+\end{equation}
+where $\chi_V=1/K_V$. Analogously, one may define the area compressibility modulus via
+\begin{equation}
+  \chi_A \equiv \frac{1}{A}\left( \frac{\partial A}{\partial\gamma} \right)_T,
+\end{equation}
+where $\chi_A=1/K_A$. There is no negative sign in this definition because positive surface tension means the system is being pulled, which is opposite of how pressure is conceived; positive pressure means the system is compressed. Inverting the above equation, we get
+\begin{equation}
+  K_A = A\left(\frac{\partial\gamma}{\partial A}\right)_T = \left(\frac{\partial\gamma}{\partial(\ln A)}\right)_T.
+\end{equation}
+
+When $K_A$ is considered to be a spring constant in a harmonic potential, one can postulate the free energy, $F(A)$, to be
+\begin{equation}
+  F(A) = \frac{1}{2}K_A\frac{(A-A_0)^2}{A_0},
+\end{equation}
+where $A_0$ is the free energy minimum. The denominator in the above equation is to have the right dimension. The surface tension, $\gamma$, can be defined as
+\begin{equation}
+  \gamma \equiv \left(\frac{\partial F}{\partial A}\right)_T.
+\end{equation}
+From Eq. and Eq. , $\gamma = K_A(A-A_0)/A_0$ and one arrives at
+\begin{equation}
+  K_A = A_0\left(\frac{\partial \gamma}{\partial A}\right)_T,
+\end{equation}
+which is the definition of $K_A$ that has been used by many literatures.  When one attempts to obtain $K_A$ from MD simulations, there is an ambiguity in the value of $A_0$: whether the experimentally measured value should be used or the value from MD simulations. If latter, how does one determine $A_0$ is another question since often electron density profile from MD simulation does not agree with the experimentally determined one. If surface tension is applied to achieve a good match between the experimental and simulation form factors, one could consider using that value as $A_0$. Including the experimentally determined value, then, one has three choices. 
+
+The thermodynamically motivated definition of $K_A$ does not come with the above described issue. It seems that when deviation from the free energy minimum is large, this definition of $K_A$ is more appropriate: the harmonic potential approximation would fail away from the minimum. 
+\end{document}

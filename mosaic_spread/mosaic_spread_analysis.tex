@@ -1,0 +1,277 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Kiyo Akabori}
+\title{Mosaic Spread Analysis}
+%-------------------------------------Package-----------------------
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{tabularx}
+\usepackage[lofdepth,lotdepth]{subfig}%subfloat
+\usepackage{bm}%bold math
+\usepackage{color}
+\usepackage[centertags]{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amssymb}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{newlfont}
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
+\graphicspath{{./figures/}}
+
+%------------------------------new command------------------------             
+\newcommand{\dg}{$^{\circ}$}%degree symbol
+\newcommand{\iang}{\AA$^{-1}$}%inverse Angstrom symbol
+\newcommand{\Eq}[1]{Eq.\,(\ref{#1})}%reference to an equation
+
+%\setlength{\oddsidemargin}{0cm} \setlength{\topmargin}{0cm}
+%\setlength{\textheight}{22cm} \setlength{\textwidth}{16cm}
+%-----------------------------------------------------------------
+
+\begin{document}
+
+%\today
+
+%\tableofcontents
+%\listoffigures
+%\listoftables
+
+%\newpage
+%\section{Notation}
+%\begin{itemize}
+%\item $\omega$: angle of incidence
+%\item $\hat{\theta}$: angle measured from equator in q-space
+%\item $S$, S-distance: distance between the center of the sample and the CCD screen
+%\item $D$, D-spacing: repeat spacing of lipid bilayers
+%\item $d$, d-spacing: distance between lipid chains
+%\item $\theta_t$: chain tilt angle
+%\item $\gamma$: $\gamma$ angle of ripple phase [refer to Figure \ref{fig:Sun1996}]
+%\item $\xi$: the angle between the midplane of the major side and the ripple direction
+%\item X-axis: horizontal axis through the beam in the CCD frame
+%\item Z-axis: vertical axis through the beam in the CCD frame
+%\item (X,Z): position on the CCD detector with respect to the beam
+%\end{itemize}
+
+
+\section{Mosaic Spread: Calculation}
+In this section, an analytical framework for a measurement of mosaic spread will 
+be developed. Let us imagine that a sample is made up of many small domains that are 
+tilted from the direction perpendicular to the substrate normal by some amount. 
+A "perfect" domain is a domain that is parallel to the substrate plane.
+Then, we can consider a probability distribution function, $P(\alpha)$, 
+representing a probablity of finding a domain with tilt $\alpha$, which is the angle
+between the substrate normal and the tilted domain normal. Here, we have
+assumed the rotational symmetry about the substrate normal, so that the distribution
+does not depend on the azimuthal angle, $\beta$. The normalization condition on the probability distribution is 
+\begin{equation}
+  1 = \int_0^{2\pi} \!\! \mathrm{d}\beta  \int_0^{\frac{\pi}{2}} \! \mathrm{d}\alpha \, 
+      \sin\alpha \, P(\alpha).
+\end{equation}
+The object of this section is to derive the x-ray scattering structure factor 
+including the probability distribtion. The cooridate system employed here is such that x, y, and
+z-axes of the zero tilt domain, that is, a domain parallel to the substrate, 
+coincide with the lab x, y, and z-axes 
+
+First, we want to calculate the structure factor for a domain tilted by $\alpha$ 
+and $\beta$, expressed in the lab coordinates. See Fig. XXX. For this, we need to express
+$\mathbf{q}$ in terms of . We imagine
+rotating the coorinates about the y-axis first, and then about the z-axis. In
+other words, we apply the appropriate rotation matrices to , y, and 
+z-axes. The rotation matrix for rotaing a vector about y-axis is given by
+\begin{equation}
+  \begin{pmatrix} 
+    \cos\alpha & 0 & -\sin\alpha \\ 
+    0 & 1 & 0 \\
+    \sin\alpha & 0 & \cos\alpha 
+  \end{pmatrix}
+\end{equation}
+and for ratating about z-axis
+\begin{equation}
+  \begin{pmatrix} 
+    \cos\beta & \sin\beta & 0 \\ 
+    -\sin\beta & \cos\beta & 0 \\
+    0 & 0 & 1 
+  \end{pmatrix}
+\end{equation}
+Then, what we want is
+\begin{equation}
+  \mathbf{\hat{x}}' = 
+  \begin{pmatrix} 
+    \cos\beta & \sin\beta & 0 \\ 
+    -\sin\beta & \cos\beta & 0 \\
+    0 & 0 & 1 
+  \end{pmatrix}
+  \begin{pmatrix} 
+    \cos\alpha & 0 & -\sin\alpha \\ 
+    0 & 1 & 0 \\
+    \sin\alpha & 0 & \cos\alpha 
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 \\
+    0 \\
+    0
+  \end{pmatrix}
+  = 
+  \begin{pmatrix}
+    \cos\alpha\cos\beta \\
+    \cos\alpha\sin\beta \\
+    -\sin\alpha
+  \end{pmatrix}
+\end{equation}
+\begin{equation}
+  \mathbf{\hat{y}}' = 
+  \begin{pmatrix} 
+    \cos\beta & \sin\beta & 0 \\ 
+    -\sin\beta & \cos\beta & 0 \\
+    0 & 0 & 1 
+  \end{pmatrix}
+  \begin{pmatrix} 
+    \cos\alpha & 0 & -\sin\alpha \\ 
+    0 & 1 & 0 \\
+    \sin\alpha & 0 & \cos\alpha 
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 \\
+    1 \\
+    0
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    -\sin\beta \\
+    \cos\beta \\
+    0
+  \end{pmatrix}
+\end{equation}
+\begin{equation}
+  \mathbf{\hat{z}}' = 
+  \begin{pmatrix} 
+    \cos\beta & \sin\beta & 0 \\ 
+    -\sin\beta & \cos\beta & 0 \\
+    0 & 0 & 1 
+  \end{pmatrix}
+  \begin{pmatrix} 
+    \cos\alpha & 0 & -\sin\alpha \\ 
+    0 & 1 & 0 \\
+    \sin\alpha & 0 & \cos\alpha 
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 \\
+    0 \\
+    1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \sin\alpha\cos\beta \\
+    \sin\alpha\sin\beta \\
+    \cos\alpha
+  \end{pmatrix}
+\end{equation}
+Then, the components of $\mathbf{q}$ represented in the rotated coodinates, denoted 
+by $\mathbf{q'}$, are the projection of $\mathbf{q}$ on x$'$, y$'$, and z$'$-axes, 
+that is,
+\begin{equation}
+  q_x' = \mathbf{q} \cdot \mathbf{\hat{x}'} 
+       = q_x\cos\alpha\cos\beta + q_y\cos\alpha\sin\beta -q_z\sin\alpha  
+\end{equation}
+\begin{equation}
+  q_y' = \mathbf{q} \cdot \mathbf{\hat{y}'} 
+       = -q_x\sin\beta + q_y\cos\beta  
+\end{equation}
+\begin{equation}
+  q_z' = \mathbf{q} \cdot \mathbf{\hat{z}'} 
+       = q_x\sin\alpha\cos\beta + q_y\sin\alpha\sin\beta + q_z\cos\alpha  
+\end{equation}
+The transformation rule we are looking for is 
+\begin{equation}
+  \cos\theta' = \frac{q_z'}{q} 
+              = \sin\theta\sin\alpha\cos(\phi-\beta) + \cos\theta\cos\alpha 
+  \label{eq:theta'}
+\end{equation}
+and
+\begin{equation}
+  \tan\phi' 
+    = \frac{q_y'}{q_x'}
+    = \frac{\sin\theta\sin(\phi-\beta)}{\sin\theta\cos\alpha\cos(\phi-\beta) 
+                                       -\cos\theta\sin\alpha}
+  \label{eq:phi'}
+\end{equation}
+The structure factor of the tilted domain in the lab coordinates is simply given 
+by $S(\mathbf{q'})=S(q,\theta',\phi')$. Summing over all the domains, we get 
+for the total structure factor
+\begin{equation}
+  S_M(q,\theta,\phi) 
+    = \int_0^{2\pi} \!\! \mathrm{d}\beta \int_0^{\frac{\pi}{2}} 
+      \mathrm{d}\alpha \, \sin\alpha \, S(q,\theta',\phi') \, P(\alpha)
+  \label{eq:SM}
+\end{equation}
+with Eq.\,(\ref{eq:theta'}) and Eq.\,(\ref{eq:phi'}).
+
+For $\theta=0$, $\theta'=\alpha$ and $\phi'=0$ or $\pi$, so we have
+\begin{align}
+  S_M(q,0) 
+    &\sim \int_0^{\frac{\pi}{2}} \mathrm{d}\alpha \, \sin\alpha \, 
+          S(q,\alpha,0) \, P(\alpha)
+          + \int_0^{\frac{\pi}{2}} \mathrm{d}\alpha \, \sin\alpha \, 
+            S(q,\alpha,\pi) \, P(\alpha) \\
+    &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \mathrm{d}\alpha \, \sin\alpha \, 
+       S(q,\alpha) \, P(\alpha)
+\end{align} 
+if we understand $S(q,\alpha)$ to be the structure factor on the ($q_r$,$q_z$) 
+plane. This shows that $S_M(q,0)$ is equal to the convolution of the distribution
+function and the original structure factor. In general, however, $S_M(q,\theta)$ is 
+not a convolution of the distribution function and the structure factor.
+
+Given Eqs.\,(\ref{eq:theta'}), (\ref{eq:phi'}), and (\ref{eq:SM}), we want to show that
+mosaic spread acts as one dimensional convolution in the x-ray structure factor:
+\begin{equation}
+  S_M(q,\theta) 
+    = \int_{-\pi}^{\pi} \mathrm{d}\alpha \, S(q,\theta-\alpha) \, P(\alpha)
+  \label{eq:conv}
+\end{equation}
+The structure factor representing Bragg peaks in the spherical coordinates are 
+written as
+\begin{equation}
+  S(q,\theta,\phi) 
+    \sim \frac{\delta(q-\frac{2\pi h}{D})}{q^2} 
+         \delta(\cos\theta-1) \delta(\phi)
+  \label{eq:Bragg}
+\end{equation}
+where $\delta(x)$ is the Dirac delta function. Plugging \Eq{eq:Bragg} in \Eq{eq:SM},
+we obtain $\phi-\beta=0$. Using this condition, we get 
+\begin{equation}
+  S_M(q,\theta) \sim \frac{\delta(q-\frac{2\pi h}{D})}{q^2}P(\theta)\sin\theta,
+\end{equation}
+which shows that we can directly measure the probability distribution experimentally
+by looking at the intensity along $q=2\pi h/D$. In the next section, we will discuss 
+the relevant experimental techniques.
+
+\section{Mosaic Spread: Experiment}
+In this section, we discuss experimental procedures to probe appropriate $q$-space
+to measure the mosaic distribution, $P(\alpha)$. In our setup, the angle of 
+incidence between the beam and substrate, denoted by $\omega$, can be varied. A 
+conventional method to measure mosaicity distribution is a rocking scan, where
+one measures the integrated intensity of a given Bragg peak as a function of 
+$\omega$ with a fixed detector position. In a non-conventional method called
+ring analysis, one measures the intensity as a function of $\eta$ on a two
+dimensional detector. First, we want to show that the two methods mentioned 
+above in fact measure the mosaicity disitribution and therefore are equivalent
+to each other.
+
+Let $\omega$ be the angle of incidence, $2\theta$ be the total scattering angle,
+$p_x$ be the pixel number in the horizontal direction, $p_z$ be the pixel 
+number in the vertical direction, $eta$ be the angle measured from the $p_z$-axis 
+on the detector. $\Delta p$ is 0.07113 mm/pixel. $q_x=\mathbf{q} \cdot \hat{\mathbf{x}}$,
+$q_y=\mathbf{q} \cdot \hat{\mathbf{y}}$, and $q_z=\mathbf{q} \cdot \hat{\mathbf{z}}$, 
+where $\hat{\mathbf{x}}$, $\hat{\mathbf{y}}$, and $\hat{\mathbf{z}}$ are all 
+defined on the sample space. This means that $\hat{\mathbf{y}}$ and 
+$\hat{\mathbf{z}}$ both rotate as $\omega$ is varied while $\hat{\mathbf{x}}$ 
+is always perpendicular to the beam. What we need is a set of transformation
+rules for going from the detector space (pixels) to the sample $q$-space.
+With them, we would know how to trace out a line on the detector in order
+to measure the mosaicity distribution. 
+
+
+
+
+
+\end{document}
