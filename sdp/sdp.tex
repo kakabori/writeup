@@ -1,0 +1,171 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Kiyo Akabori}
+\title{DMPC Ripple Phase}
+%-------------------------------------Package-----------------------
+\usepackage{graphicx}
+\usepackage{epstopdf}
+
+\usepackage{tabularx}
+\usepackage[lofdepth,lotdepth]{subfig}%subfloat
+\usepackage{bm}%bold math
+\usepackage{color}
+\usepackage[centertags]{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amssymb}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{newlfont}
+\usepackage[export]{adjustbox}
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
+\graphicspath{{./figures/}}
+
+%------------------------------new command------------------------             
+\newcommand{\dg}{$^{\circ}$}%degree symbol
+\newcommand{\iang}{\AA$^{-1}$}%inverse Angstrom symbol
+
+%\setlength{\oddsidemargin}{0cm} \setlength{\topmargin}{0cm}
+%\setlength{\textheight}{22cm} \setlength{\textwidth}{16cm}
+%-----------------------------------------------------------------
+
+\begin{document}
+%\title{Ripple Phase}
+%\author{Kiyo Akabori}
+%\today
+
+%\tableofcontents
+%\listoffigures
+%\listoftables
+
+%\newpage
+%\section{Notation}
+%\begin{itemize}
+%\item $\omega$: angle of incidence
+%\item $\hat{\theta}$: angle measured from equator in q-space
+%\item $S$, S-distance: distance between the center of the sample and the CCD screen
+%\item $D$, D-spacing: repeat spacing of lipid bilayers
+%\item $d$, d-spacing: distance between lipid chains
+%\item $\theta_t$: chain tilt angle
+%\item $\gamma$: $\gamma$ angle of ripple phase [refer to Figure \ref{fig:Sun1996}]
+%\item $\xi$: the angle between the midplane of the major side and the ripple direction
+%\item X-axis: horizontal axis through the beam in the CCD frame
+%\item Z-axis: vertical axis through the beam in the CCD frame
+%\item (X,Z): position on the CCD detector with respect to the beam
+%\end{itemize}
+
+
+\section{Absorption Correction}
+This section derives a formula to correct the absorption effect due to the sample.
+The idea follows Yufeng's thesis, chapter 6. 
+
+Within each domain, there is no x-ray
+absorption due to lipids or water. Let the domain size be $L_z$ and thickness $t$.
+$t=NL_z$, where $N$ is the total number of domains. Let $I_{meas}=NI_0$ represent
+the measured intensity at the detector. Here, $I_0$ is equal to the x-ray intensity
+due to each domain. Assume that x-rays travel to the middle of each domain and 
+scatter. The path length of x-ray within the top most domain is given by 
+$L_z/\sin\theta$, $3L_z/\sin\theta$ within the second domain, and 
+$(2i+1)L_z/\sin\theta$ within the $i$th domain. Then, the measured intensity is
+given by  
+\begin{align}
+  I_{meas} 
+    &= \sum_{i=0}^{N-1} I_0 \exp
+       \left\{-\frac{(2i+1)L_z}{x_a\sin\theta}\right\} \nonumber \\
+    &= I_0 \sum_{i=0}^{N-1} ar^i \nonumber \\
+    &= I_0 a \frac{1-r^N}{1-r},
+\end{align}
+where $a=\exp\{-L_z/(x_a\sin\theta)\}$ and $r=a^2$. 
+Since $I_{meas}=AI_{ideal}=ANI_0$, the absorption correction, $A_c$ is given by
+\begin{align}
+  A_c = \frac{1}{A} &= \frac{N}{a} \frac{1-r}{1-r^N}\\
+                    &= \frac{t/L_z}{\exp(-\frac{L_z}{x_a\sin\theta})} 
+                       \frac{1-\exp(-\frac{2L_z}{x_a\sin\theta})} 
+                            {1-\exp(-\frac{2t}{x_a\sin\theta})}.
+\end{align}
+
+In the NFIT program, a convenient quantity called scaling factor denoted by $\phi$ 
+is defined via  $I_{meas}=\phi(q_z)S(\mathbf{q})$. Then, $\phi(q_z)=A|F(q_z)|^2/q_z$. 
+$\phi(q_z)$ is calculated by NFIT and input to the SDP program. The SDP program then
+converts $\phi(q_z)$ to $|F(q_z)|$. These two quantities are related by
+\begin{equation}
+  |F(q_z)|=\sqrt{q_zA_c\phi(q_z)}
+\end{equation}
+In the SDP program, $L_z$ is assumed to be 2000 \AA. $\sin\theta$ is related to $q_z$
+by
+\begin{equation}
+  \sin\theta = \frac{q_z\lambda}{4\pi},
+\end{equation}
+where $\lambda$ is the wavelength. This relation assumes that scattering of the 
+interest is at $q_r=0$, which is not a bad approximation for LAXS analysis. Also, note
+that the derived formula for absorption correction works well for specular scattering,
+in which the incident angle is the same as the outgoing angle. A more refined theory
+that takes diffuse scattering into account will be considered in the next section. 
+
+
+\section{Absorption Correction 2}
+In this section, a slightly more accurate theory will be derived for the absorption
+effect. It will involve an explicit integration over the incident angle, $\omega$,
+which is necessiated by the sample rotation during an x-ray exposure. The procedure
+is to write down an absorption factor, $A_{\omega}$, for a given incident angle, and
+then integrate over $\omega$. For each $\omega$, $A_{\omega}$ will have explicit
+dependence on $q_z$ because x-rays hitting different CCD pixels travel different 
+paths through the sample. Note that we ignore $q_x$ dependence.
+
+Assume that all the x-rays enter the sample from the top surface. The total scattering
+angle is given by $2\theta$. See Figure. Let $z$-axis point downward. At the top surface
+(air-sample interface), $z=0$. For x-rays that travel to $z$ and then scatter, the
+total path length within the sample is given by
+\begin{equation}
+  L_{tot} = \frac{z}{\sin\omega}+\frac{z}{\sin(2\theta-\omega)} = zg(\omega).
+\end{equation}
+For each ray, the intensity is attenuated by the sample. If non-attenuated 
+intensity is equal to $I_0$, then the attenuated intensity is
+\begin{equation}
+  I = I_0\exp\left(-\frac{L_{tot}}{\mu}\right)
+\end{equation}
+Then, the measured total intensity is given by
+\begin{align}
+  I_{meas}(\omega) 
+    &= \int_0^t I(z) dz
+     = I_0\int_0^t \exp\left(-\frac{g(\omega)}{\mu}z\right)dz \nonumber \\
+    &= I_0\mu \frac{1-\exp\left(-\frac{t}{\mu}g(\omega)\right)}{g(\omega)}.
+\end{align}
+Since, for a given $\omega$, $I_{meas}=A_{\omega}I_{ideal}=A_{\omega}tI_0$, 
+\begin{equation}
+  A_{\omega} = \frac{\mu}{t} 
+               \frac{1-\exp\left(-\frac{t}{\mu}g(\omega)\right)}{g(\omega)}.
+\end{equation}
+Note that $q_z$ dependence is through $\theta$ in $g(\omega)$:
+\begin{equation}
+  \theta = \arcsin\left(\frac{q_z\lambda}{4\pi}\right).
+\end{equation}
+The measured intensity including the sample rotation is given by
+\begin{equation}
+  I_{total}(\theta) = \int_0^{2\theta}d\omega I_{meas}(\omega,\theta),
+\end{equation}
+so that the total absorption factor is equal to
+\begin{equation}
+  A(\theta) = \frac{\mu}{2\theta t} \int_0^{2\theta}d\omega 
+      \frac{1-\exp\left(-\frac{t}{\mu}g(\omega)\right)}{g(\omega)}.
+\end{equation}
+If $\mu$ is taken to infinity (no absorption), $A$ goes to 1 as expected. 
+Here, it is important to note that $1/2\theta$ factor in the above equation
+is normally called Lorentz polarization factor, which
+is usually approximated as $1/q_z$ for LAXS analysis. Since the SDP
+program applies this correction factor in addition to the absorption
+correction, we remove this factor in the formula for $A_c$. Therefore,
+the final result for the total absorption correction is 
+\begin{equation}
+  A_c(\theta) 
+    = \frac{1}{2\theta A(\theta)} \nonumber \\
+    = \frac{t}{\mu} 
+       \left[ 
+         \int_0^{2\theta}d\omega 
+         \frac{1-\exp\left(-\frac{t}{\mu}g(\omega)\right)}{g(\omega)}
+       \right]^{-1}
+\end{equation}
+with $g(\omega)=1/\sin\omega+1/\sin(2\theta-\omega)$.
+
+
+\end{document}
