@@ -15,21 +15,27 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{newlfont}
+\usepackage{gensymb}%for \degree
+%\usepackage{textcomp}%for \textdegree
 
 \DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
 \graphicspath{{./figures/}}
 
 %------------------------------new command------------------------             
-\newcommand{\dg}{$^{\circ}$}%degree symbol
-\newcommand{\iang}{\AA$^{-1}$}%inverse Angstrom symbol
+%\newcommand{\dg}{^{\circ}}%degree symbol
+\newcommand{\iang}{\textrm{\AA}^{-1}}%inverse Angstrom symbol
 \newcommand{\Eq}[1]{Eq.\,(\ref{#1})}%reference to an equation
+\newcommand{\xhat}{\mathbf{\hat{x}}}
+\newcommand{\yhat}{\mathbf{\hat{y}}}
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+\newcommand{\kin}{\mathbf{k}_{\mathrm{in}}}
+\newcommand{\kout}{\mathbf{k}_{\mathrm{out}}}
 
 %\setlength{\oddsidemargin}{0cm} \setlength{\topmargin}{0cm}
 %\setlength{\textheight}{22cm} \setlength{\textwidth}{16cm}
 %-----------------------------------------------------------------
 
 \begin{document}
-
 %\today
 
 %\tableofcontents
@@ -269,6 +275,28 @@ is always perpendicular to the beam. What we need is a set of transformation
 rules for going from the detector space (pixels) to the sample $q$-space.
 With them, we would know how to trace out a line on the detector in order
 to measure the mosaicity distribution. 
+
+
+The incoming and outgoing wavevectors are given by
+\begin{equation}
+  \kin = \frac{2\pi}{\lambda} \yhat, \quad
+  \kout = 
+    \frac{2\pi}{\lambda} \left( 
+      \sin 2\theta \cos\phi \, \xhat
+      + \cos 2\theta \, \yhat
+      + \sin 2\theta \sin\phi \, \zhat 
+    \right),
+  \label{eq:kinkout}
+\end{equation}
+where $\lambda$ is the wavelength of x-ray. The scattering vector is
+\begin{align}
+  \mathbf{q} &= \kout - \kin \nonumber \\
+             &= q \left( 
+                  \cos\theta\cos\phi \, \xhat - \sin\theta \, \yhat
+                  + \cos\theta\sin\phi \, \zhat
+                \right),
+\end{align}
+where $q=4\pi\sin\theta/\lambda$ is the magnitude of the wavevector.
 
 
 
