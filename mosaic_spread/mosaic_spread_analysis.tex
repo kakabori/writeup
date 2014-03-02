@@ -60,25 +60,32 @@
 
 \section{Mosaic Spread: Calculation}
 In this section, an analytical framework for a measurement of mosaic spread will 
-be developed. Let us imagine that a sample is made up of many small domains that are 
+be developed. Let us imagine that a sample is made up of many small domains 
+that are 
 tilted from the direction perpendicular to the substrate normal by some amount. 
 A "perfect" domain is a domain that is parallel to the substrate plane.
 Then, we can consider a probability distribution function, $P(\alpha)$, 
-representing a probablity of finding a domain with tilt $\alpha$, which is the angle
+representing a probablity of finding a domain with tilt $\alpha$, which is the 
+angle
 between the substrate normal and the tilted domain normal. Here, we have
-assumed the rotational symmetry about the substrate normal, so that the distribution
-does not depend on the azimuthal angle, $\beta$. The normalization condition on the probability distribution is 
+assumed the rotational symmetry about the substrate normal, so that the 
+distribution
+does not depend on the azimuthal angle, $\beta$. The normalization condition on 
+the probability distribution is 
 \begin{equation}
-  1 = \int_0^{2\pi} \!\! \mathrm{d}\beta  \int_0^{\frac{\pi}{2}} \! \mathrm{d}\alpha \, 
-      \sin\alpha \, P(\alpha).
+  1 = \int_0^{2\pi} \!\! \mathrm{d}\beta  
+      \int_0^{\frac{\pi}{2}} \! \mathrm{d}\alpha \, \sin\alpha \, P(\alpha).
 \end{equation}
 The object of this section is to derive the x-ray scattering structure factor 
-including the probability distribtion. The cooridate system employed here is such that x, y, and
+including the probability distribtion. The cooridate system employed here is 
+such that x, y, and
 z-axes of the zero tilt domain, that is, a domain parallel to the substrate, 
 coincide with the lab x, y, and z-axes 
 
-First, we want to calculate the structure factor for a domain tilted by $\alpha$ 
-and $\beta$, expressed in the lab coordinates. See Fig. XXX. For this, we need to express
+First, we want to calculate the structure factor for a domain tilted by 
+$\alpha$ 
+and $\beta$, expressed in the lab coordinates. See Fig. XXX. For this, we need 
+to express
 $\mathbf{q}$ in terms of . We imagine
 rotating the coorinates about the y-axis first, and then about the z-axis. In
 other words, we apply the appropriate rotation matrices to , y, and 
@@ -171,8 +178,10 @@ Then, what we want is
     \cos\alpha
   \end{pmatrix}
 \end{equation}
-Then, the components of $\mathbf{q}$ represented in the rotated coodinates, denoted 
-by $\mathbf{q'}$, are the projection of $\mathbf{q}$ on x$'$, y$'$, and z$'$-axes, 
+Then, the components of $\mathbf{q}$ represented in the rotated coodinates, 
+denoted 
+by $\mathbf{q'}$, are the projection of $\mathbf{q}$ on x$'$, y$'$, and 
+z$'$-axes, 
 that is,
 \begin{equation}
   q_x' = \mathbf{q} \cdot \mathbf{\hat{x}'} 
@@ -200,7 +209,8 @@ and
                                        -\cos\theta\sin\alpha}
   \label{eq:phi'}
 \end{equation}
-The structure factor of the tilted domain in the lab coordinates is simply given 
+The structure factor of the tilted domain in the lab coordinates is simply 
+given 
 by $S(\mathbf{q'})=S(q,\theta',\phi')$. Summing over all the domains, we get 
 for the total structure factor
 \begin{equation}
@@ -222,11 +232,14 @@ For $\theta=0$, $\theta'=\alpha$ and $\phi'=0$ or $\pi$, so we have
        S(q,\alpha) \, P(\alpha)
 \end{align} 
 if we understand $S(q,\alpha)$ to be the structure factor on the ($q_r$,$q_z$) 
-plane. This shows that $S_M(q,0)$ is equal to the convolution of the distribution
-function and the original structure factor. In general, however, $S_M(q,\theta)$ is 
+plane. This shows that $S_M(q,0)$ is equal to the convolution of the 
+distribution
+function and the original structure factor. In general, however, $S_M(q,\theta)$ 
+is 
 not a convolution of the distribution function and the structure factor.
 
-Given Eqs.\,(\ref{eq:theta'}), (\ref{eq:phi'}), and (\ref{eq:SM}), we want to show that
+Given Eqs.\,(\ref{eq:theta'}), (\ref{eq:phi'}), and (\ref{eq:SM}), we want to
+ show that
 mosaic spread acts as one dimensional convolution in the x-ray structure factor:
 \begin{equation}
   S_M(q,\theta) 
@@ -241,17 +254,21 @@ written as
          \delta(\cos\theta-1) \delta(\phi)
   \label{eq:Bragg}
 \end{equation}
-where $\delta(x)$ is the Dirac delta function. Plugging \Eq{eq:Bragg} in \Eq{eq:SM},
+where $\delta(x)$ is the Dirac delta function. Plugging \Eq{eq:Bragg} in 
+\Eq{eq:SM},
 we obtain $\phi-\beta=0$. Using this condition, we get 
 \begin{equation}
   S_M(q,\theta) \sim \frac{\delta(q-\frac{2\pi h}{D})}{q^2}P(\theta)\sin\theta,
 \end{equation}
-which shows that we can directly measure the probability distribution experimentally
-by looking at the intensity along $q=2\pi h/D$. In the next section, we will discuss 
+which shows that we can directly measure the probability distribution 
+experimentally
+by looking at the intensity along $q=2\pi h/D$. In the next section, we will 
+discuss 
 the relevant experimental techniques.
 
 \section{Mosaic Spread: Experiment}
-In this section, we discuss experimental procedures to probe appropriate $q$-space
+In this section, we discuss experimental procedures to probe appropriate 
+$q$-space
 to measure the mosaic distribution, $P(\alpha)$. In our setup, the angle of 
 incidence between the beam and substrate, denoted by $\omega$, can be varied. A 
 conventional method to measure mosaicity distribution is a rocking scan, where
@@ -264,9 +281,11 @@ to each other.
 
 Let $\omega$ be the angle of incidence, $2\theta$ be the total scattering angle,
 $p_x$ be the pixel number in the horizontal direction, $p_z$ be the pixel 
-number in the vertical direction, $eta$ be the angle measured from the $p_z$-axis 
-on the detector. $\Delta p$ is 0.07113 mm/pixel. $q_x=\mathbf{q} \cdot \hat{\mathbf{x}}$,
-$q_y=\mathbf{q} \cdot \hat{\mathbf{y}}$, and $q_z=\mathbf{q} \cdot \hat{\mathbf{z}}$, 
+number in the vertical direction, $eta$ be the angle measured from the 
+$p_z$-axis 
+on the detector. $\Delta p$ is 0.07113 mm/pixel. $q_x=\mathbf{q} \cdot 
+\hat{\mathbf{x}}$, $q_y=\mathbf{q} \cdot \hat{\mathbf{y}}$, and $q_z=\mathbf{q} 
+\cdot \hat{\mathbf{z}}$, 
 where $\hat{\mathbf{x}}$, $\hat{\mathbf{y}}$, and $\hat{\mathbf{z}}$ are all 
 defined on the sample space. This means that $\hat{\mathbf{y}}$ and 
 $\hat{\mathbf{z}}$ both rotate as $\omega$ is varied while $\hat{\mathbf{x}}$ 
@@ -308,7 +327,8 @@ the lab coordinates are
   \mathbf{\hat{e}_z} = -\sin\omega\,\yhat + \cos\omega\,\zhat.
   \label{eq:smp_coord}
 \end{equation}
-From \Eq{eq:q_vector} and \Eq{eq:smp_coord}, we find the projection of $\mathbf{q}$ on the sample coordinates to be
+From \Eq{eq:q_vector} and \Eq{eq:smp_coord}, we find the projection of 
+$\mathbf{q}$ on the sample coordinates to be
 \begin{align}
   q_x &= \mathbf{q}\cdot\mathbf{\hat{e}_x} 
        = q\cos\theta\cos\phi 
@@ -328,7 +348,8 @@ The pixels on the detector are directly proportional to $X$ and $Z$. Thus,
 these equations define the transformation rules from the detector space
 to the sample q-space and vice versa.
 
-In terms of these coordinates, in the rocking scan, $\phi=\pi/2$ and $q=2\pi h/D$
+In terms of these coordinates, in the rocking scan, $\phi=\pi/2$ and 
+$q=2\pi h/D$
 while $\omega$ is varied about $\theta_B$, where $\theta_B$ is the Bragg
 angle for a Bragg peak that is focused on. Using $q=4\pi\sin\theta/\lambda$, 
 we recover the Bragg condition, $2D\sin\theta=h\lambda$. Plugging $\phi=\pi/2$
