@@ -1,0 +1,142 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Kiyo Akabori}
+\title{Summary of Volume Measurements}
+%-------------------------------------Package-----------------------
+\usepackage{graphicx}
+\usepackage{epstopdf}
+
+\usepackage{tabularx}
+\usepackage[lofdepth,lotdepth]{subfig}%subfloat
+\usepackage{bm}%bold math
+\usepackage{color}
+\usepackage[centertags]{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amssymb}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{newlfont}
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
+\graphicspath{{./figures/}}
+
+%------------------------------new command------------------------             
+\newcommand{\dg}{$^{\circ}$}%degree symbol
+\newcommand{\iang}{\AA$^{-1}$}%inverse Angstrom symbol
+
+%\setlength{\oddsidemargin}{0cm} \setlength{\topmargin}{0cm}
+%\setlength{\textheight}{22cm} \setlength{\textwidth}{16cm}
+%-----------------------------------------------------------------
+
+\begin{document}
+%\title{Ripple Phase}
+%\author{Kiyo Akabori}
+%\today
+
+%\tableofcontents
+%\listoffigures
+%\listoftables
+
+%\newpage
+%\section{Notation}
+%\begin{itemize}
+%\item $\omega$: angle of incidence
+%\item $\hat{\theta}$: angle measured from equator in q-space
+%\item $S$, S-distance: distance between the center of the sample and the CCD screen
+%\item $D$, D-spacing: repeat spacing of lipid bilayers
+%\item $d$, d-spacing: distance between lipid chains
+%\item $\theta_t$: chain tilt angle
+%\item $\gamma$: $\gamma$ angle of ripple phase [refer to Figure \ref{fig:Sun1996}]
+%\item $\xi$: the angle between the midplane of the major side and the ripple direction
+%\item X-axis: horizontal axis through the beam in the CCD frame
+%\item Z-axis: vertical axis through the beam in the CCD frame
+%\item (X,Z): position on the CCD detector with respect to the beam
+%\end{itemize}
+
+\section{Sample Preparation}
+\subsection{Molecular Weight of Tat}
+The Tat peptide sequence used in x-ray experiements and MD simulations is 
+YGRKKRRQRRR, where one letter notation of amino acids is used. The molecular 
+weight of this sequence is 
+$181.2+75.1+146.1+2 \times 146.2+6\times 174.2-10\times 18=1560$.
+Peptides are normally synthetized in trifluoroacetic acid, which has 
+the chemical formula $\mathrm{CF_3CO_2H}$, and made into a powder form by the 
+freeze-dry method (ref?). Therefore, each positively charged amino acid such as 
+an arginine and lysine is counter-balanced by a trifluoroacetate (TFA)
+($\mathrm{C_2F_3O_2}$). Since Tat has six arginines and two lysines, it comes 
+with eight trifluoroacetates. This complex has molecular weight of 
+$1560+113\times 8=2464$. When Tat peptides are weighed, one must use the 
+molecular weight of the complex in order to calculate the molarity of a Tat
+in water solution correctly.
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{c c c}
+    Molecule & Molecular Weight & Volume \\
+    Tat (YGRKKRRQRRR) & 1560 & 1876 \\ 
+    Tat + TFA & 2464 & 2964
+  \end{tabular}
+  \caption{Important Quantities for Tat Peptide}
+  \label{tb:Tat}
+\end{table}
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{c c c c}
+    Code & Amino acid & Chemical Formula & Molecular weight (g/mol) \\
+    K & Lysine & $\mathrm{C_6H_{14}N_2O_2}$ & 146.2 \\
+    R & Arginine & $\mathrm{C_6H_{14}N_4O_2}$ & 174.2 \\
+    G & Glycine & $\mathrm{C_2H_5NO_2}$ & 75.1\\
+    Y & Tyrosine & $\mathrm{C_9H_{11}NO_3}$ & 181.2 \\
+    Q & Glutamine & $\mathrm{C_5H_{10}N_2O_3}$ & 146.1  
+  \end{tabular}
+  \caption{Amino Acids Data}
+  \label{tb:aa}
+\end{table}
+
+\subsection{Volume Measurement}
+The volume of Tat was measured using a densimeter, which measure the average 
+density of a solution. First, the mass of Tat and water were measured to be 
+3.7 and 1212.6 mg via a digital balance. The density of water and 
+Tat-water solution were measured to be 0.993325 and 0.99418 $\mathrm{g/cm^3}$,
+respectively.
+
+The Tat volume is calculated in the following way. Assuming that Tat
+molecules in water does not change the volume of water molecules, the density
+of Tat-water solution is equal to the mass of Tat-water solution divided
+by the sum of volumes of water and Tat, 
+\begin{equation}
+  \rho_{sol} = \frac{m_w+m_c}{V_w+V_cN_c},
+\end{equation}
+where $\rho_{sol}$ is the density of the solution, $m_w$ and $m_c$
+are the total mass of water and Tat-TFA complex, $V_w$ is the total volume of 
+water, $V_c$ is the volume of a Tat-TFA complex, and $N_c$ is the total number 
+of the complex in the solution. Using $V_w=m_w/\rho_w$ and $N_c=N_Am_c/W_c$, after some
+simple algebra, we arrive at
+\begin{equation}
+  V_c = \frac{W_c}{\rho_{sol}N_A} \left( 
+        1 + \frac{m_w}{m_c}\left(1-\frac{\rho_{sol}}{\rho_w}\right) 
+        \right),
+\end{equation}
+where $W_c$ is the molecular weight of the complex, $N_A$ is the Avogadro's number,
+and $\rho_w$ is the density of water. The measured values of these quantities
+are shown in Table \ref{tb:values}. As described in the previous section, 
+Tat powder comes with couterions, so the volume measured here is that 
+of a Tat-TFA complex. Assuming here for simplicity that the molecular
+volume scales with the molecular weight, the volume of Tat was measured to be
+2964 $\mathrm{\AA^3} \times$ 1560/2464=1876 $\mathrm{\AA^3}$. This value is in quite a good agreement with the 
+value from a peptide calculator website (ref?). As will be shown in a later 
+chapter, MD simulations also predict a similar value.
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{c c}
+    $\rho_{sol}$ & 0.994180 $\mathrm{g/cm^3}$\\
+    $\rho_w$ & 0.993325 $\mathrm{g/cm^3}$\\
+    $m_w$ & 1212.6 mg \\
+    $m_T$ & 3.73 mg \\ 
+  \end{tabular}
+  \caption{Measured Quantities in }
+  \label{tb:values}
+\end{table}
+\end{document}
