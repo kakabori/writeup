@@ -11,7 +11,9 @@
 \usepackage{color}
 \usepackage[centertags]{amsmath}
 \usepackage{mathrsfs}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -21,8 +23,9 @@
 \DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
 \graphicspath{{./figures/}}
 
-%%%%%%%%%%%%%%%%%%%%%%%% new command %%%%%%%%%%%%%%%%%%%%%%%%%%             
+%%%%%%%%%%%%%%%%%%%%%%%% new command %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%         
 %\newcommand{\dg}{^{\circ}}%degree symbol
+\newcommand{\degC}{$^{\circ}\mathrm{C}$}
 \newcommand{\iang}{\textrm{\AA}^{-1}} % inverse Angstrom symbol
 \newcommand{\Eq}[1]{Eq.\,(\ref{#1})} % reference to an equation
 \newcommand{\xhat}{\mathbf{\hat{x}}}
@@ -31,6 +34,16 @@
 \newcommand{\kin}{\mathbf{k}_{\mathrm{in}}}
 \newcommand{\kout}{\mathbf{k}_{\mathrm{out}}}
 
+\newcommand{\pars}[1]{\mathopen{}\left( #1 \right)\mathclose{}} % () without extra spaces due to \left and \right
+
+\newcommand{\angles}[1]{\left\lange #1 \right\rangle}%      <>
+\newcommand{\braces}[1]{\left\lbrace #1 \right\rbrace}%     {}
+\newcommand{\bracks}[1]{\left\lbrack #1 \right\rbrack}%     []
+\newcommand{\ds}[1]{\displaystyle{#1}}%
+\newcommand{\+}{^{\dagger}}%                                
+\newcommand{\partiald}[3][]{{\partial^{#1}#2 \over \partial {#3}^{#1}}}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 %\maketitle
 
@@ -109,18 +122,51 @@ crosses the Ewald sphere. Since the total number of scattering bodies
 is the same for different orders, the apparent intensity is weaker for
 higher $q_z$ orders, which leads to $1/q^z$ factor.
 
+Scattering from a domain whose Cartesian coordinates coincide with the lab Cartesian 
+coordinates is given by
 \begin{equation}
-  S(h,k) = \delta(q_z-\frac{2\pi h}{D})\delta(q_r) + \frac{1}{2\pi q_r}\delta(q_z...)\delta(q_r-q_0)
+  S(q_x,q_y,q_z) = \pars{\delta(q_x)\delta\pars{q_z-\frac{2\pi h}{D}}
+                   + \delta\pars{q_x-}\delta\pars{q_z}}\delta(q_y),
+\end{equation}
+where the ripple direction is assumed to be along x-axis. Since the sample 
+possesses the azimuthal symmetry, 
+\begin{equation}
+  S(q_r,q_z) = \delta\pars{q_z-\frac{2\pi h}{D}}\delta(q_r)
+               + \frac{1}{2\pi q_r}\delta\pars{q_z...}\delta\pars{q_r-q_0}
 \end{equation} 
-(fill in $q_o$ later). The limits of $q_y$ integration is important. It goes
+(fill in $q_o$ later. There might also be some $q_r$ factor somewhere). 
+The limits of $q_y$ integration is important. It goes
 from 0 to $q_z\omega_0$, where $\omega_0$ is the maximum angle of incidence. 
 $q_x$ and $q_y$ integrations lead to $\Delta\phi q_0$, but $\Delta\phi = q_z\omega_0/q_0$,
 resulting in $\omega_0$. At the end, we get
 \begin{equation}
-  I_o \sim \frac{1}{q_z}|F(h,k=0)|^2+\frac{\omega_0}{2\pi q_r}|F(h,k\neq 0)|^2
+  I_o \sim \frac{1}{q_z(h)}|F(h,0)|^2+\frac{\omega_0}{2\pi q_r(k)}|F(h,k\neq 0)|^2
 \end{equation}
-This is indeed what Sengupta \textit{et. al} obtained [citation].
+This is indeed what Sengupta \textit{et al.} obtained [citation]. 
 
+Figure shows a LAXS pattern from DMPC at 18 \degC. $D=59.2$ \AA. High 
+resolution experiment. Up to $h=6$ orders were clearly observed in this
+data set. 
 
+Figure shows a LAXS pattern from DMPC at 18 \degC. $D=57.9$ \AA. Low
+resolution experiment. Up to $h=9$ orders were clearly observed in this
+data set. Because of a non-negligible degree of mosaicity in the sample,
+strong orders cast their arcs over weaker orders. A care must be 
+taken to decompose the intensity at a given pixel to intensity due to
+a strong order's arc and to that due to a weak peak. This was achieved
+by taking a $q_z$ swath and fitting the intensity to two Gaussian
+functions whose widths were determined from the known instrumental 
+resolution. Figure shows an example of this operation. Table and
+Table show with and without the decomposition operation, respectively. 
+For many of the orders observed, errors one would expect from 
+neglecting the mosaicity effect were small. For higher orders, however,
+this was crucial to obtain the correct integrated intensity.
+
+In order to test the decomposition effect, fits were also performed
+for the sum of intensity for orders that overlap. 
+
+Two models employed in this study were simple delta function (SDF) and
+modified Gaussian function (MGF) models. As was shown previously,
+both models results in the same phases.
 
 \end{document}
