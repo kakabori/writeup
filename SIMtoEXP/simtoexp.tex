@@ -1,0 +1,113 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Kiyo Akabori}
+\title{SIMtoEXP}
+%-------------------------------------Package-----------------------
+\usepackage{graphicx}
+\usepackage{epstopdf}
+
+\usepackage{tabularx}
+\usepackage[lofdepth,lotdepth]{subfig}%subfloat
+\usepackage{bm}%bold math
+\usepackage{color}
+\usepackage[centertags]{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amssymb}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{newlfont}
+\usepackage{showlabels}
+\usepackage{showkeys}
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
+\graphicspath{{./figures/}}
+
+%------------------------------new command------------------------             
+\newcommand{\dg}{$^{\circ}$}%degree symbol
+\newcommand{\iang}{\AA$^{-1}$}%inverse Angstrom symbol
+
+%\setlength{\oddsidemargin}{0cm} \setlength{\topmargin}{0cm}
+%\setlength{\textheight}{22cm} \setlength{\textwidth}{16cm}
+%-----------------------------------------------------------------
+
+\begin{document}
+%\title{Ripple Phase}
+%\author{Kiyo Akabori}
+%\today
+
+%\tableofcontents
+%\listoffigures
+%\listoftables
+
+%\newpage
+%\section{Notation}
+%\begin{itemize}
+%\item $\omega$: angle of incidence
+%\item $\hat{\theta}$: angle measured from equator in q-space
+%\item $S$, S-distance: distance between the center of the sample and the CCD screen
+%\item $D$, D-spacing: repeat spacing of lipid bilayers
+%\item $d$, d-spacing: distance between lipid chains
+%\item $\theta_t$: chain tilt angle
+%\item $\gamma$: $\gamma$ angle of ripple phase [refer to Figure \ref{fig:Sun1996}]
+%\item $\xi$: the angle between the midplane of the major side and the ripple direction
+%\item X-axis: horizontal axis through the beam in the CCD frame
+%\item Z-axis: vertical axis through the beam in the CCD frame
+%\item (X,Z): position on the CCD detector with respect to the beam
+%\end{itemize}
+
+\section{SIMtoEXP software}
+The details of the program can be found in \cite{ref:Kucerka10}. Here, a brief
+introduction to the software will be given.
+
+SIMtoEXP is a program to analyze the bilayer structure along the bilayer normal.
+It reads in the number density of each atom in lipids and peptides and calculate
+the form factor from the bilayer electron density profile,
+\begin{equation}
+  F(q_z) = \int_{-z_0}^{z_0} \, \rho(z) dz.
+\end{equation}
+An assumption made here is that x-ray form factor is properly represented by 
+the Fourier transform of an average electron density profile, while, strictly,
+x-ray form factor is equal to.
+Within Born approximation, the X-ray intensity is a statistical (time) average 
+over absolute form factor squared,
+\begin{equation}
+  I(q_z) = \left< |F(q_z)|^2 \right>
+\end{equation}
+
+\include
+
+  \label{fig:DOPC}
+\end_include?
+An electron density profile of a DOPC bilayer simulated by S-lipid force field 
+is shown in Fig. \ref{fig:DOPC}. The exact parsing of atoms into each component
+group is shown in Fig. \ref{fig:DOPC_parsing}. Parsing with more components
+can be achieved, but one shown is the same parsing employed in SDP modelling for
+x-ray data, which will be discussed in a later chapter. 
+
+Calculated form factor is shown in \ref{fig:DOPC_xff}. In order to obtain 
+reliable structure from simulations, simulations with various area per lipid 
+were done. A simulation that best matches the experimental form factor was 
+chosen and analyzed to obtain the bilayer thickness. For systems with Tat, 
+Tat was fixed at various z coordinates at various area per lipid. Table \ref{tb:Tat}
+shows chi squared values for all the simulations performed for this study. As 
+seen in Table \ref{tb:Tat}, smaller chi squared was obtained for larger z values.
+While the smallest $\chi^2$ was obtained at $z = 20 \AA$, this simulation was
+considered artifactual because it is difficult for the bilayer thickness to be
+modified so much for a rather small insertion of Tat. Since the experimental
+data already suggest that bilayer thickenss was decreased as increasing 
+concentration of Tat, Tat must be embbed by an appreciable amount in the bilayer.
+
+While physical reasoning can be employed to eliminate some of small $\chi^2$ 
+simulations, simulations with $A_L=$ and $z_{Tat}=18, 16, 14$ seem to be all good.
+As Fig. \ref{fig:Tat_19_16_14} shows, simulated form factors look very similar
+albeit small differece in $\chi^2$. Instead of taking the smallest $\chi^2$ as
+the best structure for this system, we averaged three simulations weighted by
+their $\chi^2$ as ... 
+
+\begin{thebibliography}{999}
+\bibitem{ref:Kucerka10}
+  Norbert Kucerka,
+  ``Introduction to SIMtoEXP softwqare'',
+  J. Memb. Biol. \textbf{99}, 999 (2010).
+\end{thebibliography}
+\end{document}

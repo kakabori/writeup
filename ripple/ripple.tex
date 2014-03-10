@@ -1,0 +1,126 @@
+\documentclass[12pt,letterpaper]{article}
+\author{Kiyo Akabori}
+\title{Mosaic Spread Analysis}
+\date{\today}
+%-------------------------------------Package-----------------------
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{tabularx}
+\usepackage[lofdepth,lotdepth]{subfig}%subfloat
+\usepackage{bm}%bold math
+\usepackage{color}
+\usepackage[centertags]{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amssymb}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{newlfont}
+\usepackage{textcomp,gensymb}%for \textdegree and \degree
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
+\graphicspath{{./figures/}}
+
+%%%%%%%%%%%%%%%%%%%%%%%% new command %%%%%%%%%%%%%%%%%%%%%%%%%%             
+%\newcommand{\dg}{^{\circ}}%degree symbol
+\newcommand{\iang}{\textrm{\AA}^{-1}} % inverse Angstrom symbol
+\newcommand{\Eq}[1]{Eq.\,(\ref{#1})} % reference to an equation
+\newcommand{\xhat}{\mathbf{\hat{x}}}
+\newcommand{\yhat}{\mathbf{\hat{y}}}
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+\newcommand{\kin}{\mathbf{k}_{\mathrm{in}}}
+\newcommand{\kout}{\mathbf{k}_{\mathrm{out}}}
+
+\begin{document}
+%\maketitle
+
+\section{setup}
+The incoming and outgoing wavevectors of the x-ray beam in Fig. XXX 
+are given by
+\begin{equation}
+  \kin = \frac{2\pi}{\lambda} \yhat, \quad
+  \kout = 
+    \frac{2\pi}{\lambda} \left( 
+      \sin 2\theta \cos\phi \, \xhat
+      + \cos 2\theta \, \yhat
+      + \sin 2\theta \sin\phi \, \zhat 
+    \right),
+  \label{eq:kinkout}
+\end{equation}
+where $\lambda$ is the wavelength of x-ray. The scattering vector is
+the difference between $\kin$ and $\kout$,
+\begin{align}
+  \mathbf{q} &= \kout - \kin \nonumber \\
+             &= q \left( 
+                  \cos\theta\cos\phi \, \xhat - \sin\theta \, \yhat
+                  + \cos\theta\sin\phi \, \zhat
+                \right),
+  \label{eq:q_vector}
+\end{align}
+where $q=4\pi\sin\theta/\lambda$ is the magnitude of the scattering vector. 
+When the sample is rotated by $\omega$ about the x-axis in the clockwise 
+direction as shown in Fig. XXX, the sample coodinates written in terms of 
+the lab coordinates are  
+\begin{equation}
+  \mathbf{\hat{e}_x} = \xhat, \quad
+  \mathbf{\hat{e}_y} = \cos\omega\,\yhat + \sin\omega\,\zhat, \quad
+  \mathbf{\hat{e}_z} = -\sin\omega\,\yhat + \cos\omega\,\zhat.
+  \label{eq:smp_coord}
+\end{equation}
+From \Eq{eq:q_vector} and \Eq{eq:smp_coord}, we find the projection of 
+$\mathbf{q}$ on the sample coordinates to be
+\begin{align}
+  q_x &= \mathbf{q}\cdot\mathbf{\hat{e}_x} 
+       = q\cos\theta\cos\phi 
+       \label{eq:qx} \\
+  q_y &= \mathbf{q}\cdot\mathbf{\hat{e}_y} 
+       = q\left(-\sin\theta\cos\omega + \cos\theta\sin\phi\sin\omega\right) 
+       \label{eq:qy} \\
+  q_z &= \mathbf{q}\cdot\mathbf{\hat{e}_z} 
+       = q\left(\sin\theta\sin\omega + \cos\theta\sin\phi\cos\omega\right).
+       \label{eq:qz}
+\end{align}
+With respect to the beam, the position on the detector is given by
+\begin{equation}
+  X = S \tan 2\theta \cos\phi, \quad Z = S \tan 2\theta \sin\phi.
+\end{equation} 
+The pixels on the detector are directly proportional to $X$ and $Z$. Thus,
+these equations define the transformation rules from the detector space
+to the sample q-space and vice versa.
+
+For low angle x-ray scattering (LAXS), it is convenient to linearlize the above
+equations in terms of $\theta$ and $\omega$. In the small angle approximation, 
+we have $q_x \approx kx$, $q_y \approx q_z\omega$, and $q_z \approx kz$, where
+$k=2\pi/\lambda$, $x=X/S$, and $z=Z/S$. The observed intensity is equal to
+the integration of intensity at a given angle over $X$, $Z$, and $\omega$, 
+that is, 
+\begin{align}
+  I_o(h,k) &\sim \int dX \int dZ \int d\omega |F(h,k)|^2 S(h,k) \nonumber \\
+           &\sim \int dq_x \int dq_z \int \frac{dq_y}{q_z} |F(h,k)|^2 S(h,k),
+\end{align}
+where $1/q_z$ factor in $q_y$ integration is the Lorentz polarization factor
+in the small angle approximation. This shows that the Lorentz polarization 
+factor stems from the sample rotation. An intuitive way to understand the
+origin of this factor is illustrated in Fig. , where the Ewald sphere 
+is employed. A given Bragg peak is smeared in the reciprocal space due to 
+the sample rotation, and the extent of this smearing is larger for 
+higher $q_z$. The intensity for a peak is observed when the smeared peak
+crosses the Ewald sphere. Since the total number of scattering bodies 
+is the same for different orders, the apparent intensity is weaker for
+higher $q_z$ orders, which leads to $1/q^z$ factor.
+
+\begin{equation}
+  S(h,k) = \delta(q_z-\frac{2\pi h}{D})\delta(q_r) + \frac{1}{2\pi q_r}\delta(q_z...)\delta(q_r-q_0)
+\end{equation} 
+(fill in $q_o$ later). The limits of $q_y$ integration is important. It goes
+from 0 to $q_z\omega_0$, where $\omega_0$ is the maximum angle of incidence. 
+$q_x$ and $q_y$ integrations lead to $\Delta\phi q_0$, but $\Delta\phi = q_z\omega_0/q_0$,
+resulting in $\omega_0$. At the end, we get
+\begin{equation}
+  I_o \sim \frac{1}{q_z}|F(h,k=0)|^2+\frac{\omega_0}{2\pi q_r}|F(h,k\neq 0)|^2
+\end{equation}
+This is indeed what Sengupta \textit{et. al} obtained [citation].
+
+
+
+\end{document}

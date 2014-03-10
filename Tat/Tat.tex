@@ -1,0 +1,112 @@
+\documentclass[12pt,letterpaper]{article}
+\author{Kiyo Akabori}
+\title{Mosaic Spread Analysis}
+\date{\today}
+%-------------------------------------Package-----------------------
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{tabularx}
+\usepackage[lofdepth,lotdepth]{subfig}%subfloat
+\usepackage{bm}%bold math
+\usepackage{color}
+\usepackage[centertags]{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amssymb}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{newlfont}
+\usepackage{textcomp,gensymb}%for \textdegree and \degree
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
+\graphicspath{{./figures/}}
+
+%------------------------------new command------------------------             
+%\newcommand{\dg}{^{\circ}}%degree symbol
+\newcommand{\iang}{\textrm{\AA}^{-1}}%inverse Angstrom symbol
+\newcommand{\Eq}[1]{Eq.\,(\ref{#1})}%reference to an equation
+\newcommand{\xhat}{\mathbf{\hat{x}}}
+\newcommand{\yhat}{\mathbf{\hat{y}}}
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+\newcommand{\kin}{\mathbf{k}_{\mathrm{in}}}
+\newcommand{\kout}{\mathbf{k}_{\mathrm{out}}}
+
+%\setlength{\oddsidemargin}{0cm} \setlength{\topmargin}{0cm}
+%\setlength{\textheight}{22cm} \setlength{\textwidth}{16cm}
+%-----------------------------------------------------------------
+
+\begin{document}
+\maketitle
+%\tableofcontents
+%\listoffigures
+%\listoftables
+
+%\newpage
+%\section{Notation}
+%\begin{itemize}
+%\item $\omega$: angle of incidence
+%\item $\hat{\theta}$: angle measured from equator in q-space
+%\item $S$, S-distance: distance between the center of the sample and the CCD screen
+%\item $D$, D-spacing: repeat spacing of lipid bilayers
+%\item $d$, d-spacing: distance between lipid chains
+%\item $\theta_t$: chain tilt angle
+%\item $\gamma$: $\gamma$ angle of ripple phase [refer to Figure \ref{fig:Sun1996}]
+%\item $\xi$: the angle between the midplane of the major side and the ripple direction
+%\item X-axis: horizontal axis through the beam in the CCD frame
+%\item Z-axis: vertical axis through the beam in the CCD frame
+%\item (X,Z): position on the CCD detector with respect to the beam
+%\end{itemize}
+
+
+\section{Some Lipid Bilayer Data}
+We also estimated the structure by fitting the experimental form factors to a 
+model using the SDP method with the component groups identified in Fig. (what  
+The positions of 
+these groups were free parameters and the agreement with the experimental form 
+factors was excellent (see Fig. S.M. 5).  Absolute total electron density 
+profiles and the Tat profiles are shown for many samples in Fig. 6 (A-C).  
+It must be emphasized, however, that, while the total EDP is well determined by 
+this fitting procedure, the values of the parameters for the components are not 
+as well determined as they would be if one had X-ray data to smaller and larger 
+q and neutron data.  Indeed, there are local minima in the fitting landscape, 
+including one with Tat closer to the center of the bilayer as shown in Fig. 
+S.M. 5.  The simulations help to discard that result. For the results shown in 
+Fig. 6, a consistent trend is that Tat moves away from the bilayer center as 
+concentration increases. 
+
+Figure shows that $A_L$ as defined by $(V_L-V_{HL})/D_c$ decreases as the 
+amount of DOPE increases for systems without Tat. This is consistent with the
+previous studies (or predictions?) and attributed to the small size of PE
+head group. Because DOPE has smaller head group than DOPC, lipids in DOPC/DOPE
+bilayers pack more compactly than DOPC bilayers do, leading to a smaller $A_L$.
+Consequently, bilayers composed of DOPC and DOPE tend to have a higher order 
+parameter than DOPC alone. (NO THEY DON'T. WHAT'S GOING ON HERE?). Similarly,
+the thickness of bilayers is larger at higher PE content. 
+
+Figure shows that Tat is located further out from the bilayer center with 
+higher content of PE lipids. This is also consistent with MD simulation PMF,
+which showed that arginine insertion cost more energy for PE membrane than
+PC membrane, the result of which was attributed to more possible hydrogen 
+bonding between PE group and arginines.
+
+
+
+More structural detail from the modeling and from the simulations is shown in 
+Fig. 7. The bilayer thickness can be described as DHH, which is the 
+distance between the maxima in the electron density profile, or as DPP, which 
+is the distance between the phosphocholines on the opposing monolayers. Figs. 
+7A and 7B show that both these quantities decrease with increasing Tat mole 
+fraction (P/(L+P)), showing that Tat thins membranes, increasingly so as its 
+concentration is increased, even though both simulation and modeling suggest 
+that Tat moves further from the membrane center with increasing concentration 
+as shown in Fig. 7D.  Fig. 7C shows that the area per lipid AL usually increases 
+with increasing mole fraction of Tat, as would be expected from consideration of 
+conservation of lipid volume. Interestingly, the bilayer thickness did not 
+increase for DOPC/DOPE (3:1) bilayers with x less than 0.03.  
+
+Figure 8 shows that the Sxray orientational order parameters generally 
+decreases with increasing concentration of Tat for most of the membrane mimics 
+studied.  These decreases in membrane chain order are compatible with the 
+increase in softening of membranes by Tat observed by a decrease in the bending
+energy, KC, in Fig. 2.  
+\end{document}
