@@ -22,8 +22,23 @@
 \graphicspath{{./figures/}}
 
 %------------------------------new command------------------------             
-\newcommand{\dg}{$^{\circ}$}%degree symbol
-\newcommand{\iang}{\AA$^{-1}$}%inverse Angstrom symbol
+\newcommand{\degC}{$^{\circ}\mathrm{C}$}
+\newcommand{\iang}{\textrm{\AA}^{-1}} % inverse Angstrom symbol
+\newcommand{\Eq}[1]{Eq.\,(\ref{#1})} % reference to an equation
+\newcommand{\xhat}{\mathbf{\hat{x}}}
+\newcommand{\yhat}{\mathbf{\hat{y}}}
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+\newcommand{\kin}{\mathbf{k}_{\mathrm{in}}}
+\newcommand{\kout}{\mathbf{k}_{\mathrm{out}}}
+
+\newcommand{\pars}[1]{\mathopen{}\left( #1 \right)\mathclose{}} % () without extra spaces due to \left and \right
+
+\newcommand{\angles}[1]{\left\lange #1 \right\rangle}%      <>
+\newcommand{\braces}[1]{\left\lbrace #1 \right\rbrace}%     {}
+\newcommand{\bracks}[1]{\left\lbrack #1 \right\rbrack}%     []
+\newcommand{\ds}[1]{\displaystyle{#1}}%
+\newcommand{\+}{^{\dagger}}%                                
+\newcommand{\partiald}[3][]{{\partial^{#1}#2 \over \partial {#3}^{#1}}}%
 
 %\setlength{\oddsidemargin}{0cm} \setlength{\topmargin}{0cm}
 %\setlength{\textheight}{22cm} \setlength{\textwidth}{16cm}
@@ -117,32 +132,35 @@ angle is given by $2\theta$. See Figure. Let $z$-axis point downward. At the top
 (air-sample interface), $z=0$. For x-rays that travel to $z$ and then scatter, the
 total path length within the sample is given by
 \begin{equation}
-  L_{tot} = \frac{z}{\sin\omega}+\frac{z}{\sin(2\theta-\omega)} = zg(\omega).
+  L_{tot} = \frac{z}{\sin\omega}+\frac{z}{\sin(2\theta-\omega)} = zg(\omega,\theta),
 \end{equation}
+where $g(\omega,\theta)=(\sin\omega)^{-1}+\pars{\sin\pars{2\theta-\omega}}^{-1}$.
 For each ray, the intensity is attenuated by the sample. If non-attenuated 
 intensity is equal to $I_0$, then the attenuated intensity is
 \begin{equation}
   I = I_0\exp\left(-\frac{L_{tot}}{\mu}\right)
 \end{equation}
-Then, the measured total intensity is given by
+Then, the observed intensity from a sample fixed at $\omega$ is given by
 \begin{align}
-  I_{meas}(\omega) 
+  I_{\textrm{obs}}(\omega,\theta) 
     &= \int_0^t I(z) dz
-     = I_0\int_0^t \exp\left(-\frac{g(\omega)}{\mu}z\right)dz \nonumber \\
-    &= I_0\mu \frac{1-\exp\left(-\frac{t}{\mu}g(\omega)\right)}{g(\omega)}.
+     = I_0\int_0^t \exp\left(-\frac{g(\omega,\theta)}{\mu}z\right)dz \nonumber \\
+    &= I_0\mu \frac{1-\exp\left(-\frac{t}{\mu}g(\omega,\theta)\right)}{g(\omega,\theta)}.
 \end{align}
-Since, for a given $\omega$, $I_{meas}=A_{\omega}I_{ideal}=A_{\omega}tI_0$, 
+Since, for a given $\omega$, $I_{\textrm{obs}}(\omega,\theta)=A(\omega,\theta)tI_0$, 
 \begin{equation}
-  A_{\omega} = \frac{\mu}{t} 
-               \frac{1-\exp\left(-\frac{t}{\mu}g(\omega)\right)}{g(\omega)}.
+  A(\omega,\theta) = \frac{\mu}{t} 
+                     \frac{1-\exp\left(-\frac{t}{\mu}g(\omega,\theta)\right)}{g(\omega,\theta)},
 \end{equation}
-Note that $q_z$ dependence is through $\theta$ in $g(\omega)$:
+which is the absorption factor for x-ray scattering with the total 
+scattering angle of $2\theta$ for a  given angle of incidence.
+Note that $q_z$ dependence is through $\theta$ in $g(\omega,\theta)$ because
 \begin{equation}
   \theta = \arcsin\left(\frac{q_z\lambda}{4\pi}\right).
 \end{equation}
-The measured intensity including the sample rotation is given by
+The total intensity including the sample rotation is given by
 \begin{equation}
-  I_{total}(\theta) = \int_0^{2\theta}d\omega I_{meas}(\omega,\theta),
+  I_{\textrm{total}}(\theta) = \int_0^{2\theta}\textrm{d}\omega I_{\textrm{obs}}(\omega,\theta),
 \end{equation}
 so that the total absorption factor is equal to
 \begin{equation}

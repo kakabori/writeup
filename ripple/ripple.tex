@@ -109,40 +109,97 @@ the integration of intensity at a given angle over $X$, $Z$, and $\omega$,
 that is, 
 \begin{align}
   I_o(h,k) &\sim \int dX \int dZ \int d\omega |F(h,k)|^2 S(h,k) \nonumber \\
-           &\sim \int dq_x \int dq_z \int \frac{dq_y}{q_z} |F(h,k)|^2 S(h,k),
+           &\sim \int dq_x \int dq_z \int \frac{dq_y}{q_z} \sum_{h,k} |F_{hk}|^2 S_{hk}(\mathbf{q}),
 \end{align}
 where $1/q_z$ factor in $q_y$ integration is the Lorentz polarization factor
-in the small angle approximation. This shows that the Lorentz polarization 
-factor stems from the sample rotation. An intuitive way to understand the
-origin of this factor is illustrated in Fig. , where the Ewald sphere 
-is employed. A given Bragg peak is smeared in the reciprocal space due to 
-the sample rotation, and the extent of this smearing is larger for 
-higher $q_z$. The intensity for a peak is observed when the smeared peak
-crosses the Ewald sphere. Since the total number of scattering bodies 
-is the same for different orders, the apparent intensity is weaker for
-higher $q_z$ orders, which leads to $1/q^z$ factor.
+in the small angle approximation. 
 
-Scattering from a domain whose Cartesian coordinates coincide with the lab Cartesian 
-coordinates is given by
+The unit cell vectors in the ripple phase can be expressed as 
 \begin{equation}
-  S(q_x,q_y,q_z) = \pars{\delta(q_x)\delta\pars{q_z-\frac{2\pi h}{D}}
-                   + \delta\pars{q_x-}\delta\pars{q_z}}\delta(q_y),
+  \mathbf{a} = \frac{D}{\tan\gamma}\xhat + D\zhat
+\end{equation}
+and
+\begin{equation}
+  \mathbf{b} = \lambda_r\xhat.
+\end{equation}
+The corresponding reciprocal lattice unit cell vectors are given by
+\begin{equation}
+  \mathbf{A} = \frac{2\pi}{D}\zhat
+\end{equation}
+and
+\begin{equation}
+  \mathbf{B} = \frac{2\pi}{\lambda_r}\xhat - \frac{2\pi}{\lambda_r\tan\gamma}\zhat.
+\end{equation}
+The reciprocal lattice vector, $\mathbf{q}_{hk}$ for the Bragg peak with 
+Miller indices $(h,k)$ is 
+\begin{equation}
+  \mathbf{q}_{hk}=h\mathbf{A}+k\mathbf{B},
+\end{equation}
+so its components can be written as
+\begin{equation}
+  q_{x,k} = \frac{2\pi k}{\lambda_r}
+\end{equation}
+\begin{equation}
+  q_y = 0
+\end{equation}
+\begin{equation}
+  q_{z,hk} = \frac{2\pi h}{D} - \frac{2\pi k}{\lambda_r\tan\gamma}
+\end{equation}
+
+Since the sample is crystalline in the ripple phase, the x-ray structure factor
+from a domain whose Cartesian coordinates coincide with the lab Cartesian 
+coordinates is 
+\begin{equation}
+  S(q_x,q_y,q_z) = \sum_{h,k} \delta(q_x-q_{x,k}) \delta(q_y) \delta(q_z-q_{z,hk}),
 \end{equation}
 where the ripple direction is assumed to be along x-axis. Since the sample 
-possesses the azimuthal symmetry, 
+possesses the azimuthal symmetry (in other words, in-plane powder), the
+structure factor becomes
 \begin{equation}
-  S(q_r,q_z) = \delta\pars{q_z-\frac{2\pi h}{D}}\delta(q_r)
-               + \frac{1}{2\pi q_r}\delta\pars{q_z...}\delta\pars{q_r-q_0}
+  S(q_r,q_z) = \sum_{h,k} \frac{1}{2\pi q_r}\delta(q_r-q_{r,k})\delta(q_z-q_{z,hk}),
 \end{equation} 
-(fill in $q_o$ later. There might also be some $q_r$ factor somewhere). 
-The limits of $q_y$ integration is important. It goes
-from 0 to $q_z\omega_0$, where $\omega_0$ is the maximum angle of incidence. 
-$q_x$ and $q_y$ integrations lead to $\Delta\phi q_0$, but $\Delta\phi = q_z\omega_0/q_0$,
-resulting in $\omega_0$. At the end, we get
+where $q_{r,k}=2\pi |k|/\lambda_r$. 
+
+The observed intensity is proportional to
 \begin{equation}
-  I_o \sim \frac{1}{q_z(h)}|F(h,0)|^2+\frac{\omega_0}{2\pi q_r(k)}|F(h,k\neq 0)|^2
+  I_{\mathrm{o}} \sim \sum_{h,k} \frac{\lvert F_{hk} \rvert^2}{q_{z,hk}} \int\mathop{dq_x} 
+                      \int_{-a}^{a}\mathop{dq_y} \frac{\delta(q_r-q_{r,k})}{2\pi q_r}
 \end{equation}
-This is indeed what Sengupta \textit{et al.} obtained [citation]. 
+For satellite peaks ($k \neq 0$), we have 
+\begin{align}
+  \int\mathop{dq_x} \int_{-a}^a\mathop{dq_y} \frac{\delta(q_r-q_{r,k})}{2\pi q_r}
+  &= \int_{-\Delta\phi}^{\Delta\phi}\mathop{d\phi} \int\mathop{dq_r} q_r\frac{\delta(q_r-q_{r,k})}{2\pi q_r} \\
+  &= \frac{\Delta\phi}{\pi} \\
+  &\approx \frac{a}{\pi q_{r,k}}
+\end{align}
+where $a=\lambda q_{z,hk}^2/(4\pi)$. Note that the small angle approximation was used here for $\Delta\phi$.
+For the main peaks ($k=0$), we have 
+\begin{align}
+  \int\mathop{dq_x} \int_{-a}^a\mathop{dq_y} \frac{\delta(q_r-q_{r,k})}{2\pi q_r}
+  &= \int_0^{2\pi}\mathop{d\phi} \int\mathop{dq_r} q_r\frac{\delta(q_r-q_{r,k})}{2\pi q_r} \\
+  &= 1
+\end{align}
+The observed intensity, $I_{\mathrm{o},hk}$, can be written as
+\begin{align}
+  I_{\mathrm{o},hk} &\sim \sum_{h,k} \frac{|F_{hk}|^2}{q_{z,hk}}
+                    \pars{\delta_{k0}+(1-\delta_{k0})\frac{\lambda q_{z,hk}^2}{4\pi^2 q_{r,k}}} \\
+  &= \sum_{h,k}|F_{hk}|^2 \pars{\frac{\delta_{k0}}{q_{z,hk}}+(1-\delta_{k0})\frac{\lambda q_{z,hk}}{2\pi}
+  \frac{1}{2\pi q_{r,k}}}
+\end{align}
+Then, the form factor is 
+\begin{align}
+  |F_{h0}|^2 &\sim q_{z,h0} I_{\mathrm{o},h0} \\
+  |F_{hk}|^2 &\sim \frac{2\pi q_{r,k} I_{\mathrm{o},hk}}{\omega_{\mathrm{max},hk}} 
+\end{align}
+
+These factors are different from what Sengupta \textit{et al.} obtained. They
+obtained $\Delta$ instead of $\omega_{\text{max}}$. This difference stems from
+different substrates used in experiments. In this study, a thick Si wafer
+was used, which does not permit x-ray to penetrate. This limits the range
+of $\omega$, within which the outgoing wavevector actually gets to the
+detector without being blocked by the substrate. In Sengupta \textit{et al.},
+a glass beaker was used to orient their sample, which presumably is
+transparent to x-rays at the energy used in their study. 
 
 Figure shows a LAXS pattern from DMPC at 18 \degC. $D=59.2$ \AA. High 
 resolution experiment. Up to $h=6$ orders were clearly observed in this
