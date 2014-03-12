@@ -1,51 +1,8 @@
 \documentclass[12pt,letterpaper]{article}
-\author{Kiyo Akabori}
-\title{Mosaic Spread Analysis}
-\date{\today}
-%-------------------------------------Package-----------------------
-\usepackage{graphicx}
-\usepackage{epstopdf}
-\usepackage{tabularx}
-\usepackage[lofdepth,lotdepth]{subfig}%subfloat
-\usepackage{bm}%bold math
-\usepackage{color}
-\usepackage[centertags]{amsmath}
-\usepackage{mathrsfs}
-\usepackage{amsmath}
-\usepackage{mathtools}
-\usepackage{amssymb}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{newlfont}
-\usepackage{textcomp,gensymb}%for \textdegree and \degree
+\input{../common_preambles}
 
-\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
-\graphicspath{{./figures/}}
-
-%%%%%%%%%%%%%%%%%%%%%%%% new command %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%         
-%\newcommand{\dg}{^{\circ}}%degree symbol
-\newcommand{\degC}{$^{\circ}\mathrm{C}$}
-\newcommand{\iang}{\textrm{\AA}^{-1}} % inverse Angstrom symbol
-\newcommand{\Eq}[1]{Eq.\,(\ref{#1})} % reference to an equation
-\newcommand{\xhat}{\mathbf{\hat{x}}}
-\newcommand{\yhat}{\mathbf{\hat{y}}}
-\newcommand{\zhat}{\mathbf{\hat{z}}}
-\newcommand{\kin}{\mathbf{k}_{\mathrm{in}}}
-\newcommand{\kout}{\mathbf{k}_{\mathrm{out}}}
-
-\newcommand{\pars}[1]{\mathopen{}\left( #1 \right)\mathclose{}} % () without extra spaces due to \left and \right
-
-\newcommand{\angles}[1]{\left\lange #1 \right\rangle}%      <>
-\newcommand{\braces}[1]{\left\lbrace #1 \right\rbrace}%     {}
-\newcommand{\bracks}[1]{\left\lbrack #1 \right\rbrack}%     []
-\newcommand{\ds}[1]{\displaystyle{#1}}%
-\newcommand{\+}{^{\dagger}}%                                
-\newcommand{\partiald}[3][]{{\partial^{#1}#2 \over \partial {#3}^{#1}}}%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-%\maketitle
+\today
 
 \section{setup}
 The incoming and outgoing wavevectors of the x-ray beam in Fig. XXX 

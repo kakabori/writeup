@@ -1,62 +1,51 @@
 \documentclass[12pt,letterpaper]{article}
-\author{Kiyo Akabori}
-\title{Mosaic Spread Analysis}
-\date{\today}
-%-------------------------------------Package-----------------------
-\usepackage{graphicx}
-\usepackage{epstopdf}
-\usepackage{tabularx}
-\usepackage[lofdepth,lotdepth]{subfig}%subfloat
-\usepackage{bm}%bold math
-\usepackage{color}
-\usepackage[centertags]{amsmath}
-\usepackage{mathrsfs}
-\usepackage{amsmath,amssymb}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{newlfont}
-\usepackage{textcomp,gensymb}%for \textdegree and \degree
 
-\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
-\graphicspath{{./figures/}}
-
-%------------------------------new command------------------------             
-%\newcommand{\dg}{^{\circ}}%degree symbol
-\newcommand{\iang}{\textrm{\AA}^{-1}}%inverse Angstrom symbol
-\newcommand{\Eq}[1]{Eq.\,(\ref{#1})}%reference to an equation
-\newcommand{\xhat}{\mathbf{\hat{x}}}
-\newcommand{\yhat}{\mathbf{\hat{y}}}
-\newcommand{\zhat}{\mathbf{\hat{z}}}
-\newcommand{\kin}{\mathbf{k}_{\mathrm{in}}}
-\newcommand{\kout}{\mathbf{k}_{\mathrm{out}}}
+\input{../common_preambles}
 
 %\setlength{\oddsidemargin}{0cm} \setlength{\topmargin}{0cm}
 %\setlength{\textheight}{22cm} \setlength{\textwidth}{16cm}
 %-----------------------------------------------------------------
 
 \begin{document}
-\maketitle
-%\tableofcontents
-%\listoffigures
-%\listoftables
+\today
 
-%\newpage
-%\section{Notation}
-%\begin{itemize}
-%\item $\omega$: angle of incidence
-%\item $\hat{\theta}$: angle measured from equator in q-space
-%\item $S$, S-distance: distance between the center of the sample and the CCD screen
-%\item $D$, D-spacing: repeat spacing of lipid bilayers
-%\item $d$, d-spacing: distance between lipid chains
-%\item $\theta_t$: chain tilt angle
-%\item $\gamma$: $\gamma$ angle of ripple phase [refer to Figure \ref{fig:Sun1996}]
-%\item $\xi$: the angle between the midplane of the major side and the ripple direction
-%\item X-axis: horizontal axis through the beam in the CCD frame
-%\item Z-axis: vertical axis through the beam in the CCD frame
-%\item (X,Z): position on the CCD detector with respect to the beam
-%\end{itemize}
+\section{MD simulation}
+Three systems with different petpide concentrations (DOPC:Tat = 128:0, 128:2, and 128.4)
+were studied with Gromacs 4.6.1 package \cite{ref:Hess08}. DOPCs were modeled by Slipid 
+force field \cite{ref:Jambeck12_JPCB,ref:Jambeck12_JCTC} and HIV-Tats
+were modeled by Amber99SB \cite{ref:Hornak06}. The systems were simulated at 
+310 K with a constant
+area in the x-y plane. The z direction was coupled to 1 atm with constant pressure. The
+center of mass (COM) distance between each peptide and the bilayer was constrained by an
+umbrella potential with a force constant of 3000 kJ/mol/nm$^2$. Each system was explored
+18 independent simulations as a combination of 3 different constant area and 6 different
+peptide insertion depths (except the pure DOPC system).
 
+\begin{equation}
+  z_{\mathrm{cm}} = \frac{\sum_{i=1}^N m_iz_i}{\sum_{i=1}^N m_i}
+\end{equation}
+The center of mass constraint was applied through an external force field,
+which derives from an added pontential energy of the system. The pontential 
+is like a spring, where it depends on the deviation of the distance 
+between the center of mass of Tat and DOPC from a prefered value, $z_0$,
+\begin{equation}
+  U(z_1^{\Tat},\ldots,z_1^{\DOPC},\ldots) = 
+  -\frac{1}{2} k 
+  \pars{z_{\cm}^{\Tat} - z_{\cm}^{\DOPC} - z_0}^2
+\end{equation}
+Then, $-\partial U/\partial z_i$ is equal to the external force acting 
+on atom, $i$. Before applying this constraint, Tats were attached to 
+the bilayer from the water region. During the first 20 ns for 
+pre-equilibration, Tats were allowed to change their configuration,
+which resulted in different configurations for each Tat when attached
+to the bilayer. It is possible that the Tats configuration inside the
+bilayer at the end of simulations was affected by this initial 
+configuration of Tats. Instead of preparing many simulations with
+different initial Tat configurations, we avaraged over all Tats
+present in the system. We also performed many simulations with
+different $A_L$ and $z_{\Tat}$ to investigate how robust some of the 
+Tat structural features are. Many simulation results are shown in
+the appendix of this thesis. 
 
 \section{Some Lipid Bilayer Data}
 We also estimated the structure by fitting the experimental form factors to a 
@@ -66,9 +55,7 @@ these groups were free parameters and the agreement with the experimental form
 factors was excellent (see Fig. S.M. 5).  Absolute total electron density 
 profiles and the Tat profiles are shown for many samples in Fig. 6 (A-C).  
 It must be emphasized, however, that, while the total EDP is well determined by 
-this fitting procedure, the values of the parameters for the components are not 
-as well determined as they would be if one had X-ray data to smaller and larger 
-q and neutron data.  Indeed, there are local minima in the fitting landscape, 
+this fitting procedure.  Indeed, there are local minima in the fitting landscape, 
 including one with Tat closer to the center of the bilayer as shown in Fig. 
 S.M. 5.  The simulations help to discard that result. For the results shown in 
 Fig. 6, a consistent trend is that Tat moves away from the bilayer center as 
@@ -108,5 +95,22 @@ Figure 8 shows that the Sxray orientational order parameters generally
 decreases with increasing concentration of Tat for most of the membrane mimics 
 studied.  These decreases in membrane chain order are compatible with the 
 increase in softening of membranes by Tat observed by a decrease in the bending
-energy, KC, in Fig. 2.  
+energy, KC, in Fig. 2.
+
+%\begin{thebibliography}{999}
+%\bibitem{ref:Hess08}
+%  Berk Hess, Carsten Kutzner, David van der Spoel, and Erik Lindahl,
+%  ``GROMACS 4: Algorithms for Highly Efficient, Load-Balanced, and 
+%    Scalable Molecular Simulation'',
+%  Journal of Chemical Theory and Computation \textbf{4}, 435 (2008).
+%\bibitem{ref:Jambeck12}
+%  Joakim P. M. Jämbeck and Alexander P. Lyubartsev,
+%  ``Derivation and Systematic Validation of a Refined All-Atom Force Field for 
+%    Phosphatidylcholine Lipids''
+%  The Journal of Physical Chemistry B \textbf{116}, 3164 (2012)
+%\end{thebibliography}
+
+\bibliography{../thesis}
+\bibliographystyle{unsrt}
+
 \end{document}
