@@ -47,6 +47,22 @@ different $A_L$ and $z_{\Tat}$ to investigate how robust some of the
 Tat structural features are. Many simulation results are shown in
 the appendix of this thesis. 
 
+\section{Cylinder Model}
+Tat is modeled as a cylinder. Lipids are seprated into three regions, 
+suppressed, boundary, and unperturbed lipids (see Fig. for the definitions
+of various quantities). Let $h(r)$ represent the phosphorus height profile,
+which is given by
+\begin{equation}
+  h(r) = \left\{ 
+  \begin{array}{cc}
+    Z_{Phos} & \text{if } 0 < r < R_1 \\
+    \frac{Z_{Phos}-Z_{Phos}^0}{R_1-R_2}r+b & \text{if } 0 < r < R_1 \\
+    Z_{Phos}^0 & \text{if } 0 < r < R_1 
+  \end{array}\right.  
+\end{equation}     
+To obtain $R_3$, we assume that the simulation box is cylindrical, so that
+$NA_L=\pi R_3^2$, or $R_3=\sqrt{NA_L/\pi}$. $R_1=\sqrt{V_{Tat}/(\pi h_{Tat}}$.
+
 \section{Some Lipid Bilayer Data}
 We also estimated the structure by fitting the experimental form factors to a 
 model using the SDP method with the component groups identified in Fig. (what  
@@ -96,19 +112,6 @@ decreases with increasing concentration of Tat for most of the membrane mimics
 studied.  These decreases in membrane chain order are compatible with the 
 increase in softening of membranes by Tat observed by a decrease in the bending
 energy, KC, in Fig. 2.
-
-%\begin{thebibliography}{999}
-%\bibitem{ref:Hess08}
-%  Berk Hess, Carsten Kutzner, David van der Spoel, and Erik Lindahl,
-%  ``GROMACS 4: Algorithms for Highly Efficient, Load-Balanced, and 
-%    Scalable Molecular Simulation'',
-%  Journal of Chemical Theory and Computation \textbf{4}, 435 (2008).
-%\bibitem{ref:Jambeck12}
-%  Joakim P. M. Jämbeck and Alexander P. Lyubartsev,
-%  ``Derivation and Systematic Validation of a Refined All-Atom Force Field for 
-%    Phosphatidylcholine Lipids''
-%  The Journal of Physical Chemistry B \textbf{116}, 3164 (2012)
-%\end{thebibliography}
 
 \bibliography{../thesis}
 \bibliographystyle{unsrt}
