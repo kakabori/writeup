@@ -1,5 +1,15 @@
 \documentclass[12pt,letterpaper]{article}
 \input{../common_preambles}
+\newcommand{\zw}{Z_\mathrm{W}}
+\newcommand{\zch}{Z_\mathrm{CH_2}}
+\newcommand{\zh}{Z_\mathrm{H}}
+\newcommand{\sigmah}{\sigma_\mathrm{H}}
+\newcommand{\sigmam}{\sigma_\mathrm{M}}
+\newcommand{\rhoh}{\rho_\mathrm{H}}
+\newcommand{\rhom}{\rho_\mathrm{M}}
+\newcommand{\rhm}{\R_\mathrm{HM}}
+\newcommand{\ch}{\mathrm{CH_2}}
+\newcommand{\w}{\mathrm{W}}
 
 \begin{document}
 \today
@@ -179,8 +189,56 @@ this was crucial to obtain the correct integrated intensity.
 In order to test the decomposition effect, fits were also performed
 for the sum of intensity for orders that overlap. 
 
+\section{Simple Delta Function Model}
 Two models employed in this study were simple delta function (SDF) and
 modified Gaussian function (MGF) models. As was shown previously,
 both models results in the same phases.
+
+\section{Simple 1G Model}
+This section essentially reproduces Wiener's thesis while introducing the 
+notations unique in this thesis. The 1G model approximates the lipid head 
+and terminal methyl groups as a single 
+Gaussian each. The methylene and water regions are both treated as a constant.
+The gap between the two is represented by a sine function. The electron
+density in this model in the minus fluid convention is given by
+\begin{equation}
+  \rho(z) = \rho_{G}(z) + \rho_{s}(z),
+\end{equation}
+where the Gaussian part of the model is 
+\begin{equation}
+  \rho_{\mathrm{G}}(z) = \rhoh e^{-\frac{(z-\zh)^2}{2\sigmah^2}} + 
+                \rhoh e^{-\frac{(z+\zh)^2}{2\sigmah^2}} + 
+                \rhom e^{-\frac{z^2}{2\sigmam^2}}
+\end{equation}
+and the strip part is
+\begin{equation}
+\rho_\mathrm{s}(z) = \left\{
+  \begin{array}{ccc}
+    0 & \text{if } & -D/2 < x < \zw,\\
+    -\frac{\Delta\rho}{2} \left[\sin\frac{\pi}{w}(z+\zh)+1\right] & \text{if } & -\zw < z < -\zch,\\
+    -\Delta\rho & \text{if } & -\zch < z < \zch,\\
+    \frac{\Delta\rho}{2} \left[\sin\frac{\pi}{w}(z-Z_H)-1\right] & \text{if } & \zw < z < \zch,\\
+    0 & \text{if } & \zw < x < D/2,
+  \end{array} \right.
+\end{equation}
+where $Z_\mathrm{W}=Z_\mathrm{H}+w/2$ and $Z_{\mathrm{CH_2}}=Z_H-w/2$ and $\Delta\rho=\rho_W-\rho_{CH_2}$. 
+Note that the minus fluid convenction means we measure the electron density 
+of lipid relative to that of water. Also note that $\rho_\mathrm{s}(z)$ and its first 
+derivative is continuous across the whole bilayer.
+
+The form factor is given by
+\begin{equation}
+  F = \int_{-\frac{D}{2}}^{\frac{D}{2}} \rho(z) e^{iq_zz} dz 
+    = 2 \int_0^{\frac{D}{2}} \rho(z) \cos (q_zz) dz
+\end{equation}
+The second eqality follows from the inversion symmetry of $\rho(z)$. 
+\begin{align}
+  \frac{F_\mathrm{s}}{2} &= \int_0^{\frac{D}{2}} \rho_\mathrm{s}(z) \cos (q_zz) dz \nonumber\\
+                &= -\Delta\rho \int_0^{\zch} \cos(q_zz) dz 
+                   + \frac{\Delta\rho}{2} \int_{\zch}^{\zw} \left[\sin\frac{\pi(z-\zh)}{w}-1\right] \cos(q_zz) dz \nonumber\\
+                &=
+\end{align}
+
+\section{fit}
 
 \end{document}
