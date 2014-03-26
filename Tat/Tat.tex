@@ -7,6 +7,7 @@
 \newcommand{\vtat}{V_\mathrm{Tat}}
 \newcommand{\htat}{h_\mathrm{Tat}}
 \newcommand{\al}{A_\mathrm{L}}
+\newcommand{\dpp}{D_\mathrm{PP}}
 \usepackage[pdftex]{hyperref}
 %\setlength{\oddsidemargin}{0cm} \setlength{\topmargin}{0cm}
 %\setlength{\textheight}{22cm} \setlength{\textwidth}{16cm}
@@ -76,34 +77,33 @@ thickness near the Tats is smaller than the average thickness.
   \label{fig:cylinder_model}
 \end{figure}
 So, we want to measure DPP'.  First, let us define what we mean by lipids 
-close to Tat.  As in Fig.\,\ref{fig:cylinder_model}, we imagine a cylinder around Tat and 
+close to Tat.  As in Fig.~\ref{fig:cylinder_model}, we imagine a cylinder around Tat and 
 pick up all the phosphorus atoms within it.  Approximating Tat as a cylinder 
 with its height given by the FWHM of its electron density distribution, its 
-radius $R_\mathrm{Tat}$ ≈ 9 Å R. comes from the volume of Tat = 1876$\AA^3$ and 
-$\htat$ = 7.6\AA
+radius $R_\mathrm{Tat}$ = 9~\AA\ comes from the volume of Tat = 1876~\AA$^3$ and 
+$\htat$ = 7.6~\AA\
 measured from one of the simulations. Let us define the lateral center of the 
 cylinder in some way - a crude approximation would put it at the arginine in 
 the middle of the amino acid sequence. Then let us define DPP' using only 
-those lipids whose phosphorus atoms lie within these 9\AA cylinders around the 
-tats. Then $DPP' = Zphos (>0) - Zphos (<0)$ where $Zphos(>0) (Zphos(>0))$ 
-is the 
-average Z of the n1 (n2) lipids in the upper (lower) monolayer, respectively.  
+those lipids whose phosphorus atoms lie within these 9\AA\ cylinders around the 
+tats. Then $D_\mathrm{PP} = \zphos^+ - \zphos^-$ where $\zphos^+$ and $\zphos^-$ 
+are the 
+average $Z$ of the n1 (n2) lipids in the upper and lower monolayer, respectively.  
 To be more precise, assume that the arginine in the middle of the amino acid 
 sequence is at the center of the cylinder. For a refined method, we could find 
 the center of mass of each Tat and use them as the lateral center of cylinders 
 (instead of a particular carbon atom in an arginine). 
 
-The algorithm for doing this looks straightforward.  For each time frame 
-(snapshot), the positions (XiTat ,YiTat, ZiTat) of each Tat, i,  would be listed.   
-All phosphorus atoms j would be chosen if its (X,Y) lateral position lies within 
-9 Å of any one of the (XiTat ,YiTat) and its Zi position would be placed in a 
-list. (No need to keep a record of which cylinder each phosphorus falls into.)  
-Then, Zphos(>0) and Zphos(>0) would be calculated from the list.  Before going 
-to the next snapshot, the number of selected phosphates in each monolayer should 
-be recorded as local lateral depletion is also an interesting quantity to consider, 
-although this could be misleading if the Tat cylinders overlap.  While doing this, 
-it would also be good to record the difference, Zphos(>0) - ZTat(>0) ( and also for Z < 0).
-After averaging over many snapshots, there will hopefully be decent statistics 
+The algorithm for doing this is straightforward.  For each time frame 
+(snapshot), the positions ($X_i$ ,$Y_i$, $Z_i$) of each Tat, $i$, are listed.   
+We choose phosphorus atoms whose ($X$, $Y$) lateral position lies within 
+9~\AA\ of any one of the Tat's lateral position. Then, $Z$ position
+of the chosen phosphorus atoms are placed in a 
+list. Then, $\zphos$ are calculated from the list. 
+The number of selected phosphorus atoms in each monolayer was also 
+recorded. This value gives local lateral depletion if the Tat cylinders 
+are assumed not to overlap. After averaging over many snapshots, 
+there will hopefully be decent statistics 
 for local thinning and local difference between Tat and phosphorus Z positions, 
 and maybe local lateral depletion if overlaps are taken into account.  
 
