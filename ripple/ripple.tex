@@ -8,7 +8,7 @@
 \newcommand{\sigmam}{\sigma_\mathrm{M}}
 \newcommand{\rhoh}{\rho_\mathrm{H}}
 \newcommand{\rhom}{\rho_\mathrm{M}}
-\newcommand{\rhm}{\R_\mathrm{HM}}
+\newcommand{\rhm}{R_\mathrm{HM}}
 \newcommand{\ch}{\mathrm{CH_2}}
 \newcommand{\w}{\mathrm{W}}
 %\syntaxonly
@@ -237,11 +237,32 @@ The form factor is given by
 \end{equation}
 The second eqality follows from the inversion symmetry of $\rho(z)$. 
 \begin{align}
-  \frac{F_\mathrm{s}}{2} &= \int_0^{\frac{D}{2}} \rho_\mathrm{s}(z) \cos (q_zz) dz \nonumber\\
-                &= -\Delta\rho \int_0^{\zch} \cos(q_zz) dz 
-                   + \frac{\Delta\rho}{2} \int_{\zch}^{\zw} \left[\sin\frac{\pi(z-\zh)}{w}-1\right] \cos(q_zz) dz \nonumber\\
-                &=
+  \frac{F_\mathrm{s}}{2} 
+  &= \int_0^{\frac{D}{2}} \rho_\mathrm{s}(z) \cos (q_zz) dz \nonumber\\
+  &= -\Delta\rho \int_0^{\zch} \cos(q_zz) dz 
+     + \frac{\Delta\rho}{2} \int_{\zch}^{\zw} 
+       \braces{\sin\bracks{\frac{\pi}{w}(z-\zh)}-1} \cos(q_zz) dz \nonumber\\
+  &=
 \end{align}
+
+\begin{multline}
+  \int \sin\bracks{\frac{\pi}{w}(z-\zh)} \cos q_zz dz
+  = \left(1-\frac{\pi^2}{w^2q_z^2}\right)^{-1} 
+  \left\{\frac{1}{q} \sin\bracks{\frac{\pi}{w}(z-\zh)} \sin q_zz\right. \\
+  + \left.\frac{\pi}{wq^2}\cos\bracks{\frac{\pi}{w}(z-\zh)}\cos q_zz\right\}
+\end{multline}
+Non-rotated $F_s$ is
+\begin{equation}
+  F_\mathrm{s} = 2\Delta\rho\sin(q_z\zh)\cos\pars{\frac{q_zw}{2}}
+                 \left[-\frac{1}{q}+\frac{qw^2}{q^2w^2-\pi^2}\right] 
+\end{equation}
+The rotated $F_G$ is
+\begin{equation}
+  F_\mathrm{G} = \sqrt{2\pi}\rhom\cos\psi \pars{
+  \rhm\sigmah\cos(\zh\theta) e^{-\frac{1}{2}\sigmah^2\theta^2}
+  -\sigmam e^{-\frac{1}{2}\sigmam^2\theta^2}}
+\end{equation}
+with $\theta(\mathbf{q})=\cos\psi(q_z-q_x\tan\psi)$.
 
 \section{fit}
 

@@ -39,9 +39,9 @@
 
 % To simplify some formatting issues
 \newcommand{\pars}[1]{\mathopen{}\left( #1 \right)\mathclose{}} % () without extra spaces due to \left and \right
-\newcommand{\angles}[1]{\left\lange #1 \right\rangle}%      <>
-\newcommand{\braces}[1]{\left\lbrace #1 \right\rbrace}%     {}
-\newcommand{\bracks}[1]{\left\lbrack #1 \right\rbrack}%     []
+\newcommand{\bracks}[1]{\mathopen{}\left[ #1 \right]\mathclose{}} % [] without extra spaces
+\newcommand{\angles}[1]{\mathopen{}\left\lange #1 \right\rangle\mathclose{}} % <> without extra spaces
+\newcommand{\braces}[1]{\mathopen{}\left\lbrace #1 \right\rbrace\mathclose{}} % {} without extra spaces
 \newcommand{\ds}[1]{\displaystyle{#1}}%
 \newcommand{\+}{^{\dagger}}%                                
 \newcommand{\partiald}[3][]{{\partial^{#1}#2 \over \partial {#3}^{#1}}}%
