@@ -1,16 +1,25 @@
 \documentclass[12pt,letterpaper]{article}
 \input{../common_preambles}
 
+% Z's
 \newcommand{\zw}{Z_\mathrm{W}}
-\newcommand{\zch}{Z_\mathrm{CH_2}}
+\newcommand{\zchtwo}{Z_\mathrm{CH_2}}
 \newcommand{\zh}{Z_\mathrm{H}}
+% sigma's
 \newcommand{\sigmah}{\sigma_\mathrm{H}}
 \newcommand{\sigmam}{\sigma_\mathrm{M}}
+% rho's
 \newcommand{\rhoh}{\rho_\mathrm{H}}
 \newcommand{\rhom}{\rho_\mathrm{M}}
+\newcommand{\rhog}{\rho_\mathrm{G}}
+\newcommand{\rhos}{\rho_\mathrm{s}}
 \newcommand{\rhm}{R_\mathrm{HM}}
-\newcommand{\ch}{\mathrm{CH_2}}
+\newcommand{\rhow}{\rho_\mathrm{W}}
+\newcommand{\rhochtwo}{\rho_\mathrm{CH_2}}
+% subscript
+\newcommand{\chtwo}{\mathrm{CH_2}}
 \newcommand{\w}{\mathrm{W}}
+
 %\syntaxonly
 \usepackage[pdftex]{hyperref}
 
@@ -199,48 +208,79 @@ modified Gaussian function (MGF) models. As was shown previously,
 both models results in the same phases.
 
 \section{Simple 1G Model}
-This section essentially reproduces Wiener's thesis while introducing the 
-notations unique in this thesis. The 1G model approximates the lipid head 
+The 1G model approximates the lipid head 
 and terminal methyl groups as a single 
 Gaussian each. The methylene and water regions are both treated as a constant.
 The gap between the two is represented by a sine function. The electron
-density in this model in the minus fluid convention is given by
+density in the minus fluid convention is
 \begin{equation}
-  \rho(z) = \rho_{G}(z) + \rho_{s}(z),
+  \rho(z) = \rhog(z) + \rhos(z),
+\end{equation}
+where
+\begin{equation}
+  \rhog(z) = \rhoh e^{-(z-\zh)^2/(2\sigmah^2)} + 
+             \rhoh e^{-(z+\zh)^2/(2\sigmah^2)} + \rhom e^{-z^2/(2\sigmam^2)}
+\end{equation}
+and
+\begin{equation}
+  \rhos(z) =  \left\{
+    \begin{array}{ccc}
+      0 & \text{if } & -D/2 \leq z < -\zw,\\
+      -\Delta\rho\braces{\sin\bracks{\pi(z+\zh)/w}+1}/2 
+        & \text{if } & -\zw \leq z < -\zchtwo,\\
+      -\Delta\rho & \text{if } & -\zchtwo \leq z < \zchtwo,\\
+      \Delta\rho\braces{\sin\bracks{\pi(z-\zh)/w}-1}/2 
+        & \text{if } & \zchtwo \leq z < \zw,\\
+      0 & \text{if } & \zw \leq z \leq D/2,
+    \end{array}
+  \right.
+\end{equation}
+with $\zw=\zh+w/2$, $\zchtwo=\zh-w/2$, and $\Delta\rho=\rhow-\rhochtwo$. 
+Note that in the minus fluid convenction the electron density 
+of lipid bilayers are measured relative to that of water. Also note that 
+$\rhos(z)$ and its first derivative are continuous.
+
+The transbilayer profile along $x=-z\tan\psi$ can be obtained by rotating
+the coordinates $x$ and $z$ by $\psi$ in the clockwise direction and
+reexpressing $\rho(z)$ in terms of the rotated coordinates. This leads
+to replaincg $x$ with $x'=x\cos\psi+z\sin\psi$ and
+$z$ with $z'=-x\sin\psi+z\cos\psi$. The rotated transbilayer profile is
+\begin{equation}
+  \rho(x,z) = \delta(x+z\tan\psi)\left[\rhog(x,z) + \rhos(x,z)\right],
 \end{equation}
 where the Gaussian part of the model is 
 \begin{equation}
-  \rho_{\mathrm{G}}(z) = \rhoh e^{-\frac{(z-\zh)^2}{2\sigmah^2}} + 
-                \rhoh e^{-\frac{(z+\zh)^2}{2\sigmah^2}} + 
-                \rhom e^{-\frac{z^2}{2\sigmam^2}}
+  \rhog(x,z) = \rhoh e^{-(z'-\zh)^2/(2\sigmah^2)} \\
+  + \rhoh e^{-(z'+\zh)^2/(2\sigmah^2)}
+  - \rhom e^{-z'^2/(2\sigmam^2)},
 \end{equation}
-and the strip part is
+and the strip part
 \begin{equation}
-\rho_\mathrm{s}(z) = \left\{
-  \begin{array}{ccc}
-    0 & \text{if } & -D/2 < x < \zw,\\
-    -\frac{\Delta\rho}{2} \left[\sin\frac{\pi}{w}(z+\zh)+1\right] & \text{if } & -\zw < z < -\zch,\\
-    -\Delta\rho & \text{if } & -\zch < z < \zch,\\
-    \frac{\Delta\rho}{2} \left[\sin\frac{\pi}{w}(z-Z_H)-1\right] & \text{if } & \zw < z < \zch,\\
-    0 & \text{if } & \zw < x < D/2,
-  \end{array} \right.
+  \rhos(x,z) =  \left\{
+    \begin{array}{ccc}
+      0 & \text{if } & -D/2 \leq z' < -\zw,\\
+      -\Delta\rho\braces{\sin\bracks{\pi(z'+\zh)/w}+1}/2 
+        & \text{if } & -\zw \leq z' < -\zchtwo,\\
+      -\Delta\rho & \text{if } & -\zchtwo \leq z' < \zchtwo,\\
+      \Delta\rho\braces{\sin\bracks{\pi(z'-\zh)/w}-1}/2 
+        & \text{if } & \zchtwo \leq z' < \zw,\\
+      0 & \text{if } & \zw \leq z' \leq D/2.
+    \end{array}
+  \right.
 \end{equation}
-where $Z_\mathrm{W}=Z_\mathrm{H}+w/2$ and $Z_{\mathrm{CH_2}}=Z_H-w/2$ and $\Delta\rho=\rho_W-\rho_{CH_2}$. 
-Note that the minus fluid convenction means we measure the electron density 
-of lipid relative to that of water. Also note that $\rho_\mathrm{s}(z)$ and its first 
-derivative is continuous across the whole bilayer.
-
-The form factor is given by
-\begin{equation}
-  F = \int_{-\frac{D}{2}}^{\frac{D}{2}} \rho(z) e^{iq_zz} dz 
-    = 2 \int_0^{\frac{D}{2}} \rho(z) \cos (q_zz) dz
-\end{equation}
+The transbilayer part of the form factor is
+\begin{align}
+  F_\mathrm{T} 
+  &= \int_{-\frac{D}{2}}^{\frac{D}{2}} \int_{-\frac{\lambda_r}{2}}^{\frac{\lambda_r}{2}} 
+     \rho(x,z) e^{i(q_xx+q_zz)} dxdz \nonumber\\
+  &= 2 \int_0^{\frac{D}{2}} \rho(z) \cos (q_zz) dz
+\end{align}
 The second eqality follows from the inversion symmetry of $\rho(z)$. 
 \begin{align}
   \frac{F_\mathrm{s}}{2} 
   &= \int_0^{\frac{D}{2}} \rho_\mathrm{s}(z) \cos (q_zz) dz \nonumber\\
-  &= -\Delta\rho \int_0^{\zch} \cos(q_zz) dz 
-     + \frac{\Delta\rho}{2} \int_{\zch}^{\zw} 
+  &= -\Delta\rho \int_0^{\zchtwo} \cos(q_zz) dz 
+     + \frac{\Delta\rho}{2} \int_{\zchtwo}^{\zw} 
        \braces{\sin\bracks{\frac{\pi}{w}(z-\zh)}-1} \cos(q_zz) dz \nonumber\\
   &=
 \end{align}
@@ -266,4 +306,46 @@ with $\theta(\mathbf{q})=\cos\psi(q_z-q_x\tan\psi)$.
 
 \section{fit}
 
+\appendix
+\section{Rotation of a Two-Dimensional Function}
+Let us consider rotating a function, $f(x,z)$ in two dimensions by an angle, 
+$\psi$, in the counterclockwise direction (see Fig. X). This is easily 
+achieved by rotating the coordinate system by $\psi$ in the clockwise direction. 
+Let rotated coordinates be $x'$ and $z'$. A point in the original coodinates,
+($x$, $z$), is written as ($x'$, $z'$) in the new coordinates. More specifically,
+the point P is written as 
+$\mathbf{P}=x\xhat+z\zhat=x'\xhat'+z'\zhat'$. $\xhat$ and $\zhat$ in
+the $x'z'$ coordinate system are written as 
+\begin{align}
+  \xhat &= \cos\psi\xhat'+\sin\psi\zhat' \\
+  \zhat &= -\sin\psi\xhat'+\cos\psi\zhat'.
+\end{align}
+Pluggin these in $\mathbf{P}=x\xhat+z\zhat$ leads to
+\begin{align}
+  x' &= x\cos\psi - z\sin\psi \\
+  z' &= z\cos\psi + x\sin\psi,
+\end{align}
+the inverse of which is
+\begin{align}
+  x &= x'\cos\psi + z'\sin\psi \\
+  z &= -x'\sin\psi + z'\cos\psi.
+\end{align}
+Using the latter equations, $f(x,z)$ can be expressed in terms of $x'$ and $z'$. 
+The resulting function $f(x',z')$ is the rotated version of $f(x,z)$. 
+
+As an 
+example, let us consider a Dirac delta function located at $(x,z)=(0,\zh)$,
+that is, $f(x,z)=\delta(x)\delta(z-\zh)$. After the rotation by $\psi$, it 
+becomes
+\begin{align*}
+  f(x,z) 
+  &\rightarrow 
+    \delta(x\cos\psi+z\sin\psi) \delta(-x\sin\psi+z\cos\psi-\zh) \\
+  &= \frac{\delta(x+z\tan\psi)}{|\cos\psi|}
+     \frac{\delta(-x\sin\psi\cos\psi+z\cos^2\psi-\zh\cos\psi)}{1/|\cos\psi|} \\
+  &= \delta(x+z\tan\psi)\delta(z\tan\psi\sin\psi\cos\psi+z\cos^2\psi-\zh\cos\psi) \\
+  &= \delta(x+z\tan\psi)\delta(z-\zh\cos\psi),
+\end{align*}
+which is a part of the expression for $T_\psi(x,z)$ in the simple delta 
+function model.
 \end{document}
