@@ -12,7 +12,8 @@
 \newcommand{\rhoh}{\rho_\mathrm{H}}
 \newcommand{\rhom}{\rho_\mathrm{M}}
 \newcommand{\rhog}{\rho_\mathrm{G}}
-\newcommand{\rhos}{\rho_\mathrm{s}}
+\newcommand{\rhos}{\rho_\mathrm{S}}
+\newcommand{\rhob}{\rho_\mathrm{B}}
 \newcommand{\rhm}{R_\mathrm{HM}}
 \newcommand{\rhow}{\rho_\mathrm{W}}
 \newcommand{\rhochtwo}{\rho_\mathrm{CH_2}}
@@ -229,32 +230,32 @@ modified Gaussian function (MGF) models. As was shown previously,
 both models results in the same phases.
 
 \section{Simple 1G Model}
-The 1G model approximates the lipid head 
-and terminal methyl groups as a single 
-Gaussian each. The methylene and water regions are both treated as a constant.
-The gap between the two is represented by a sine function. The electron
-density in the minus fluid convention is
+In the hybrid model, the terminal methyl region of the bilayer is represented
+as a Gaussian function [ref.]. The headgroups are represented by one and two Gaussian
+functions in 1G and 2G hybrid model, respectively. The methylene and water 
+regions are both treated as a constant. The gap between the two constants is 
+represented by a sine function. Then, for half of the bilayer, 
+$0 \leq z \leq D/2$, the electron density has the form, 
 \begin{equation}
-  \rho(z) = \rhog(z) + \rhos(z),
+  \rho(z) = \rhog(z) + \rhos(z) + \rhob(z),
 \end{equation}
-where
+where the Gaussian part is given by 
 \begin{equation}
-  \rhog(z) = \rhoh e^{-(z-\zh)^2/(2\sigmah^2)} + 
-             \rhoh e^{-(z+\zh)^2/(2\sigmah^2)} + \rhom e^{-z^2/(2\sigmam^2)}
+  \rhog(z) = \rhoh e^{-(z-\zh)^2/(2\sigmah^2)} + \rhom e^{-z^2/(2\sigmam^2)},
 \end{equation}
-and
+the strip part is given by
 \begin{equation}
-  \rhos(z) =  \left\{
+  \rhob(z) = \left\{
     \begin{array}{ccc}
-      0 & \text{if } & -D/2 \leq z < -\zw,\\
-      -\Delta\rho\braces{\sin\bracks{\pi(z+\zh)/w}+1}/2 
-        & \text{if } & -\zw \leq z < -\zchtwo,\\
-      -\Delta\rho & \text{if } & -\zchtwo \leq z < \zchtwo,\\
-      \Delta\rho\braces{\sin\bracks{\pi(z-\zh)/w}-1}/2 
-        & \text{if } & \zchtwo \leq z < \zw,\\
-      0 & \text{if } & \zw \leq z \leq D/2,
+      \rhochtwo & \text{for } & 0 \leq z < \zchtwo, \\
+      \rhow   & \text{for } & \zw \leq z \leq D/2,
     \end{array}
   \right.
+\end{equation}
+and the bridging part is given by
+\begin{equation}
+  \rhos(z) = \Delta\rho\braces{\sin\bracks{\pi(z-\zh)/w}-1}/2 
+             \text{\quad for \quad} \zchtwo \leq z < \zw,
 \end{equation}
 with $\zw=\zh+w/2$, $\zchtwo=\zh-w/2$, and $\Delta\rho=\rhow-\rhochtwo$. 
 Note that in the minus fluid convenction the electron density 
