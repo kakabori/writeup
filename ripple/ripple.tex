@@ -2,14 +2,14 @@
 \input{../common_preambles}
 
 % Z's
+\newcommand{\zh}[1]{Z_{\mathrm{H}#1}}
 \newcommand{\zw}{Z_\mathrm{W}}
 \newcommand{\zchtwo}{Z_\mathrm{CH_2}}
-\newcommand{\zh}{Z_\mathrm{H}}
 % sigma's
-\newcommand{\sigmah}{\sigma_\mathrm{H}}
+\newcommand{\sigmah}[1]{\sigma_{\mathrm{H}#1}}
 \newcommand{\sigmam}{\sigma_\mathrm{M}}
 % rho's
-\newcommand{\rhoh}{\rho_\mathrm{H}}
+\newcommand{\rhoh}[1]{\rho_{\mathrm{H}#1}}
 \newcommand{\rhom}{\rho_\mathrm{M}}
 \newcommand{\rhog}{\rho_\mathrm{G}}
 \newcommand{\rhos}{\rho_\mathrm{S}}
@@ -17,6 +17,7 @@
 \newcommand{\rhm}{R_\mathrm{HM}}
 \newcommand{\rhow}{\rho_\mathrm{W}}
 \newcommand{\rhochtwo}{\rho_\mathrm{CH_2}}
+\newcommand{\deltaxh}{\Delta X_\mathrm{H}}
 % subscript
 \newcommand{\chtwo}{\mathrm{CH_2}}
 \newcommand{\w}{\mathrm{W}}
@@ -162,14 +163,9 @@ geometrical correction that must be applied to the observed intensity
 in order to obtain the experimental form factor, which will be fitted to
 a theoretical model of the electron density profile in the ripple phase. 
 
-These factors are different from what Sengupta \textit{et al.} obtained. They
-obtained $\Delta$ instead of $\omega_{\text{max}}$. This difference stems from
-different substrates used in experiments. In this study, a thick Si wafer
-was used, which does not permit x-ray to penetrate. This limits the range
-of $\omega$, within which the outgoing wavevector actually gets to the
-detector without being blocked by the substrate. In Sengupta \textit{et al.},
-a glass beaker was used to orient their sample, which presumably is
-transparent to x-rays at the energy used in their study. 
+\cite{ref:Sengupta03}
+\cite{ref:deVries05}
+
 
 The unit cell vectors in the ripple phase can be expressed as 
 \begin{equation}
@@ -231,7 +227,8 @@ both models results in the same phases.
 
 \section{Simple 1G Model}
 In the hybrid model, the terminal methyl region of the bilayer is represented
-as a Gaussian function [ref.]. The headgroups are represented by one and two Gaussian
+as a Gaussian function \cite{ref:Wiener89}. The headgroups are represented by one 
+and two Gaussian
 functions in 1G and 2G hybrid model, respectively. The methylene and water 
 regions are both treated as a constant. The gap between the two constants is 
 represented by a sine function. Then, for half of the bilayer, 
@@ -241,11 +238,12 @@ $0 \leq z \leq D/2$, the electron density has the form,
 \end{equation}
 where the Gaussian part is given by 
 \begin{equation}
-  \rhog(z) = \rhoh e^{-(z-\zh)^2/(2\sigmah^2)} + \rhom e^{-z^2/(2\sigmam^2)},
+  \rhog(z) = \sum_{i=1}^{1\text{ or }2} \rhoh{i}
+             e^{-(z-\zhi)^2/(2\sigmahi^2)} + \rhom e^{-z^2/(2\sigmam^2)},
 \end{equation}
 the strip part is given by
 \begin{equation}
-  \rhob(z) = \left\{
+  \rhos(z) = \left\{
     \begin{array}{ccc}
       \rhochtwo & \text{for } & 0 \leq z < \zchtwo, \\
       \rhow   & \text{for } & \zw \leq z \leq D/2,
@@ -254,13 +252,23 @@ the strip part is given by
 \end{equation}
 and the bridging part is given by
 \begin{equation}
-  \rhos(z) = \Delta\rho\braces{\sin\bracks{\pi(z-\zh)/w}-1}/2 
-             \text{\quad for \quad} \zchtwo \leq z < \zw,
+  \rhob(z) = \frac{\rhow-\rhochtwo}{2} \cos \braces{
+    \frac{-\pi}{\deltaxh}(z-\zw)} + \frac{\rhow+\rhochtwo}{2}
+  \text{\quad for \quad} \zchtwo < z < \zw.
 \end{equation}
-with $\zw=\zh+w/2$, $\zchtwo=\zh-w/2$, and $\Delta\rho=\rhow-\rhochtwo$. 
-Note that in the minus fluid convenction the electron density 
-of lipid bilayers are measured relative to that of water. Also note that 
-$\rhos(z)$ and its first derivative are continuous.
+Assuming $\zh{2} > \zh{1}$, Table \ref{tb:zchtwozw} shows all the definitions.
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{c c c}
+     & 1G & 2G \\
+    $\zchtwo$ & $\zh{1}-\sigmah{1}$ & $\zh{1}-\sigmah{1}$ \\
+    $\zw$ & $\zh{1}+\sigmah{1}$ & $\zh{2}+\sigmah{2}$   
+  \end{tabular}
+  \caption{Definitions of $\zchtwo$ and $\zw$}
+  \label{tb:zchtwozw}
+\end{table}
+
 
 The transbilayer profile along $x=-z\tan\psi$ can be obtained by rotating
 the coordinates $x$ and $z$ by $\psi$ in the clockwise direction and
@@ -370,4 +378,8 @@ becomes
 \end{align*}
 which is a part of the expression for $T_\psi(x,z)$ in the simple delta 
 function model.
+
+\bibliography{ripple}
+\bibliographystyle{unsrt}
+
 \end{document}
