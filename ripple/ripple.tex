@@ -231,7 +231,7 @@ In the hybrid model, the terminal methyl region of the bilayer is represented
 as a Gaussian function \cite{ref:Wiener89}. The headgroups are represented by one 
 and two Gaussian
 functions in 1G and 2G hybrid model, respectively. The methylene and water 
-regions are both treated as a constant. The gap between the two constants is 
+regions are each treated as a constant. The gap between the two constants is 
 represented by a sine function. Then, for half of the bilayer, 
 $0 \leq z \leq D/2$, the electron density has the form, 
 \begin{equation}
@@ -253,12 +253,12 @@ the strip part is given by
 \end{equation}
 and the bridging part is given by
 \begin{equation}
-  \rhob(z) = \frac{\rhow-\rhochtwo}{2} \cos \braces{
+  \rhob(z) = \frac{\rhow-\rhochtwo}{2} \cos \bracks{
     \frac{-\pi}{\deltaxh}(z-\zw)} + \frac{\rhow+\rhochtwo}{2} \\
   \text{\quad for \quad} \zchtwo < z < \zw.
 \end{equation}
-with $\deltaxh=\zw-\zchtwo$. Assuming $\zh{2} > \zh{1}$, 
-Table \ref{tb:zchtwozw} shows all the definitions.
+with $\deltaxh=\zw-\zchtwo$. Here, we assume $\zh{2}>\zh{1}$. 
+Table \ref{tb:zchtwozw} shows some of the definitions.
 
 \begin{table}[htb]
   \centering
@@ -278,7 +278,7 @@ reexpressing $\rho(z)$ in terms of the rotated coordinates. This leads
 to replaincg $x$ with $x'=x\cos\psi+z\sin\psi$ and
 $z$ with $z'=-x\sin\psi+z\cos\psi$. Then, the rotated transbilayer profile is
 \begin{equation}
-  \rho(x,z) = \delta(x+z\tan\psi)\braces{\rhog(z') + \rhos(z') + \rhob(z')}.
+  \rho(x,z) = \delta(x+z\tan\psi)\bracks{\rhog(z') + \rhos(z') + \rhob(z')}.
   \label{eq:rotated_profile}
 \end{equation}
 
@@ -287,14 +287,14 @@ leads to the transbilayer part of the form factor,
 \begin{align}
   F_\mathrm{T} 
   &= \int_{-\frac{D}{2}}^{\frac{D}{2}} \int_{-\frac{\lambda_r}{2}}^{\frac{\lambda_r}{2}} 
-     \pars{\rho(x,z)-\rhow} e^{i(q_xx+q_zz)} dxdz \\
+     \bracks{\rho(x,z)-\rhow} e^{i(q_xx+q_zz)} dxdz \\
   &= F_\mathrm{G} + F_\mathrm{S} + F_\mathrm{B}.
 \end{align}
 Here, we use the minus fluid convention, where the bilayer electron density
 is measured with respect to the electron density of the surrounding solvent.
 It turns out that (see Appendix)
 \begin{equation}
-  \frac{F_\mathrm{G}}{2} = \sqrt{2\pi}\rhom\cos\psi \braces{
+  \frac{F_\mathrm{G}}{2} = \sqrt{2\pi}\rhom\cos\psi \bracks{
   \sum_{i=1}^{1\text{ or }2} \rhm{i}\sigmah{i}\cos(\zh{i}\theta) e^{-\frac{1}{2}\sigmah{i}^2\theta^2}
   -\sigmam e^{-\frac{1}{2}\sigmam^2\theta^2}}
 \end{equation}
@@ -377,7 +377,39 @@ function model.
 \section{Derivation of the transbilayer part of the form factor for the 
 Gaussian hybrid model}
 In this section, we derive Eq.~(), Eq.~(), and Eq.~().
-
+For the Gaussian part, we have
+\begin{align}
+  & \int_{-D/2}^{D/2} dz \int_{\lambda_r/2}^{\lambda_r/2} \mathop{dx}
+  \rhoh{i} \, \mathrm{exp}\braces{-\frac{(-x\sin\psi+z\cos\psi-\zh{i})^2}{2\sigmah{i}^2}}
+  \delta(x+z\tan\psi)e^{iq_xx}e^{iq_zz} \nonumber\\
+  &= \int_{-D/2}^{D/2} \mathop{dz}\rhoh{i} \,\mathrm{exp}\braces{
+    -\frac{(z-\zh{i}\cos\psi)^2}{2\sigmah{i}^2\cos^2\psi} + i(q_z-q_x\tan\psi)z
+  } \nonumber\\
+  &\approx \rhoh{i}\sqrt{2\pi}\sigmah{i}\cos\psi \,\mathrm{exp}
+  \braces{
+    i\zh{i}\cos\psi(q_z-q_x\tan\psi) - \sigmah{i}^2\cos^2\psi(q_z-q_x\tan\psi)^2/2
+  }. \label{eq:gauss_FT}
+\end{align}
+Using Eq.~(\ref{eq:gauss_FT}) and adding the other side of the bilayer and
+the terminal methyl term, we get
+\begin{multline}
+  F_\mathrm{G} = \sqrt{2\pi}
+  \bigg[
+    -\rhom\sigmam\cos\psi \,\mathrm{exp}\braces{
+      -\sigmam^2\cos^2\psi(q_z-q_x\tan\psi)^2/2} \\
+    \sum_{i=1}^{1\text{ or }2}2\rhoh{i}\sigmah{i}\cos\psi
+    \cos\bracks{\zh{i}\cos\psi(q_z-q_x\tan\psi)}
+    \,\mathrm{exp}\braces{-\sigmah{i}^2\cos^2\psi(q_z-q_x\tan\psi)^2/2}
+  \bigg]
+\end{multline}
+For the strip part, 
+\begin{align}
+  F_\mathrm{S} 
+  &= \int dz \int dx e^{iq_xx}e^{iq_zz}\rhos(x,z)\delta(x+z\tan\psi) \\
+  &= 2 \int_0^{\zchtwo\cos\psi}dz\cos\bracks{(q_z-q_x\tan\psi)z}(-\Delta\rho) \\
+  &= -2\Delta\rho\frac{\sin\bracks{(q_z-q_x\tan\psi)\zchtwo\cos\psi}}{q_z-q_x\tan\psi},
+\end{align}
+where $\Delta\rho=\rhow-\rhochtwo$. The briding part is
 
 \bibliography{ripple}
 \bibliographystyle{unsrt}
