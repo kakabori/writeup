@@ -1,6 +1,12 @@
 \documentclass[12pt,letterpaper]{article}
 \input{../common_preambles}
 
+\newcommand{\dx}{\mathop{dx}}
+\newcommand{\dy}{\mathop{dy}}
+\newcommand{\dz}{\mathop{dz}}
+
+\newcommand{\FC}{F_\mathrm{C}}
+\newcommand{\FT}{F_\mathrm{T}}
 % Z's
 \newcommand{\zh}[1]{Z_{\mathrm{H}#1}}
 \newcommand{\zw}{Z_\mathrm{W}}
@@ -14,11 +20,10 @@
 \newcommand{\rhog}{\rho_\mathrm{G}}
 \newcommand{\rhos}{\rho_\mathrm{S}}
 \newcommand{\rhob}{\rho_\mathrm{B}}
-%\newcommand{\rhm}{R_\mathrm{HM}}
 \newcommand{\rhow}{\rho_\mathrm{W}}
 \newcommand{\rhochtwo}{\rho_\mathrm{CH_2}}
-\newcommand{\deltaxh}{\Delta X_\mathrm{H}}
-\newcommand{\rhm}[1]{R_{\mathrm{H}#1\mathrm{M}}}
+\newcommand{\deltazh}{\Delta Z_\mathrm{H}}
+\newcommand{\Rhm}[1]{R_{\mathrm{H}#1\mathrm{M}}}
 % subscript
 \newcommand{\chtwo}{\mathrm{CH_2}}
 \newcommand{\w}{\mathrm{W}}
@@ -221,12 +226,18 @@ this was crucial to obtain the correct integrated intensity.
 In order to test the decomposition effect, fits were also performed
 for the sum of intensity for orders that overlap. 
 
-\section{Simple Delta Function Model}
+
+\section{Contour Part of the Form Factor}
+As in ref, we take the ripple profile to be a sawtooth given by
+
+
+\section{Delta Function Model}
 Two models employed in this study were simple delta function (SDF) and
 modified Gaussian function (MGF) models. As was shown previously,
-both models results in the same phases. $\rhm{}$
+both models results in the same phases.
 
-\section{Simple 1G Model}
+
+\section{2G Hybrid Model}
 In the hybrid model, the terminal methyl region of the bilayer is represented
 as a Gaussian function \cite{ref:Wiener89}. The headgroups are represented by one 
 and two Gaussian
@@ -254,12 +265,12 @@ the strip part is given by
 and the bridging part is given by
 \begin{equation}
   \rhob(z) = \frac{\rhow-\rhochtwo}{2} \cos \bracks{
-    \frac{-\pi}{\deltaxh}(z-\zw)} + \frac{\rhow+\rhochtwo}{2} \\
+    \frac{-\pi}{\deltazh}(z-\zw)} + \frac{\rhow+\rhochtwo}{2} \\
   \text{\quad for \quad} \zchtwo < z < \zw.
 \end{equation}
-with $\deltaxh=\zw-\zchtwo$. Here, we assume $\zh{2}>\zh{1}$. 
+with $\deltazh=\zw-\zchtwo$. Here, we assume $\zh{2}>\zh{1}$. 
 Table \ref{tb:zchtwozw} shows some of the definitions.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[htb]
   \centering
   \begin{tabular}{c c c}
@@ -270,8 +281,7 @@ Table \ref{tb:zchtwozw} shows some of the definitions.
   \caption{Definitions of $\zchtwo$ and $\zw$}
   \label{tb:zchtwozw}
 \end{table}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The transbilayer profile along $x=-z\tan\psi$ can be obtained by rotating
 the coordinates $x$ and $z$ by $\psi$ in the clockwise direction and
 reexpressing $\rho(z)$ in terms of the rotated coordinates. This leads
@@ -290,46 +300,19 @@ leads to the transbilayer part of the form factor,
      \bracks{\rho(x,z)-\rhow} e^{i(q_xx+q_zz)} dxdz \\
   &= F_\mathrm{G} + F_\mathrm{S} + F_\mathrm{B}.
 \end{align}
-Here, we use the minus fluid convention, where the bilayer electron density
+The form factor is calculated in the minus fluid convention, 
+where the bilayer electron density
 is measured with respect to the electron density of the surrounding solvent.
-It turns out that (see Appendix)
-\begin{equation}
-  \frac{F_\mathrm{G}}{2} = \sqrt{2\pi}\rhom\cos\psi \bracks{
-  \sum_{i=1}^{1\text{ or }2} \rhm{i}\sigmah{i}\cos(\zh{i}\theta) e^{-\frac{1}{2}\sigmah{i}^2\theta^2}
-  -\sigmam e^{-\frac{1}{2}\sigmam^2\theta^2}}
-\end{equation}
-with $\theta(\mathbf{q})=\cos\psi(q_z-q_x\tan\psi)$,
-\begin{equation}
-  \frac{F_\mathrm{S}}{2} 
-  = ,
-\end{equation}
-and
-\begin{equation}
-  \frac{F_\mathrm{B}}{2}
-  = .
-\end{equation}
-The fitting parameters in this model are $\zh{i}$, $\sigmah{i}$, and 
-$\rhm{i}$ for headgroup Gaussian function(s), $\sigmam$ for
-the terminal methyl Gaussian, $\Delta\rho$ for the methylene region, $\psi$ for
-the lipid tilt, and an overall scaling factor, totaling how many variable?
+The expression for $F_\mathrm{T}$ is rather messy and not shown. 
+The derivation and full expression can be found in the appendix. Here, 
+we note that
+the fitting parameters in this model are $\zh{i}$, $\sigmah{i}$, and 
+$\Rhm{i}$ for each of the two headgroup Gaussian functions, $\sigmam$ for
+the terminal methyl Gaussian, $\Delta R$ for the methylene region, $\psi$ for
+the lipid tilt, and an overall scaling factor. The contour part of the 
+form factor has four more parameters ($A$, $x_0$, $f_1$, and $f_2$).
+In total, the modified 2G hybrid model implements 14 structural parameters.
 
-
-  
-\begin{multline}
-  \int \sin\bracks{\frac{\pi}{w}(z-\zh)} \cos q_zz dz
-  = \left(1-\frac{\pi^2}{w^2q_z^2}\right)^{-1} 
-  \left\{\frac{1}{q} \sin\bracks{\frac{\pi}{w}(z-\zh)} \sin q_zz\right. \\
-  + \left.\frac{\pi}{wq^2}\cos\bracks{\frac{\pi}{w}(z-\zh)}\cos q_zz\right\}
-\end{multline}
-Non-rotated $F_s$ is
-\begin{equation}
-  F_\mathrm{s} = 2\Delta\rho\sin(q_z\zh)\cos\pars{\frac{q_zw}{2}}
-                 \left[-\frac{1}{q}+\frac{qw^2}{q^2w^2-\pi^2}\right] 
-\end{equation}
-The rotated $F_G$ is
-
-
-\section{fit}
 
 \appendix
 \section{Rotation of a Two-Dimensional Function}
@@ -374,42 +357,189 @@ becomes
 which is a part of the expression for $T_\psi(x,z)$ in the simple delta 
 function model.
 
-\section{Derivation of the transbilayer part of the form factor for the 
-Gaussian hybrid model}
-In this section, we derive Eq.~(), Eq.~(), and Eq.~().
-For the Gaussian part, we have
+
+\section{Derivation of the transbilayer part of the form factor in the 2G hybrid model}
+In this section, we derive the trasbilayer part of the form factor calculated
+from the 2G hybrid model discussed in section X.
+Defining $z'=-x\sin\psi+z\cos\psi$, the Fourier transform of a Gaussian function 
+along the line tilted from $z$-axis by $\psi$ is
 \begin{align}
-  & \int_{-D/2}^{D/2} dz \int_{\lambda_r/2}^{\lambda_r/2} \mathop{dx}
-  \rhoh{i} \, \mathrm{exp}\braces{-\frac{(-x\sin\psi+z\cos\psi-\zh{i})^2}{2\sigmah{i}^2}}
+  & \iint\dz\dx \rhoh{i} \exp\braces{-\frac{(z'-\zh{i})^2}{2\sigmah{i}^2}}
   \delta(x+z\tan\psi)e^{iq_xx}e^{iq_zz} \nonumber\\
-  &= \int_{-D/2}^{D/2} \mathop{dz}\rhoh{i} \,\mathrm{exp}\braces{
+  &= \int_{-\frac{D}{2}}^{\frac{D}{2}}\dz \rhoh{i} \exp\braces{
     -\frac{(z-\zh{i}\cos\psi)^2}{2\sigmah{i}^2\cos^2\psi} + i(q_z-q_x\tan\psi)z
-  } \nonumber\\
+  } \nonumber \\
   &\approx \rhoh{i}\sqrt{2\pi}\sigmah{i}\cos\psi \,\mathrm{exp}
   \braces{
-    i\zh{i}\cos\psi(q_z-q_x\tan\psi) - \sigmah{i}^2\cos^2\psi(q_z-q_x\tan\psi)^2/2
-  }. \label{eq:gauss_FT}
+    i\alpha\zh{i}\cos\psi - \frac{1}{2}\alpha^2\sigmah{i}^2\cos^2\psi
+  } \nonumber \\
+  &= \rhoh{i}\sqrt{2\pi}\sigmah{i}' \exp
+  \braces{
+    i\alpha\zh{i}'-\frac{1}{2}\alpha^2(\sigmah{i}')^2
+  } \label{eq:gauss_FT}
 \end{align}
+with $\alpha=q_z-q_x\tan\psi$, $\sigmah{i}'=\sigmah{i}\cos\psi$, and $\zh{i}'=\zh{i}\cos\psi$.
 Using Eq.~(\ref{eq:gauss_FT}) and adding the other side of the bilayer and
 the terminal methyl term, we get
 \begin{multline}
-  F_\mathrm{G} = \sqrt{2\pi}
-  \bigg[
-    -\rhom\sigmam\cos\psi \,\mathrm{exp}\braces{
-      -\sigmam^2\cos^2\psi(q_z-q_x\tan\psi)^2/2} \\
-    \sum_{i=1}^{1\text{ or }2}2\rhoh{i}\sigmah{i}\cos\psi
-    \cos\bracks{\zh{i}\cos\psi(q_z-q_x\tan\psi)}
-    \,\mathrm{exp}\braces{-\sigmah{i}^2\cos^2\psi(q_z-q_x\tan\psi)^2/2}
-  \bigg]
+  F_\mathrm{G} = \rhom\sqrt{2\pi}
+  \Bigg[
+    -\sigmam' \exp\braces{
+      -\frac{1}{2}\alpha^2(\sigmam')^2
+    } \\
+    + \sum_{i=1}^{1\text{ or }2}2\Rhm{i}\sigmah{i}'
+    \cos(\alpha\zh{i}')
+    \,\mathrm{exp}\braces{-\frac{1}{2}\alpha^2(\sigmah{i}')^2}
+  \Bigg],
 \end{multline}
-For the strip part, 
+where $\Rhm{i}=\rhoh{i}/\rhom$. $\rhom$ is explicitly factored out
+because it gets absorbed in the overall scaling factor. 
+The strip part of the 
+model in the minus fluid convention is
+\begin{equation}
+  \rhos(z) = \left\{
+    \begin{array}{ccc}
+      -\Delta\rho & \text{for } & 0 \leq z < \zchtwo\cos\psi, \\
+      0   & \text{for } & \zw\cos\psi \leq z \leq D/2,
+    \end{array}
+  \right.
+\end{equation}
+Then, the corresponding Fourier transform is 
 \begin{align}
   F_\mathrm{S} 
-  &= \int dz \int dx e^{iq_xx}e^{iq_zz}\rhos(x,z)\delta(x+z\tan\psi) \\
-  &= 2 \int_0^{\zchtwo\cos\psi}dz\cos\bracks{(q_z-q_x\tan\psi)z}(-\Delta\rho) \\
-  &= -2\Delta\rho\frac{\sin\bracks{(q_z-q_x\tan\psi)\zchtwo\cos\psi}}{q_z-q_x\tan\psi},
+  &= \iint\dz\dx e^{iq_xx}e^{iq_zz} \rhos(z)\delta(x+z\tan\psi) \nonumber\\
+  &= 2 \int_0^{\zchtwo'}\dz\cos(\alpha z)(-\Delta\rho) \nonumber\\
+  &= -2\rhom\Delta R\frac{\sin(\alpha\zchtwo')}{\alpha},
 \end{align}
-where $\Delta\rho=\rhow-\rhochtwo$. The briding part is
+where $\Delta\rho=\rhow-\rhochtwo$ and $\Delta R=\Delta\rho/\rhom$. 
+The bridging part of the model in the minus fluid convention is 
+\begin{align}
+  \rhob(x,z) = \frac{\Delta\rho}{2} \cos \bracks{
+    \frac{-\pi}{\deltazh}(z'-\zw)} - \frac{\Delta\rho}{2} \nonumber\\
+  \text{\quad for \quad} \zchtwo\cos\psi < z < \zw\cos\psi,
+\end{align}
+so that, for the strip part of the form factor, we have
+\begin{align}
+  F_\mathrm{B} &= \iint\dz\dx e^{iq_xx}e^{iq_zz}\delta(x+z\tan\psi)
+  \rhob(x,z) \nonumber\\
+  &= \Delta\rho\int_{\zchtwo'}^{\zw'}\dz \cos(\alpha z) 
+  \braces{\cos\bracks{-\frac{\pi}{\deltazh'}(z-\zw')} - 1} \nonumber\\
+  &= \Delta\rho \braces{
+    \frac{\deltazh'\sin\bracks{\frac{\pi(-z+\zw')}{\deltazh'}+\alpha z}}{-2\pi+2\alpha\deltazh'}
+    + \frac{\deltazh'\sin\bracks{\frac{\pi(z-\zw')}{\deltazh'}+\alpha z}}{2\pi+2\alpha\deltazh'}
+    - \frac{\sin(\alpha z)}{\alpha}  
+  } \Bigg|_{\zchtwo'}^{\zw'} \nonumber\\
+  &= -\frac{\rhom\Delta R}{\alpha}\bracks{\sin(\alpha\zw')-\sin(\alpha\zchtwo')} \nonumber\\
+  & \,\quad + \pars{
+      \frac{\rhom\Delta R\deltazh'}{2\pi+2\alpha\deltazh'} 
+      + \frac{\rhom\Delta R\deltazh'}{-2\pi+2\alpha\deltazh'}
+    }\bracks{\sin(\alpha\zw')+\sin(\alpha\zchtwo')}
+\end{align}
+
+
+\section{Derivation of the contour part of the form factor}
+In this section, we derive $\FC$. The ripple profile, $u(x)$ is given by
+\begin{equation}
+  u(x) = \left\{
+    \begin{array}{ccc}
+    -\frac{A}{\lambda_r-x_0}\left(x+\frac{\lambda_r}{2}\right) 
+      & \text{for} 
+      & -\frac{\lambda_r}{2} \leq x < -\frac{x_0}{2} \\
+    \frac{A}{x_0}x 
+      & \text{for} 
+      & -\frac{x_0}{2} \leq x \leq \frac{x_0}{2} \\
+    -\frac{A}{\lambda_r-x_0} \left(x-\frac{\lambda_r}{2}\right)
+      & \text{for} 
+      & \frac{x_0}{2} < x \leq \frac{\lambda_r}{2}
+    \end{array} \right.
+\end{equation}
+
+The contour part of the form factor is the Fourier transform of the contour
+function, $C(x,z)$,
+\[
+  \FC(\mathbf{q}) = \frac{1}{\lambda_r}
+  \int_{-\frac{\lambda_r}{2}}^{\frac{\lambda_r}{2}}\dx
+  \int_{-\frac{D}{2}}^\frac{D}{2}\dz 
+  C(x,z) e^{iq_zz} e^{iq_xx}
+\] 
+As discussed in section X, the modulated models allow
+the electron density to modulate along the ripple direction, $x$. This means
+\begin{align}
+  C(x,z) &= \left\{
+  \begin{array}{ccc}
+    f_1\delta[z-u(x)] & \text{for} & -\frac{\lambda_r}{2} \leq x < -\frac{x_0}{2} \\
+    \delta[z-u(x)] & \text{for} & -\frac{x_0}{2} < x < \frac{x_0}{2} \\
+    f_1\delta[z-u(x)] & \text{for} & \frac{x_0}{2} \leq x < \frac{\lambda_r}{2} \\    
+  \end{array}
+  \right. \nonumber\\
+  &+ f_2\,\delta\!\pars{x+\frac{x_0}{2}}\delta\!\pars{z+\frac{A}{2}} 
+   + f_2\,\delta\!\pars{x-\frac{x_0}{2}}\delta\!\pars{z-\frac{A}{2}}.
+\end{align}
+The contribution from the minor arm is
+\begin{align}
+  & \frac{1}{\lambda_r}
+  \int_{-\frac{\lambda_r}{2}}^{-\frac{x_0}{2}}\dx e^{iq_xx} e^{iq_zu(x)}
+  + \int_{\frac{x_0}{2}}^{\frac{\lambda_r}{2}}\dx e^{iq_xx} e^{iq_zu(x)} \nonumber\\
+  &= \frac{1}{\lambda_r}
+     \int_{\frac{x_0}{2}}^{\frac{\lambda_r}{2}}\dx 
+     e^{-i\left[q_xx-q_z\frac{A}{\lambda_r-x_0}\left(x-\frac{\lambda_r}{2}\right)\right]}
+     + \int_{\frac{x_0}{2}}^{\frac{\lambda_r}{2}}\dx 
+     e^{i\left[q_xx-q_z\frac{A}{\lambda_r-x_0}\left(x-\frac{\lambda_r}{2}\right)\right]} \nonumber\\
+  &= \frac{2}{\lambda_r}
+     \int_{\frac{x_0}{2}}^{\frac{\lambda_r}{2}}   
+     \cos\bracks{\pars{q_x-q_z\frac{A}{\lambda_r-x_0}}x
+                 +q_z\frac{A}{\lambda_r-x_0}\frac{\lambda_r}{2}} \label{eq:minor_arm1}
+\end{align}
+Using a trigonometric identity, 
+\[
+  \sin u-\sin v = 2\cos[(u+v)/2]\sin[(u-v)/2],
+\]
+and defining 
+\begin{equation}
+  \omega(\mathbf{q}) = \frac{1}{2}\left(q_xx_0 + q_zA\right),
+\end{equation}
+we further simplify Eq.~(\ref{eq:minor_arm1}),
+\begin{align}
+  &= \frac{2}{\lambda_r}\frac{\lambda_r-x_0}{\frac{1}{2}q_x\lambda_r - \omega} 
+     \cos\bracks{\frac{1}{2}\left(\frac{1}{2}q_x\lambda_r + \omega\right)} 
+     \sin\bracks{\frac{1}{2}\left(\frac{1}{2}q_x\lambda_r - \omega\right)} \nonumber\\
+  &= \frac{1}{\lambda_r}\frac{\lambda_r-x_0}{\frac{1}{2}q_x\lambda_r - \omega} 
+     \cos\bracks{\frac{1}{2}\left(\frac{1}{2}q_x\lambda_r + \omega\right)} 
+     \frac{\sin\left(\frac{1}{2}q_x\lambda_r - \omega \right)}
+          {\cos\bracks{\frac{1}{2}\left(\frac{1}{2}q_x\lambda_r - \omega\right)}} \nonumber\\
+  &= \frac{\lambda_r-x_0}{\lambda_r}
+     \frac{\cos\bracks{\frac{1}{2}\left(\frac{1}{2}q_x\lambda_r + \omega\right)}}
+          {\cos\bracks{\frac{1}{2}\left(\frac{1}{2}q_x\lambda_r - \omega\right)}}
+     \frac{\sin\left(\frac{1}{2}q_x\lambda_r - \omega\right)}
+          {\frac{1}{2}q_x\lambda_r - \omega}.
+\end{align}
+Similarly, we calculate the contribution from the major arm,
+\begin{align}
+  \frac{1}{\lambda_r}\int_{-\frac{x_0}{2}}^{\frac{x_0}{2}}\dx 
+  e^{i\left(\frac{q_zA}{x_0} + q_x \right)x}
+  &= \frac{2}{\lambda_r}\int_{0}^{\frac{x_0}{2}}\dx \cos\left(\frac{q_zA}{x_0} + q_x\right)x \nonumber\\ 
+  &= \frac{x_0}{\lambda_r}\frac{\sin\omega}{\omega}
+\end{align}
+The contribution from the kink region is 
+\begin{align}
+  & \frac{1}{\lambda_r}\iint\dx\dz
+  \bracks{\delta\!\pars{x+\frac{x_0}{2}}\delta\!\pars{z+\frac{A}{2}} 
+   + \delta\!\pars{x-\frac{x_0}{2}}\delta\!\pars{z-\frac{A}{2}}}
+  e^{iq_xx} e^{iq_zz} \nonumber\\
+  &= \frac{2}{\lambda_r}\cos\omega.
+\end{align}
+Therefore,
+\begin{align}
+  \FC(\mathbf{q}) 
+  &= \frac{x_0}{\lambda_r}\frac{\sin\omega}{\omega} + 
+  f_1\frac{\lambda_r-x_0}{\lambda_r}
+  \frac{\cos\bracks{\frac{1}{2}\left(\frac{1}{2}q_x\lambda_r + \omega\right)}}
+       {\cos\bracks{\frac{1}{2}\left(\frac{1}{2}q_x\lambda_r - \omega\right)}}
+  \frac{\sin\left(\frac{1}{2}q_x\lambda_r - \omega\right)}
+       {\frac{1}{2}q_x\lambda_r - \omega} \nonumber\\
+  &+ \frac{2f_2}{\lambda_r}\cos\omega
+\end{align}
+
 
 \bibliography{ripple}
 \bibliographystyle{unsrt}
