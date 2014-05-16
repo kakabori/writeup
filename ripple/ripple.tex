@@ -228,13 +228,40 @@ for the sum of intensity for orders that overlap.
 
 
 \section{Contour Part of the Form Factor}
-As in ref, we take the ripple profile to be a sawtooth given by
+As in ref, we take the ripple profile to have a sawtooth-like profile. Its
+amplitude is  $A/2$ and the projection of the major arm on the 
+ripple direction is $x_0$ as shown in Fig. X. Then, we write the ripple 
+profile as
+\begin{equation}
+  u(x) = \left\{
+    \begin{array}{ccc}
+    -\frac{A}{\lambda_r-x_0}\left(x+\frac{\lambda_r}{2}\right) 
+      & \text{for} 
+      & -\frac{\lambda_r}{2} \leq x < -\frac{x_0}{2}, \\
+    \frac{A}{x_0}x 
+      & \text{for} 
+      & -\frac{x_0}{2} \leq x \leq \frac{x_0}{2}, \\
+    -\frac{A}{\lambda_r-x_0} \left(x-\frac{\lambda_r}{2}\right)
+      & \text{for} 
+      & \frac{x_0}{2} < x \leq \frac{\lambda_r}{2}.
+    \end{array} \right.
+\end{equation}
+The ripple profile has the inversion symmetry, so that the resulting
+form factor is real. $A$ and $x_0$ are fitting parameters that depend 
+on the integrated intensity of each peak while $D$ and $\lambda_r$ are
+determined from measuring the positions of the Bragg peaks.
+
+In order to allow the electron density along the ripple direction to 
+modulate, we include two additional parameters, one to allow for the electron
+density across the minor side to be different by a ratio $f_1$ from the 
+electron density across the major side and a second parameter $f_2$, which
+is multiplied by $\delta$ functions $\delta(x \pm x_0/2)$ to allow for 
+a different electron density near the kink between the major and the minor
+sides. 
 
 
 \section{Delta Function Model}
-Two models employed in this study were simple delta function (SDF) and
-modified Gaussian function (MGF) models. As was shown previously,
-both models results in the same phases.
+
 
 
 \section{2G Hybrid Model}
@@ -312,6 +339,20 @@ the terminal methyl Gaussian, $\Delta R$ for the methylene region, $\psi$ for
 the lipid tilt, and an overall scaling factor. The contour part of the 
 form factor has four more parameters ($A$, $x_0$, $f_1$, and $f_2$).
 In total, the modified 2G hybrid model implements 14 structural parameters.
+
+
+\section{Electron Density Profile}
+Table X shows the best fit for each model. It shows that the delta function
+model fails. Its failure is obviously due to its lack of fine structural 
+details. In ref. (SUN), the model marginally worked because only up to
+the third orders were available. With the high flux synchrotron X-ray beam,
+many more higher orders were observed, whose intensity is dominated by
+finer details in the bilayer electron density. The table shows that
+1G model also fails. 2G model works, but simple 2G model failed. $k=6$ orders
+clearly require the modulation in the electron density along the ripple 
+direction. The phase of lower orders tends to be the same throughout
+the different models while higher orders vary widely. 
+
 
 
 \appendix
@@ -539,6 +580,34 @@ Therefore,
        {\frac{1}{2}q_x\lambda_r - \omega} \nonumber\\
   &+ \frac{2f_2}{\lambda_r}\cos\omega
 \end{align}
+
+
+\section{Correction due to refractive index}
+$q_z$ needs be corrected for index of refraction.
+Let $\theta'$ and $\lambda'$ be the true scattering angle and wavelength
+within the sample. The wavelength by an energy analyzer, $\lambda$, and the 
+scattering angle calculated from a position on a CCD detector, $\theta$ are 
+apparent. The correction is not necessary in the horizontal direction.
+The Snell's law in Fig. X gives
+\begin{align}
+  n\cos\theta &= n'\cos\theta' \\
+  n\lambda &= n'\lambda'.
+\end{align}
+For low angle X-ray scattering, the momentum transfer along $z$ direction is
+\begin{align}
+  q_z &= \frac{4\pi\sin\theta'}{\lambda'} \\
+      &= \frac{4\pi n'}{n\lambda}\sin\theta' \\
+      &= \frac{4\pi n'}{n\lambda}\sqrt{1-\cos^2\theta'} \\
+      &= \frac{4\pi n'}{n\lambda}\sqrt{1-\left(\frac{n}{n'}\cos\theta\right)^2}.
+\end{align}
+The apparent scattering angle, $\theta$, is directly related to the vertical
+pixel position, $p_z$, by 
+\begin{equation}
+  \theta = \frac{1}{2}\tan^{-1}\left(\frac{p_z}{S}\right),
+\end{equation}
+where $S$ is the sample-to-detector distance. The typical units of $S$ and 
+$p_z$ are in mm. In our experimental setup,
+$n=1$ and $n'=0.9999978$ for lipids at $\lambda=1.18$ \AA. 
 
 
 \bibliography{ripple}
