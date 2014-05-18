@@ -354,6 +354,12 @@ direction. The phase of lower orders tends to be the same throughout
 the different models while higher orders vary widely. 
 
 
+test
+test
+test
+test
+test
+
 
 \appendix
 \section{Rotation of a Two-Dimensional Function}
@@ -406,35 +412,29 @@ Defining $z'=-x\sin\psi+z\cos\psi$, the Fourier transform of a Gaussian function
 along the line tilted from $z$-axis by $\psi$ is
 \begin{align}
   & \iint\dz\dx \rhoh{i} \exp\braces{-\frac{(z'-\zh{i})^2}{2\sigmah{i}^2}}
-  \delta(x+z\tan\psi)e^{iq_xx}e^{iq_zz} \nonumber\\
-  &= \int_{-\frac{D}{2}}^{\frac{D}{2}}\dz \rhoh{i} \exp\braces{
+  \delta(x\cos\psi+z\sin\psi)e^{iq_xx}e^{iq_zz} \nonumber\\
+  &= \frac{1}{\cos\psi}\int_{-\frac{D}{2}}^{\frac{D}{2}}\dz \rhoh{i} \exp\braces{
     -\frac{(z-\zh{i}\cos\psi)^2}{2\sigmah{i}^2\cos^2\psi} + i(q_z-q_x\tan\psi)z
   } \nonumber \\
-  &\approx \rhoh{i}\sqrt{2\pi}\sigmah{i}\cos\psi \,\mathrm{exp}
+  &\approx \rhoh{i}\sqrt{2\pi}\sigmah{i} \,\mathrm{exp}
   \braces{
-    i\alpha\zh{i}\cos\psi - \frac{1}{2}\alpha^2\sigmah{i}^2\cos^2\psi
-  } \nonumber \\
-  &= \rhoh{i}\sqrt{2\pi}\sigmah{i}' \exp
-  \braces{
-    i\alpha\zh{i}'-\frac{1}{2}\alpha^2(\sigmah{i}')^2
+    i\alpha\zh{i} - \frac{1}{2}\alpha^2\sigmah{i}^2
   } \label{eq:gauss_FT}
 \end{align}
-with $\alpha=q_z-q_x\tan\psi$, $\sigmah{i}'=\sigmah{i}\cos\psi$, and $\zh{i}'=\zh{i}\cos\psi$.
+with $\alpha=q_z\cos\psi-q_x\sin\psi$.
 Using Eq.~(\ref{eq:gauss_FT}) and adding the other side of the bilayer and
 the terminal methyl term, we get
 \begin{multline}
-  F_\mathrm{G} = \rhom\sqrt{2\pi}
+  F_\mathrm{G} = \sqrt{2\pi}
   \Bigg[
-    -\sigmam' \exp\braces{
-      -\frac{1}{2}\alpha^2(\sigmam')^2
+    -\rhom\sigmam \exp\braces{
+      -\frac{1}{2}\alpha^2\sigmam^2
     } \\
-    + \sum_{i=1}^{1\text{ or }2}2\Rhm{i}\sigmah{i}'
-    \cos(\alpha\zh{i}')
-    \,\mathrm{exp}\braces{-\frac{1}{2}\alpha^2(\sigmah{i}')^2}
-  \Bigg],
+    + \sum_{i=1}^{1\text{ or }2}2\rhoh{i}\sigmah{i}
+    \cos(\alpha\zh{i})
+    \,\mathrm{exp}\braces{-\frac{1}{2}\alpha^2\sigmah{i}^2}
+  \Bigg].
 \end{multline}
-where $\Rhm{i}=\rhoh{i}/\rhom$. $\rhom$ is explicitly factored out
-because it gets absorbed in the overall scaling factor. 
 The strip part of the 
 model in the minus fluid convention is
 \begin{equation}
@@ -445,38 +445,50 @@ model in the minus fluid convention is
     \end{array}
   \right.
 \end{equation}
+where $\Delta\rho=\rhow-\rhochtwo$.
 Then, the corresponding Fourier transform is 
 \begin{align}
   F_\mathrm{S} 
-  &= \iint\dz\dx e^{iq_xx}e^{iq_zz} \rhos(z)\delta(x+z\tan\psi) \nonumber\\
-  &= 2 \int_0^{\zchtwo'}\dz\cos(\alpha z)(-\Delta\rho) \nonumber\\
-  &= -2\rhom\Delta R\frac{\sin(\alpha\zchtwo')}{\alpha},
-\end{align}
-where $\Delta\rho=\rhow-\rhochtwo$ and $\Delta R=\Delta\rho/\rhom$. 
+  &= \iint\dz\dx e^{iq_xx}e^{iq_zz} \rhos(z)\delta(x\cos\psi+z\sin\psi) \nonumber\\
+  &= \frac{2}{\cos\psi} \int_0^{\zchtwo\cos\psi}\dz\cos\pars{\frac{\alpha}{\cos\psi} z}(-\Delta\rho) \nonumber\\
+  &= -2\Delta\rho\frac{\sin(\alpha\zchtwo)}{\alpha}.
+\end{align} 
 The bridging part of the model in the minus fluid convention is 
 \begin{align}
   \rhob(x,z) = \frac{\Delta\rho}{2} \cos \bracks{
-    \frac{-\pi}{\deltazh}(z'-\zw)} - \frac{\Delta\rho}{2} \nonumber\\
-  \text{\quad for \quad} \zchtwo\cos\psi < z < \zw\cos\psi,
+    \frac{-\pi}{\deltazh}(z'-\zw)} - \frac{\Delta\rho}{2}
 \end{align}
-so that, for the strip part of the form factor, we have
+for $\zchtwo\cos\psi < z < \zw\cos\psi$, and 0 otherwise. Here,
+$\deltazh=\zw-\zchtwo$.
+Then, for the strip part of the form factor, we have
 \begin{align}
-  F_\mathrm{B} &= \iint\dz\dx e^{iq_xx}e^{iq_zz}\delta(x+z\tan\psi)
-  \rhob(x,z) \nonumber\\
-  &= \Delta\rho\int_{\zchtwo'}^{\zw'}\dz \cos(\alpha z) 
-  \braces{\cos\bracks{-\frac{\pi}{\deltazh'}(z-\zw')} - 1} \nonumber\\
+  F_\mathrm{B} 
+  &= \iint\dz\dx e^{iq_xx}e^{iq_zz} \delta(x\cos\psi+z\sin\psi) \rhob(x,z) \nonumber\\
+  &= \frac{\Delta\rho}{\cos\psi}
+     \int_{\zchtwo\cos\psi}^{\zw\cos\psi}\dz \cos\pars{\alpha\frac{z}{\cos\psi}} 
+     \braces{\cos\bracks{-\frac{\pi}{\deltazh}\left(\frac{z}{\cos\psi}-\zw\right)} - 1} \nonumber\\
   &= \Delta\rho \braces{
-    \frac{\deltazh'\sin\bracks{\frac{\pi(-z+\zw')}{\deltazh'}+\alpha z}}{-2\pi+2\alpha\deltazh'}
-    + \frac{\deltazh'\sin\bracks{\frac{\pi(z-\zw')}{\deltazh'}+\alpha z}}{2\pi+2\alpha\deltazh'}
-    - \frac{\sin(\alpha z)}{\alpha}  
-  } \Bigg|_{\zchtwo'}^{\zw'} \nonumber\\
-  &= -\frac{\rhom\Delta R}{\alpha}\bracks{\sin(\alpha\zw')-\sin(\alpha\zchtwo')} \nonumber\\
-  & \,\quad + \pars{
-      \frac{\rhom\Delta R\deltazh'}{2\pi+2\alpha\deltazh'} 
-      + \frac{\rhom\Delta R\deltazh'}{-2\pi+2\alpha\deltazh'}
-    }\bracks{\sin(\alpha\zw')+\sin(\alpha\zchtwo')}
+       \frac{\deltazh\sin\bracks{\frac{\pi(-u+\zw)}{\deltazh}+\alpha u}}{-2\pi+2\alpha\deltazh}
+       + \frac{\deltazh\sin\bracks{\frac{\pi(u-\zw)}{\deltazh}+\alpha u}}{2\pi+2\alpha\deltazh}
+       - \frac{\sin(\alpha u)}{\alpha}  
+     }\Bigg|_{\zchtwo}^{\zw} \nonumber\\
+  &= -\frac{\Delta\rho}{\alpha}\bracks{\sin(\alpha\zw)-\sin(\alpha\zchtwo)} \nonumber\\
+  & \,\quad + \frac{\Delta\rho}{2} \pars{
+      \frac{1}{\alpha+\frac{\pi}{\deltazh}} 
+      + \frac{1}{\alpha-\frac{\pi}{\deltazh}}
+    }\bracks{\sin(\alpha\zw)+\sin(\alpha\zchtwo)}.
 \end{align}
-
+Because our X-ray scattering intensity was measured in a relative scale, 
+an overall scaling factor was necessary for a non linear least square 
+fitting procedure. This means that $\Delta\rho$ can be absorbed in the 
+scaling factor. Doing so means that the values of $\rhoh{i}$ and $\rhom$
+resulting from a fitting procedure are relative to $\Delta\rho$. One way 
+to have these parameters in the absolute scale is to integrate the 
+bilayer electron density over the lipid volume and equate the result
+to the total number of electrons in the lipid, which can easily be calculated
+from the chemical formula. For the ripple phase study in this thesis, the
+absolute values of the electron density were not of importance, so the
+discussion was omitted in the main text.
 
 \section{Derivation of the contour part of the form factor}
 In this section, we derive $\FC$. The ripple profile, $u(x)$ is given by
