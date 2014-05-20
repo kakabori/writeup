@@ -41,9 +41,12 @@ are given by
       + \cos 2\theta \, \yhat
       + \sin 2\theta \sin\phi \, \zhat 
     \right),
-  \label{eq:kinkout}
+  %\label{eq:kinkout}
 \end{equation}
-where $\lambda$ is the wavelength of x-ray. The scattering vector is
+where $\lambda$ is the wavelength of x-ray, $2\theta$ is the total scattering
+angle, and $\phi$ is the angle measured from the equator on the detector. 
+The scattering vector (also called
+momentum transfer vector) is
 the difference between $\kin$ and $\kout$,
 \begin{align}
   \mathbf{q} &= \kout - \kin \nonumber \\
@@ -54,55 +57,78 @@ the difference between $\kin$ and $\kout$,
   \label{eq:q_vector}
 \end{align}
 where $q=4\pi\sin\theta/\lambda$ is the magnitude of the scattering vector. 
-When the sample is rotated by $\omega$ about the x-axis in the clockwise 
-direction as shown in Fig. XXX, the sample coodinates written in terms of 
-the lab coordinates are  
+When the sample is rotated by $\omega$ about the lab x-axis in the clockwise 
+direction as shown in Fig. XXX, the sample coordinates differ from the lab 
+coordinates and are given by  
 \begin{equation}
   \mathbf{\hat{e}_x} = \xhat, \quad
   \mathbf{\hat{e}_y} = \cos\omega\,\yhat + \sin\omega\,\zhat, \quad
   \mathbf{\hat{e}_z} = -\sin\omega\,\yhat + \cos\omega\,\zhat.
   \label{eq:smp_coord}
 \end{equation}
-From \Eq{eq:q_vector} and \Eq{eq:smp_coord}, we find the projection of 
+From Eq.~(\ref{eq:q_vector}) and (\ref{eq:smp_coord}), we find the projection of 
 $\mathbf{q}$ on the sample coordinates to be
 \begin{align}
   q_x &= \mathbf{q}\cdot\mathbf{\hat{e}_x} 
        = q\cos\theta\cos\phi 
-       \label{eq:qx} \\
+       \nonumber\\
   q_y &= \mathbf{q}\cdot\mathbf{\hat{e}_y} 
        = q\left(-\sin\theta\cos\omega + \cos\theta\sin\phi\sin\omega\right) 
-       \label{eq:qy} \\
+       \nonumber\\
   q_z &= \mathbf{q}\cdot\mathbf{\hat{e}_z} 
        = q\left(\sin\theta\sin\omega + \cos\theta\sin\phi\cos\omega\right).
-       \label{eq:qz}
+       \label{eq:qxqyqz}
 \end{align}
-With respect to the beam, the position on the detector is given by
+The position, $(X,Z)$, of a CCD pixel is measured with respect to the beam 
+and given by
 \begin{equation}
-  X = S \tan 2\theta \cos\phi, \quad Z = S \tan 2\theta \sin\phi.
+  X = S \tan 2\theta \cos\phi, \quad Z = S \tan 2\theta \sin\phi,
+  \label{eq:XZ}
 \end{equation} 
-The pixels on the detector are directly proportional to $X$ and $Z$. Thus,
-these equations define the transformation rules from the detector space
-to the sample q-space and vice versa.
+where $S$ is the distance between the sample and detector.
+From a model for the electron density of a lipid bilayer, one calculates
+a X-ray scattering intensity pattern, $I(\mathbf{q})$. Then, Eq.~(\ref{eq:qxqyqz})
+and (\ref{eq:XZ}) relate $I(\mathbf{q})$ to the experimentally measured
+intensity pattern, $I(X,Z)$. It is important to remember that a given pixel
+position, $(X,Z)$, corresponds to a triplet $(q_x, q_y, q_z)$. Fully exploring 
+the sample $q$-space requires changing $\omega$ for a fixed wavelength, which was
+achieved by continuously rotating the sample with a motor. In the ripple phase, 
+because our sample has in-plane rotational symmetry,
+the ripple side peaks make up Bragg rings while the main peaks are still 
+delta function like (see Fig. X) in $q$-space. In order for the main peak to be
+observed, $\omega$ must be equal to $\theta_\mathrm{B}$, but the side peaks
+are observed at any $\omega$. Those side peaks get slightly smeared due to 
+integration over $q_y$.
 
 For low angle x-ray scattering (LAXS), it is convenient to linearlize the above
 equations in terms of $\theta$ and $\omega$. In the small angle approximation, 
 $\sin\phi \approx Z/(2S\theta)$ and $\cos\phi \approx X/(2S\theta)$, and
 \begin{align}
-  q_x &\approx \frac{4\pi\theta\cos\phi}{\lambda} \approx kX/S \\
-  q_y &\approx q_z\omega -\frac{4\pi\theta^2}{\lambda} \approx q_z\omega - \frac{\lambda q_z^2}{4\pi}\\
+  q_x &\approx \frac{4\pi\theta\cos\phi}{\lambda} \approx kX/S \nonumber\\
+  q_y &\approx q_z\omega -\frac{4\pi\theta^2}{\lambda} \approx q_z\omega - \frac{\lambda q_z^2}{4\pi}\nonumber\\
   q_z &\approx \frac{4\pi\theta\sin\phi}{\lambda} \approx kZ/S,
+  \label{eq:qxqyqz_small}
 \end{align}
-with $k=2\pi/\lambda$. 
-In order to capture all Bragg peaks in one x-ray exposure, 
-the sample was continuously rotated, which is equivalent to an integration over 
-$\omega$. $\omega$ dependence appears through $q_y$, so rotating the 
-sample amounts to an integration over $q_y$. $\omega$ ranges from 0 to
-$2\theta$, where the substrate blocks the outgoing x-ray with its scattering
-angle equal to $\theta$. Within the small angle approximation, 
-$q \approx 4\pi\theta/\lambda \approx q_z$. Therefore, the integration limits 
+with $k=2\pi/\lambda$. For wide angle X-ray scattering, the exact relations given
+by Eq.~(\ref{eq:qxqyqz}) are necessary. Especially in the transmission experiment,
+where $\omega$ is large, an observed X-ray pattern appears nontrivial and becomes
+almost impossible to analyze without the use of Eq.~(\ref{eq:qxqyqz}).
+
+\section{Geometric Correction for the Ripple Phase Scattering}
+In order to capture both main and side peaks in one x-ray exposure, 
+the sample was continuously rotated. Mathematically, this rotation is  
+equivalent to an integration over $\omega$. In low angle X-ray scattering, 
+$q_z$ is constant at a given pixel as $\omega$ is changed, which can be seen from 
+Eq.~(\ref{eq:qxqyqz_small}). $\omega$ dependence appears only through $q_y$, 
+so rotating the sample is realized by integrating over $q_y$. 
+To derive the integration limits, let us consider two cases. (a) When $\omega \leq 0$,
+the incoming X-ray beam is blocked by the back of the substrate. This sets 
+the lower limit to 0. (b) When $\omega \geq 2\theta$, the substrate blocks 
+the outgoing X-ray. Within the small angle approximation, then, $\omega_{\text{max}}$
+is $2\times \lambda q_z/(4\pi)$. Thus, the integration limits 
 for $q_y$ integration are $[-\lambda q_z^2/(4\pi), \lambda q_z^2/(4\pi)]$.
-Integrating over $X$ and $Z$ is also necessary to accurately 
-predict the correct intensity ratios. These lead to the observed intensity
+We also need to integrate over $X$ and $Z$ to obtain integrated intensity. 
+These lead to the observed intensity
 written as,
 \begin{align}
   I_{\mathrm{o},hk} 
@@ -114,15 +140,16 @@ written as,
 where $1/q_z$ factor in $q_y$ integration is the Lorentz polarization factor
 in the small angle approximation. 
 
-For a crystalline sample that possesses the azimuthal symmetry, the
+For a crystalline sample with the in-plane rotational symmetry, the
 structure factor is  
 \begin{equation}
   S_{hk}(\mathbf{q}) = S_{hk}(q_r,q_z) 
   = \frac{1}{2\pi q_r}\delta(q_r-q_{r,k})\delta(q_z-q_{z,hk}),
 \end{equation} 
-where $q_{r,k}=2\pi |k|/\lambda_r$. Thus, the ripple scattering pattern is a 
-collection of Bragg ``rings'' centered at the meridian, or $q_r=0$, and the 
-Bragg peaks that are sometimes called the $k=0$ main peaks.  
+where $q_{r,k}=2\pi |k|/\lambda_r$. Thus, the scattering pattern in the 
+ripple phase is a 
+collection of Bragg ``rings'' centered at the meridian and the 
+Bragg peaks that are called the main peaks.  
 
 The observed, integrated intensity of $hk$ peak is proportional to
 \begin{equation}
@@ -132,7 +159,7 @@ The observed, integrated intensity of $hk$ peak is proportional to
             \mathop{dq_y} \frac{\delta(q_r-q_{r,k})}{2\pi q_r},
 \end{equation}
 where $q_{y0} = \lambda q_{z,hk}^2/(4\pi)$.
-For satellite peaks ($k \neq 0$), we have 
+For side peaks ($k \neq 0$), we have 
 \begin{align}
   \int\mathop{dq_x} \int_{-q_{y0}}^{q_{y0}}\mathop{dq_y} \frac{\delta(q_r-q_{r,k})}{2\pi q_r}
   &\approx \int_{-\frac{q_{y0}}{q_{r,k}}}^{\frac{q_{y0}}{q_{r,k}}} \mathop{d\phi} 
@@ -145,29 +172,23 @@ For the main peaks ($k=0$), we have
   &= \int_0^{2\pi}\mathop{d\phi} \int\mathop{dq_r} q_r\frac{\delta(q_r-q_{r,k})}{2\pi q_r} \\
   &= 1
 \end{align}
-The observed intensity, $I_{\mathrm{o},hk}$, can be written as
+Then, the observed integrated intensity, $I_{\mathrm{o},hk}$, can be written as
 \begin{align}
-  I_{\mathrm{o},hk} &\propto \frac{|F_{hk}|^2}{q_{z,hk}}
-                    \pars{\delta_{k0}+(1-\delta_{k0})\frac{\lambda q_{z,hk}^2}{4\pi^2 q_{r,k}}} \\
-  &= |F_{hk}|^2 \pars{\frac{\delta_{k0}}{q_{z,hk}}+(1-\delta_{k0})\frac{\lambda q_{z,hk}}{2\pi}
-  \frac{1}{2\pi q_{r,k}}}
-\end{align}
-The experimental observed form factor is written as 
-\begin{align}
-  |F_{h0}|^2 &\propto q_{z,h0} I_{\mathrm{o},h0} \label{eq:main}\\
-  |F_{hk}|^2 &\propto \frac{2\pi q_{r,k}}{2\theta_{hk}} I_{\mathrm{o},hk} \label{eq:side} 
+  I_{\mathrm{o},h0} &\propto \frac{|F_{h0}|^2}{q_{z,h0}} \label{eq:main}\\
+  I_{\mathrm{o},hk} &\propto \frac{|F_{hk}|^2}{q_{z,hk}} \frac{q_{y0}}{\pi q_{r,k}}
+    = |F_{hk}|^2 \frac{\lambda q_{z,hk}}{2\pi}\frac{1}{2\pi q_{r,k}}
+    = |F_{hk}|^2 \frac{2\theta_{hk}}{2\pi q_{r,k}}, \label{eq:side}
 \end{align}
 where $2\theta_{hk} = \lambda q_{z,hk}/(2\pi)$ is the incident angle at which 
 the outgoing x-ray with its scattering angle equal to $\theta_{hk}$ gets 
-blocked by the substrate. Eq.~(\ref{eq:main}) and (\ref{eq:side}) give the 
+blocked by the substrate.
+Eq.~(\ref{eq:main}) and (\ref{eq:side}) give the 
 geometrical correction that must be applied to the observed intensity
 in order to obtain the experimental form factor, which will be fitted to
 a theoretical model of the electron density profile in the ripple phase. 
 
-\cite{ref:Sengupta03}
-\cite{ref:deVries05}
 
-
+\section{Sawtooth model}
 The unit cell vectors in the ripple phase can be expressed as 
 \begin{equation}
   \mathbf{a} = \frac{D}{\tan\gamma}\xhat + D\zhat
