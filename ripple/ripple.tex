@@ -32,11 +32,11 @@
 \usepackage[pdftex]{hyperref}
 \usepackage{graphicx}
 
-
-\begin{document}
-\today
-
-\section{setup}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\today %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Scattering Basics}
 The incoming and outgoing wavevectors of the x-ray beam in Fig. XXX 
 are given by
 \begin{equation}
@@ -120,38 +120,47 @@ by Eq.~(\ref{eq:qxqyqz}) are necessary. Especially in the transmission experimen
 where $\omega$ is large, an observed X-ray pattern appears nontrivial and becomes
 almost impossible to analyze without the use of Eq.~(\ref{eq:qxqyqz}).
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Geometric Correction for the Ripple Phase Scattering}
 In order to capture both main and side peaks in one x-ray exposure, 
 the sample was continuously rotated. As a result of the rotation, 
-the main peaks become arcs that subtend an angle $2\theta_{h0}$ ,
+the main peaks become arcs that subtend an angle $2\theta_{h}$ ,
 as shown in Fig.~\ref{fig:ewald_main}, with its length
-equal to $2\theta_{h0}q_{h0}$.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+equal to $2\theta_{h}q_{z,h}$.  
+%----------------------------------------------
 \begin{figure}[htbp]
   \centering
   \includegraphics[scale=1]{figures/ewald_main}
   \caption{caption goes here}
   \label{fig:ewald_main}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------------------
 What is recorded on the detector is the cross section of this arc with the 
 Ewald sphere, so the total intensity is the product of the observed intensity
-with the arc length. In other words,
+with the arc length, that is, 
 \begin{equation}
-  I = I_{o}2\theta_{h0}q_{h0}.
+  I = 2\theta_{h}q_{z,h} I_{\mathrm{o},h}. \label{eq:main_ewald}
 \end{equation}
 
 Because the sample has in-plane rotational symmetry, the side peaks turn
-into Bragg rings as shown in Figure X. These rings cross the Ewald sphere
-at all angles of $\omega$. Then, the detector records a section of each 
-Bragg ring, whose arc length is given by 
+into Bragg rings whose radius is $q_{r,k}$, as shown in Figure X. 
+These rings cross the Ewald sphere
+at all angles of $\omega$. Then, the total intensity is given by
+\begin{equation}
+  I=2\pi q_{r,k} I_{\mathrm{o},k}. \label{eq:side_ewald}
+\end{equation}
+Inverting Eq.~(\ref{eq:main_ewald}) and (\ref{eq:side_ewald}) 
+and realizing that the intensity is the form factor
+squared, we can calculate the observed intensity, $I_\mathrm{o}$, 
+from a model for electron density in the ripple phase.
 
 Mathematically, the rotation is  
 equivalent to an integration over $\omega$. In low angle X-ray scattering, 
 $q_z$ is constant at a given pixel as $\omega$ is changed, which can be seen from 
 Eq.~(\ref{eq:qxqyqz_small}). $\omega$ dependence appears only through $q_y$, 
 so rotating the sample is realized by integrating over $q_y$. 
-To derive the integration limits, let us consider two cases. (a) When $\omega \leq 0$,
+To derive the integration limits, let us consider two cases: (a) When $\omega \leq 0$,
 the incoming X-ray beam is blocked by the back of the substrate. This sets 
 the lower limit to 0. (b) When $\omega \geq 2\theta$, the substrate blocks 
 the outgoing X-ray. Within the small angle approximation, then, $\omega_{\text{max}}$
@@ -214,10 +223,12 @@ the outgoing x-ray with its scattering angle equal to $\theta_{hk}$ gets
 blocked by the substrate.
 Eq.~(\ref{eq:main}) and (\ref{eq:side}) give the 
 geometrical correction that must be applied to the observed intensity
-in order to obtain the experimental form factor, which will be fitted to
-a theoretical model of the electron density profile in the ripple phase. 
+in order to obtain the experimental form factor. In non linear least
+square fitting procedure, we fitted the observed integrated intensity to
+the calculated intensity from a bilayer model using these geometrical corrections. 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sawtooth model}
 The unit cell vectors in the ripple phase can be expressed as 
 \begin{equation}
@@ -251,12 +262,11 @@ so its components can be written as
   q_{z,hk} = \frac{2\pi h}{D} - \frac{2\pi k}{\lambda_r\tan\gamma}
 \end{equation}
 
-Figure shows a LAXS pattern from DMPC at 18 \degC. $D=59.2$ \AA. High 
-resolution experiment. Up to $h=6$ orders were clearly observed in this
-data set. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Data}
 Figure shows a LAXS pattern from DMPC at 18 \degC. $D=57.9$ \AA. Low
-resolution experiment. Up to $h=9$ orders were clearly observed in this
+resolution experiment. Up to $h=9$ orders were observed in this
 data set. Because of a non-negligible degree of mosaicity in the sample,
 strong orders cast their arcs over weaker orders. A care must be 
 taken to decompose the intensity at a given pixel to intensity due to
@@ -272,7 +282,13 @@ this was crucial to obtain the correct integrated intensity.
 In order to test the decomposition effect, fits were also performed
 for the sum of intensity for orders that overlap. 
 
+First, we fitted the data using only up to $h=3$ orders. What did we get?
+How did each model do? Any inconsistency with Sun PNAS?
 
+Next, we fitted every peak we observed. Which model failed?
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Contour Part of the Form Factor}
 As in ref, we take the ripple profile to have a sawtooth-like profile. Its
 amplitude is  $A/2$ and the projection of the major arm on the 
@@ -306,10 +322,11 @@ a different electron density near the kink between the major and the minor
 sides. 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Delta Function Model}
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{2G Hybrid Model}
 In the hybrid model, the terminal methyl region of the bilayer is represented
 as a Gaussian function \cite{ref:Wiener89}. The headgroups are represented by one 
@@ -343,7 +360,7 @@ and the bridging part is given by
 \end{equation}
 with $\deltazh=\zw-\zchtwo$. Here, we assume $\zh{2}>\zh{1}$. 
 Table \ref{tb:zchtwozw} shows some of the definitions.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%------------------------------------------------------------
 \begin{table}[htb]
   \centering
   \begin{tabular}{c c c}
@@ -354,7 +371,7 @@ Table \ref{tb:zchtwozw} shows some of the definitions.
   \caption{Definitions of $\zchtwo$ and $\zw$}
   \label{tb:zchtwozw}
 \end{table}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%------------------------------------------------------------
 The transbilayer profile along $x=-z\tan\psi$ can be obtained by rotating
 the coordinates $x$ and $z$ by $\psi$ in the clockwise direction and
 reexpressing $\rho(z)$ in terms of the rotated coordinates. This leads
@@ -387,6 +404,7 @@ form factor has four more parameters ($A$, $x_0$, $f_1$, and $f_2$).
 In total, the modified 2G hybrid model implements 14 structural parameters.
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Electron Density Profile}
 Table X shows the best fit for each model. It shows that the delta function
 model fails. Its failure is obviously due to its lack of fine structural 
@@ -397,17 +415,13 @@ finer details in the bilayer electron density. The table shows that
 1G model also fails. 2G model works, but simple 2G model failed. $k=6$ orders
 clearly require the modulation in the electron density along the ripple 
 direction. The phase of lower orders tends to be the same throughout
-the different models while higher orders vary widely. 
+the different models while higher orders vary widely. These are just ideas.
+I need to do actual fitting.
 
 
-test
-test
-test
-test
-test
-
-
-\appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Rotation of a Two-Dimensional Function}
 Let us consider rotating a function, $f(x,z)$ in two dimensions by an angle, 
 $\psi$, in the counterclockwise direction (see Fig. X). This is easily 
@@ -451,6 +465,7 @@ which is a part of the expression for $T_\psi(x,z)$ in the simple delta
 function model.
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Derivation of the transbilayer part of the form factor in the 2G hybrid model}
 In this section, we derive the trasbilayer part of the form factor calculated
 from the 2G hybrid model discussed in section X.
@@ -536,6 +551,8 @@ from the chemical formula. For the ripple phase study in this thesis, the
 absolute values of the electron density were not of importance, so the
 discussion was omitted in the main text.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Derivation of the contour part of the form factor}
 In this section, we derive $\FC$. The ripple profile, $u(x)$ is given by
 \begin{equation}
@@ -640,6 +657,7 @@ Therefore,
 \end{align}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Correction due to refractive index}
 $q_z$ needs be corrected for index of refraction.
 Let $\theta'$ and $\lambda'$ be the true scattering angle and wavelength
@@ -668,7 +686,8 @@ $p_z$ are in mm. In our experimental setup,
 $n=1$ and $n'=0.9999978$ for lipids at $\lambda=1.18$ \AA. 
 
 
-\bibliography{ripple}
-\bibliographystyle{unsrt}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliography{ripple} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{unsrt} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
