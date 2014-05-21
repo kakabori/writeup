@@ -123,9 +123,15 @@ almost impossible to analyze without the use of Eq.~(\ref{eq:qxqyqz}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Geometric Correction for the Ripple Phase Scattering}
-In order to capture both main and side peaks in one x-ray exposure, 
-the sample was continuously rotated. As a result of the rotation, 
-the main peaks become arcs that subtend an angle $2\theta_{h}$ ,
+Our sample has in-plane rotational symmetry. This means that the sample 
+consists of many domains with differing ripple directions, all of domains
+being parallel to the substrate.  
+In $q$-space, then, ripple side peaks become rings while main peaks are
+still points (see Fig. X). For an arbitrary incident angle, main peaks are not observed
+while side peaks are observed. 
+In order to capture both main and side peaks in one X-ray exposure, 
+the sample was continuously rotated. As a result of this rotation, 
+main peaks become arcs that subtend an angle $2\theta_{h}$,
 as shown in Fig.~\ref{fig:ewald_main}, with its length
 equal to $2\theta_{h}q_{z,h}$.  
 %----------------------------------------------
@@ -136,24 +142,28 @@ equal to $2\theta_{h}q_{z,h}$.
   \label{fig:ewald_main}
 \end{figure}
 %----------------------------------------------
-What is recorded on the detector is the cross section of this arc with the 
-Ewald sphere, so the total intensity is the product of the observed intensity
-with the arc length, that is, 
+The detector records the cross sections of these arcs with the 
+Ewald sphere, so the total scattering power is the product of the observed intensity,
+$I_\mathrm{o}$ with the arc length, that is, 
 \begin{equation}
   I = 2\theta_{h}q_{z,h} I_{\mathrm{o},h}. \label{eq:main_ewald}
 \end{equation}
 
-Because the sample has in-plane rotational symmetry, the side peaks turn
-into Bragg rings whose radius is $q_{r,k}$, as shown in Figure X. 
-These rings cross the Ewald sphere
-at all angles of $\omega$. Then, the total intensity is given by
+Because the sample has in-plane rotational symmetry, side peaks are represented as
+rings whose radius is $q_{r,k}$. For a fixed incident
+angle, all the rings are intersected by the Ewald sphere. Because only the domains
+with the right ripple direction can satisfy the Bragg's condition at a given fixed
+angle, the scattering power of this small cross section is reduced by 
+a factor of $2\pi q_{r,k}$ compared to main peaks. During 
+an X-ray exposure, the rings cross the Ewald sphere
+at all incident angles. Then, the total scattering power is given by
 \begin{equation}
   I=2\pi q_{r,k} I_{\mathrm{o},k}. \label{eq:side_ewald}
 \end{equation}
 Inverting Eq.~(\ref{eq:main_ewald}) and (\ref{eq:side_ewald}) 
 and realizing that the intensity is the form factor
 squared, we can calculate the observed intensity, $I_\mathrm{o}$, 
-from a model for electron density in the ripple phase.
+from a model for an electron density in the ripple phase.
 
 Mathematically, the rotation is  
 equivalent to an integration over $\omega$. In low angle X-ray scattering, 
@@ -164,7 +174,8 @@ To derive the integration limits, let us consider two cases: (a) When $\omega \l
 the incoming X-ray beam is blocked by the back of the substrate. This sets 
 the lower limit to 0. (b) When $\omega \geq 2\theta$, the substrate blocks 
 the outgoing X-ray. Within the small angle approximation, then, $\omega_{\text{max}}$
-is $2\times \lambda q_z/(4\pi)$. Thus, the integration limits 
+is $2\times \lambda q_z/(4\pi)$ for scattering with $q_z$. 
+Thus, the integration limits 
 for $q_y$ integration are $[-\lambda q_z^2/(4\pi), \lambda q_z^2/(4\pi)]$.
 We also need to integrate over $X$ and $Z$ to obtain integrated intensity. 
 These lead to the observed intensity
@@ -203,15 +214,16 @@ For side peaks ($k \neq 0$), we have
   \int\mathop{dq_x} \int_{-q_{y0}}^{q_{y0}}\mathop{dq_y} \frac{\delta(q_r-q_{r,k})}{2\pi q_r}
   &\approx \int_{-\frac{q_{y0}}{q_{r,k}}}^{\frac{q_{y0}}{q_{r,k}}} \mathop{d\phi} 
           \int \mathop{dq_r} q_r\frac{\delta(q_r-q_{r,k})}{2\pi q_r} \nonumber\\
- &= \frac{q_{y0}}{\pi q_{r,k}}.
+ &= \frac{q_{y0}}{\pi q_{r,k}}. \label{eq:side_integrand}
 \end{align}
-For the main peaks ($k=0$), we have 
+For main peaks ($k=0$), we have 
 \begin{align}
   \int\mathop{dq_x} \int_{-q_{y0}}^{q_{y0}}\mathop{dq_y} \frac{\delta(q_r-q_{r,k})}{2\pi q_r}
   &= \int_0^{2\pi}\mathop{d\phi} \int\mathop{dq_r} q_r\frac{\delta(q_r-q_{r,k})}{2\pi q_r} \nonumber\\
-  &= 1
+  &= 1 \label{eq:main_integrand}
 \end{align}
-Using Eq.~() and (), we write the observed integrated intensity as
+Using Eq.~(\ref{eq:side_integrand}) and (\ref{eq:main_integrand}), 
+we write the observed integrated intensity as
 \begin{align}
   I_{\mathrm{o},h0} &\propto \frac{|F_{h0}|^2}{q_{z,h0}} \label{eq:main}\\
   I_{\mathrm{o},hk} &\propto \frac{|F_{hk}|^2}{q_{z,hk}} \frac{q_{y0}}{\pi q_{r,k}}
@@ -219,20 +231,18 @@ Using Eq.~() and (), we write the observed integrated intensity as
     = |F_{hk}|^2 \frac{2\theta_{hk}}{2\pi q_{r,k}}, \label{eq:side}
 \end{align}
 where $2\theta_{hk} = \lambda q_{z,hk}/(2\pi)$ is the incident angle at which 
-the outgoing x-ray with its scattering angle equal to $\theta_{hk}$ gets 
-blocked by the substrate.
+the outgoing X-ray for the peak $(hk)$ is blocked by the substrate.
 Eq.~(\ref{eq:main}) and (\ref{eq:side}) relate the form factor calculated from
 a model to the experimentally observed intensity, and are 
 equivalent to Eq.~(\ref{eq:main_ewald}) and (\ref{eq:side_ewald}), 
 which were derived by using the Ewald sphere. 
 
-In non linear least
-square fitting procedure, we fitted the observed integrated intensity to
+In nonlinear least-squares fitting procedure, 
+we fitted the observed integrated intensity to
 the calculated intensity from a bilayer model using these geometrical corrections. 
-This is mainly due to our ability to determine the experimental uncertainties
-on observed intensity rather than the geometrically corrected form factor. 
-Fitting observed intensity is simpler because it allows us to avoid 
-propagating the uncertainties. 
+This is because we can determine experimental uncertainties
+on observed intensity rather than the geometrically corrected form factors. 
+We avoid propagating the uncertainties by fitting a model to observed intensity. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sawtooth model}
