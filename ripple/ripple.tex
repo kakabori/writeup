@@ -76,10 +76,10 @@ From Eq.~(\ref{eq:q_vector}) and (\ref{eq:smp_coord}), we find the projection of
 $\mathbf{q}$ on the sample coordinates to be
 \begin{align}
   q_x &= \mathbf{q}\cdot\mathbf{\hat{e}_x} 
-       = q\cos\theta\cos\phi 
+       = q\cos\theta\cos\phi, 
        \nonumber\\
   q_y &= \mathbf{q}\cdot\mathbf{\hat{e}_y} 
-       = q\left(-\sin\theta\cos\omega + \cos\theta\sin\phi\sin\omega\right) 
+       = q\left(-\sin\theta\cos\omega + \cos\theta\sin\phi\sin\omega\right), 
        \nonumber\\
   q_z &= \mathbf{q}\cdot\mathbf{\hat{e}_z} 
        = q\left(\sin\theta\sin\omega + \cos\theta\sin\phi\cos\omega\right).
@@ -202,16 +202,16 @@ For side peaks ($k \neq 0$), we have
 \begin{align}
   \int\mathop{dq_x} \int_{-q_{y0}}^{q_{y0}}\mathop{dq_y} \frac{\delta(q_r-q_{r,k})}{2\pi q_r}
   &\approx \int_{-\frac{q_{y0}}{q_{r,k}}}^{\frac{q_{y0}}{q_{r,k}}} \mathop{d\phi} 
-          \int \mathop{dq_r} q_r\frac{\delta(q_r-q_{r,k})}{2\pi q_r} \\
+          \int \mathop{dq_r} q_r\frac{\delta(q_r-q_{r,k})}{2\pi q_r} \nonumber\\
  &= \frac{q_{y0}}{\pi q_{r,k}}.
 \end{align}
 For the main peaks ($k=0$), we have 
 \begin{align}
   \int\mathop{dq_x} \int_{-q_{y0}}^{q_{y0}}\mathop{dq_y} \frac{\delta(q_r-q_{r,k})}{2\pi q_r}
-  &= \int_0^{2\pi}\mathop{d\phi} \int\mathop{dq_r} q_r\frac{\delta(q_r-q_{r,k})}{2\pi q_r} \\
+  &= \int_0^{2\pi}\mathop{d\phi} \int\mathop{dq_r} q_r\frac{\delta(q_r-q_{r,k})}{2\pi q_r} \nonumber\\
   &= 1
 \end{align}
-Then, the observed integrated intensity, $I_{\mathrm{o},hk}$, can be written as
+Using Eq.~() and (), we write the observed integrated intensity as
 \begin{align}
   I_{\mathrm{o},h0} &\propto \frac{|F_{h0}|^2}{q_{z,h0}} \label{eq:main}\\
   I_{\mathrm{o},hk} &\propto \frac{|F_{hk}|^2}{q_{z,hk}} \frac{q_{y0}}{\pi q_{r,k}}
@@ -221,12 +221,18 @@ Then, the observed integrated intensity, $I_{\mathrm{o},hk}$, can be written as
 where $2\theta_{hk} = \lambda q_{z,hk}/(2\pi)$ is the incident angle at which 
 the outgoing x-ray with its scattering angle equal to $\theta_{hk}$ gets 
 blocked by the substrate.
-Eq.~(\ref{eq:main}) and (\ref{eq:side}) give the 
-geometrical correction that must be applied to the observed intensity
-in order to obtain the experimental form factor. In non linear least
+Eq.~(\ref{eq:main}) and (\ref{eq:side}) relate the form factor calculated from
+a model to the experimentally observed intensity, and are 
+equivalent to Eq.~(\ref{eq:main_ewald}) and (\ref{eq:side_ewald}), 
+which were derived by using the Ewald sphere. 
+
+In non linear least
 square fitting procedure, we fitted the observed integrated intensity to
 the calculated intensity from a bilayer model using these geometrical corrections. 
-
+This is mainly due to our ability to determine the experimental uncertainties
+on observed intensity rather than the geometrically corrected form factor. 
+Fitting observed intensity is simpler because it allows us to avoid 
+propagating the uncertainties. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sawtooth model}
