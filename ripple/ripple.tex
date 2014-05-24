@@ -27,6 +27,10 @@
 % subscript
 \newcommand{\chtwo}{\mathrm{CH_2}}
 \newcommand{\w}{\mathrm{W}}
+% Lorentz Correction
+\newcommand{\Io}[1]{I_{#1}^\mathrm{o}}
+\newcommand{\qz}[1]{q_{#1}^z}
+\newcommand{\qr}[1]{q_{#1}^r}
 
 %\syntaxonly
 \usepackage[pdftex]{hyperref}
@@ -35,6 +39,44 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \today %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Lattice Structure}
+It has been shown from X-ray studies (ref) that ripples in in different bilayers
+are registered to form a two-dimensional oblique lattice as shown by the unit 
+cell in Fig. X. 
+The unit cell vectors in the ripple phase can be expressed as 
+\begin{equation}
+  \mathbf{a} = \frac{D}{\tan\gamma}\xhat + D\zhat
+\end{equation}
+and
+\begin{equation}
+  \mathbf{b} = \lambda_r\xhat.
+\end{equation}
+The corresponding reciprocal lattice unit cell vectors are
+\begin{equation}
+  \mathbf{A} = \frac{2\pi}{D}\zhat
+\end{equation}
+and
+\begin{equation}
+  \mathbf{B} = \frac{2\pi}{\lambda_r}\xhat - \frac{2\pi}{\lambda_r\tan\gamma}\zhat.
+\end{equation}
+The reciprocal lattice vector, $\mathbf{q}_{hk}$ for the Bragg peak with 
+Miller indices $(h,k)$ is 
+\begin{equation}
+  \mathbf{q}_{hk}=h\mathbf{A}+k\mathbf{B},
+\end{equation}
+so its Cartesian components are
+\begin{align}
+  & q_{k}^x = \frac{2\pi k}{\lambda_r} \\
+  & q^y = 0 \\
+  & \qz{hk} = \frac{2\pi h}{D} - \frac{2\pi k}{\lambda_r\tan\gamma}.
+\end{align}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Scattering Basics}
 The incoming and outgoing wavevectors of the x-ray beam in Fig. XXX 
@@ -64,8 +106,8 @@ the difference between $\kin$ and $\kout$,
 \end{align}
 where $q=4\pi\sin\theta/\lambda$ is the magnitude of the scattering vector. 
 When the sample is rotated by $\omega$ about the lab x-axis in the clockwise 
-direction as shown in Fig. XXX, the sample coordinates differ from the lab 
-coordinates and are given by  
+direction as shown in Fig. XXX, the sample $q$-space also rotates and 
+are given by  
 \begin{equation}
   \mathbf{\hat{e}_x} = \xhat, \quad
   \mathbf{\hat{e}_y} = \cos\omega\,\yhat + \sin\omega\,\zhat, \quad
@@ -106,7 +148,7 @@ observed, $\omega$ must be equal to $\theta_\mathrm{B}$, but the side peaks
 are observed at any $\omega$. Those side peaks get slightly smeared due to 
 integration over $q_y$.
 
-For low angle x-ray scattering (LAXS), it is convenient to linearlize the above
+For low angle x-ray scattering (LAXS), it is convenient to linearize the above
 equations in terms of $\theta$ and $\omega$. In the small angle approximation, 
 $\sin\phi \approx Z/(2S\theta)$ and $\cos\phi \approx X/(2S\theta)$, and
 \begin{align}
@@ -124,16 +166,16 @@ almost impossible to analyze without the use of Eq.~(\ref{eq:qxqyqz}).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Geometric Correction for the Ripple Phase Scattering}
 Our sample has in-plane rotational symmetry. This means that the sample 
-consists of many domains with differing ripple directions, all of domains
+consists of many domains with differing ripple directions, all domains
 being parallel to the substrate.  
-In $q$-space, then, ripple side peaks become rings while main peaks are
+In sample $q$-space, then, ripple side peaks become rings while main peaks are
 still points (see Fig. X). For an arbitrary incident angle, main peaks are not observed
 while side peaks are observed. 
 In order to capture both main and side peaks in one X-ray exposure, 
 the sample was continuously rotated. As a result of this rotation, 
-main peaks become arcs that subtend an angle $2\theta_{h}$,
+main peaks become arcs that subtend an angle $2\theta_{h0}$,
 as shown in Fig.~\ref{fig:ewald_main}, with its length
-equal to $2\theta_{h}q_{z,h}$.  
+equal to $2\theta_{h0}\qz{h0}$.  
 %----------------------------------------------
 \begin{figure}[htbp]
   \centering
@@ -144,13 +186,13 @@ equal to $2\theta_{h}q_{z,h}$.
 %----------------------------------------------
 The detector records the cross sections of these arcs with the 
 Ewald sphere, so the total scattering power is the product of the observed intensity,
-$I_\mathrm{o}$ with the arc length, that is, 
+$\Io{hk}$ with the arc length, that is, 
 \begin{equation}
-  I = 2\theta_{h}q_{z,h} I_{\mathrm{o},h}. \label{eq:main_ewald}
+  I = 2\theta_{h0}\qz{h0} \Io{h0}. \label{eq:main_ewald}
 \end{equation}
 
 Because the sample has in-plane rotational symmetry, side peaks are represented as
-rings whose radius is $q_{r,k}$. For a fixed incident
+rings whose radius is $\qr{hk}$. For a fixed incident
 angle, all the rings are intersected by the Ewald sphere. Because only the domains
 with the right ripple direction can satisfy the Bragg's condition at a given fixed
 angle, the scattering power of this small cross section is reduced by 
@@ -243,40 +285,6 @@ the calculated intensity from a bilayer model using these geometrical correction
 This is because we can determine experimental uncertainties
 on observed intensity rather than the geometrically corrected form factors. 
 We avoid propagating the uncertainties by fitting a model to observed intensity. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Sawtooth model}
-The unit cell vectors in the ripple phase can be expressed as 
-\begin{equation}
-  \mathbf{a} = \frac{D}{\tan\gamma}\xhat + D\zhat
-\end{equation}
-and
-\begin{equation}
-  \mathbf{b} = \lambda_r\xhat.
-\end{equation}
-The corresponding reciprocal lattice unit cell vectors are given by
-\begin{equation}
-  \mathbf{A} = \frac{2\pi}{D}\zhat
-\end{equation}
-and
-\begin{equation}
-  \mathbf{B} = \frac{2\pi}{\lambda_r}\xhat - \frac{2\pi}{\lambda_r\tan\gamma}\zhat.
-\end{equation}
-The reciprocal lattice vector, $\mathbf{q}_{hk}$ for the Bragg peak with 
-Miller indices $(h,k)$ is 
-\begin{equation}
-  \mathbf{q}_{hk}=h\mathbf{A}+k\mathbf{B},
-\end{equation}
-so its components can be written as
-\begin{equation}
-  q_{x,k} = \frac{2\pi k}{\lambda_r}
-\end{equation}
-\begin{equation}
-  q_y = 0
-\end{equation}
-\begin{equation}
-  q_{z,hk} = \frac{2\pi h}{D} - \frac{2\pi k}{\lambda_r\tan\gamma}
-\end{equation}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
