@@ -16,6 +16,73 @@
 \begin{document}
 \today
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Modeling of Bilayer Structure}
+Modeling of the bilayer structure was done similarly to the SDP model 
+\cite{ref:Kucerka08}. The lipid component groups are shown in Fig. We assigned
+two Gaussian functions for a headgroup, one representing a sum of phosphate
+and choline groups and another representing a sum of carbonyl and glycerol 
+groups. Another Gaussian was assigned to the terminal methyl group. The
+hydrocarbon was represented by an error function minus the terminal methyl 
+Gaussian. To avoid having too many parameters, we combined methylece 
+($\textrm{CH}_2$) and methine (CH). Tat was represented by a Gaussian.
+In our modeling procedure, we assumed that the lipid headgroup is somewhat rigid,
+so that the distance between PC and CG groups is fixed as well as the distance
+between CG and the end of the hydrocarbon chains. These amounted to fixing
+$dX_1$ and $dX_2$. We allowed the chains to change its length freely, leading
+to free $D_c$. The center of the terminal methyls was fixed at the center of
+the bilayer.
+The constraints on component group volumes were taken from \cite{ref:Nagle13}.
+Table shows all the constraints.
+%------------------------------------------------------------
+\begin{table}[htb]
+  \centering
+  \begin{tabular}{c c c c}
+       & Nagle13 & $D$ & $\gamma$ \\
+    $R_{12}$ & 141.7 & 57.94 & 98.4\degree \\
+    $r_{12}$ & 145   & 57.8  & 98.2\degree \\
+    $r$ & ? & ? & ?
+    
+  \end{tabular}
+  \caption{Lattice constants}
+  \label{tb:lattice_const}
+\end{table}
+%------------------------------------------------------------
+Because our experiment was carried out at 37 \textcelcius while Nagle13 data
+is for 30 \textcelcius, our measured volume for DOPC was higher. The 
+difference was assigned equally to hydrocarbon chains and terminal methyls.
+This led to distributing the measured extra volume to 17 carbon groups.
+This distribution resulted in slightly different values for $r_{12}$.
+The headgroup volume was assumed to be the same phosphatidylcholine headgroup
+measured for the gel phase of DPPC \cite{ref:who?}. 
+
+Using the model described above, we first fitted the DOPC form factor. The
+result of the best fit is shown in Table. For fitting the data with Tat,
+we considered two cases: 1) free lipid component widths and 2) lipid component
+widths assumed to be greater than the corresponding pure DOPC values. The 
+second case avoided increasing the number of free parameters. In this case,
+we assumed that Tat decreases the thickness of the bilayer locally, which
+leads to smearing of the headgroups in $z$ direction, which necessarily leads
+to the wider headgroup. 
+
+The width of Tat was fixed. We fitted with three different values to study
+the range of variation due to the Tat width. The choice was made based on
+MD simulation results.
+
+We also investigated a possibility of Tat in the hydrocarbon region. For this,
+because Tat occupies some volume in the chain region, we subtracted Tat
+volume from the error function. Then, this modified error function was used
+as the hydrocarbon chains. Figure shows that $\chi^2$ is equally good at 
+Tat inside and outside the chain region for case 1. For case 2, the minimum
+$\chi^2$ was obtained with Tat in the headgroup region. While modeling suggested
+that Tat could be in the tail region, this position seems energetically 
+unfavorable as Tat is a hydrophilic molecule. With a help of MD simulations,
+we were able to discard the interior position as an artifact of our 
+modeling. The simulation results are discussed in section X.
+
+case 1 led to a deeper position of Tat inside the bilayer.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{MD simulation}
 Three systems with different petpide concentrations (DOPC:Tat = 128:0, 128:2, and 128.4)
 were studied with Gromacs 4.6.1 package \cite{ref:Hess08}. DOPCs were modeled by Slipid 
@@ -54,6 +121,8 @@ different $A_L$ and $z_{\Tat}$ to investigate how robust some of the
 Tat structural features are. Many simulation results are shown in
 the appendix of this thesis. 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Local Thinning of Membranes}
 The SIMtoEXP program only gives the average quantities for each leaflet. 
 While our x-ray data are sensitive to the avarage bilayer electron density,

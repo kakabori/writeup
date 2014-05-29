@@ -31,16 +31,30 @@
 \newcommand{\Io}[1]{I_{#1}^\mathrm{obs}}
 \newcommand{\qz}[1]{q_{#1}^z}
 \newcommand{\qr}[1]{q_{#1}^r}
+\newcommand{\qx}[1]{q_{#1}^x}
+\newcommand{\qy}[1]{q_{#1}^y}
 
 %\syntaxonly
 \usepackage[pdftex]{hyperref}
 \usepackage{graphicx}
+%\usepackage{url}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \today %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Materials and Methods}
+A thin piece of molybdenum was used to attenuate the beam. The attenuation length
+$\mu$ of X-ray in Mo is 6.433 $\mu$m for 8 keV and 13.74 $\mu$m for 10.55 keV 
+\cite{ref:cxro}.
+For a nominal 25 $\mu$m thick Mo attenuator, $\mu=13.74$ gives the attenuation factor 
+of $[\exp(-25/13.74)]^{-1} = 6.2$. The exact attenuation factor was determined
+by taking images with and without the attenuator and calculating a factor
+that needed to be multiplied for the images to match with each other.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -114,16 +128,16 @@ are given by
   \mathbf{\hat{e}_z} = -\sin\omega\,\yhat + \cos\omega\,\zhat.
   \label{eq:smp_coord}
 \end{equation}
-From Eq.~(\ref{eq:q_vector}) and (\ref{eq:smp_coord}), we find the projection of 
-$\mathbf{q}$ on the sample coordinates to be
+From Eq.~(\ref{eq:q_vector}) and (\ref{eq:smp_coord}), we find the sample
+$q$-space to be
 \begin{align}
-  q_x &= \mathbf{q}\cdot\mathbf{\hat{e}_x} 
+  q^x &= \mathbf{q}\cdot\mathbf{\hat{e}_x} 
        = q\cos\theta\cos\phi, 
        \nonumber\\
-  q_y &= \mathbf{q}\cdot\mathbf{\hat{e}_y} 
+  q^y &= \mathbf{q}\cdot\mathbf{\hat{e}_y} 
        = q\left(-\sin\theta\cos\omega + \cos\theta\sin\phi\sin\omega\right), 
        \nonumber\\
-  q_z &= \mathbf{q}\cdot\mathbf{\hat{e}_z} 
+  q^z &= \mathbf{q}\cdot\mathbf{\hat{e}_z} 
        = q\left(\sin\theta\sin\omega + \cos\theta\sin\phi\cos\omega\right).
        \label{eq:qxqyqz}
 \end{align}
@@ -138,7 +152,7 @@ From a model for the electron density of a lipid bilayer, one calculates
 a X-ray scattering intensity pattern, $I(\mathbf{q})$. Then, Eq.~(\ref{eq:qxqyqz})
 and (\ref{eq:XZ}) relate $I(\mathbf{q})$ to the experimentally measured
 intensity pattern, $I(X,Z)$. It is important to remember that a given pixel
-position, $(X,Z)$, corresponds to a triplet $(q_x, q_y, q_z)$. Fully exploring 
+position, $(X,Z)$, corresponds to a triplet $(q^x, q^y, q^z)$. Fully exploring 
 the sample $q$-space requires changing $\omega$ for a fixed wavelength, which was
 achieved by continuously rotating the sample with a motor. In the ripple phase, 
 because our sample has in-plane rotational symmetry,
@@ -146,15 +160,15 @@ the ripple side peaks make up Bragg rings while the main peaks are still
 delta function like (see Fig. X) in $q$-space. In order for the main peak to be
 observed, $\omega$ must be equal to $\theta_\mathrm{B}$, but the side peaks
 are observed at any $\omega$. Those side peaks get slightly smeared due to 
-integration over $q_y$.
+integration over $\qy{}$.
 
 For low angle x-ray scattering (LAXS), it is convenient to linearize the above
 equations in terms of $\theta$ and $\omega$. In the small angle approximation, 
 $\sin\phi \approx Z/(2S\theta)$ and $\cos\phi \approx X/(2S\theta)$, and
 \begin{align}
-  q_x &\approx \frac{4\pi\theta\cos\phi}{\lambda} \approx kX/S \nonumber\\
-  q_y &\approx q_z\omega -\frac{4\pi\theta^2}{\lambda} \approx q_z\omega - \frac{\lambda q_z^2}{4\pi}\nonumber\\
-  q_z &\approx \frac{4\pi\theta\sin\phi}{\lambda} \approx kZ/S,
+  \qx{} &\approx \frac{4\pi\theta\cos\phi}{\lambda} \approx kX/S \nonumber\\
+  \qy{} &\approx q_z\omega -\frac{4\pi\theta^2}{\lambda} \approx q_z\omega - \frac{\lambda q_z^2}{4\pi}\nonumber\\
+  \qz{} &\approx \frac{4\pi\theta\sin\phi}{\lambda} \approx kZ/S,
   \label{eq:qxqyqz_small}
 \end{align}
 with $k=2\pi/\lambda$. For wide angle X-ray scattering, the exact relations given
@@ -164,7 +178,7 @@ almost impossible to analyze without the use of Eq.~(\ref{eq:qxqyqz}).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Geometric Correction for the Ripple Phase Scattering}
+\section{Geometric (Lorentz) Correction for Ripple Phase Scattering}
 Our sample has in-plane rotational symmetry. This means that the sample 
 consists of many domains with differing ripple directions, all domains
 being parallel to the substrate.  
@@ -196,37 +210,37 @@ rings whose radius is $\qr{hk}$. For a fixed incident
 angle, all the rings are intersected by the Ewald sphere. Because only the domains
 with the right ripple direction can satisfy the Bragg's condition at a given fixed
 angle, the scattering power of this small cross section is reduced by 
-a factor of $2\pi q_{r,k}$ compared to main peaks. During 
+a factor of $2\pi \qr{k}$ compared to main peaks. During 
 an X-ray exposure, the rings cross the Ewald sphere
 at all incident angles. Then, the total scattering power is given by
 \begin{equation}
-  I=2\pi q_{r,k} I_{\mathrm{o},k}. \label{eq:side_ewald}
+  I=2\pi \qr{k} \Io{k}. \label{eq:side_ewald}
 \end{equation}
 Inverting Eq.~(\ref{eq:main_ewald}) and (\ref{eq:side_ewald}) 
 and realizing that the intensity is the form factor
-squared, we can calculate the observed intensity, $I_\mathrm{o}$, 
+squared, we can calculate the observed intensity, $\Io{}$, 
 from a model for an electron density in the ripple phase.
 
 Mathematically, the rotation is  
 equivalent to an integration over $\omega$. In low angle X-ray scattering, 
-$q_z$ is constant at a given pixel as $\omega$ is changed, which can be seen from 
-Eq.~(\ref{eq:qxqyqz_small}). $\omega$ dependence appears only through $q_y$, 
-so rotating the sample is realized by integrating over $q_y$. 
+$\qz{}$ is constant at a given pixel as $\omega$ is changed, which can be seen from 
+Eq.~(\ref{eq:qxqyqz_small}). $\omega$ dependence appears only through $\qy{}$, 
+so rotating the sample is realized by integrating over $\qy{}$. 
 To derive the integration limits, let us consider two cases: (a) When $\omega \leq 0$,
 the incoming X-ray beam is blocked by the back of the substrate. This sets 
 the lower limit to 0. (b) When $\omega \geq 2\theta$, the substrate blocks 
 the outgoing X-ray. Within the small angle approximation, then, $\omega_{\text{max}}$
-is $2\times \lambda q_z/(4\pi)$ for scattering with $q_z$. 
+is $2\times \lambda \qz{}/(4\pi)$ for scattering with $\qz{}$. 
 Thus, the integration limits 
-for $q_y$ integration are $[-\lambda q_z^2/(4\pi), \lambda q_z^2/(4\pi)]$.
+for $\qy{}$ integration are $[-\lambda \qz{}^2/(4\pi), \lambda \qz{}^2/(4\pi)]$.
 We also need to integrate over $X$ and $Z$ to obtain integrated intensity. 
 These lead to the observed intensity
 written as,
 \begin{align}
-  I_{\mathrm{o},hk} 
+  \Io{hk} 
     &\propto \int dX \int dZ \int d\omega |F_{hk}|^2 S_{hk}(\mathbf{q}) \nonumber \\
     &\propto |F_{hk}|^2 \int dq_x \int dq_z 
-             \int_{-\frac{\lambda q_z^2}{4\pi}}^{\frac{\lambda q_z^2}{4\pi}} \frac{dq_y}{q_z} 
+             \int_{-\frac{\lambda \qz{}^2}{4\pi}}^{\frac{\lambda \qz{}^2}{4\pi}} \frac{d\qy{}}{\qz{}} 
              S_{hk}(\mathbf{q}),
 \end{align}
 where $1/q_z$ factor in $q_y$ integration is the Lorentz polarization factor
@@ -235,7 +249,7 @@ in the small angle approximation.
 For a crystalline sample with the in-plane rotational symmetry, the
 structure factor is  
 \begin{equation}
-  S_{hk}(\mathbf{q}) = S_{hk}(q_r,q_z) 
+  S_{hk}(\mathbf{q}) = S_{hk}(\qr{},\qz{}) 
   = \frac{1}{2\pi q_r}\delta(q_r-q_{r,k})\delta(q_z-q_{z,hk}),
 \end{equation} 
 where $q_{r,k}=2\pi |k|/\lambda_r$. Thus, the scattering pattern in the 
@@ -289,6 +303,28 @@ We avoid propagating the uncertainties by fitting a model to observed intensity.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data}
+Table~\ref{tb:lattice_const} summarizes data we analyzed. 
+%------------------------------------------------------------
+\begin{table}[htb]
+  \centering
+  \begin{tabular}{c c c c}
+       & $\lambda_r$ & $D$ & $\gamma$ \\
+    WW & 141.7 & 57.94 & 98.4\degree \\
+    S1 & 145   & 57.8  & 98.2\degree \\
+    S2 & ? & ? & ?
+  \end{tabular}
+  \caption{Lattice constants}
+  \label{tb:lattice_const}
+\end{table}
+%------------------------------------------------------------
+As shown, we measured scattering in a almost identical conditions as the
+Wack and Webb's. This data allowed us to check our data obtained by using
+an oriented sample against an unoriented sample. As discussed earlier, 
+these two types of samples give different Lorentz correction. We derived
+the Lorentz correction for our oriented sample. Applying the derived correction
+to our data and calculating the form factor, we were able to confirm our 
+correction. This check is shown in Table.
+
 Figure shows a LAXS pattern from DMPC at 18 \degC. $D=57.9$ \AA. Low
 resolution experiment. Up to $h=9$ orders were observed in this
 data set. Because of a non-negligible degree of mosaicity in the sample,
