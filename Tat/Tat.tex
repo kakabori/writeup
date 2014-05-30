@@ -2,6 +2,7 @@
 
 \input{../common_preambles}
 
+\newcommand{\ztat}{Z_\mathrm{Tat}}
 \newcommand{\zphos}{Z_\mathrm{phos}}
 \newcommand{\zp}{Z_\mathrm{P}}
 \newcommand{\vtat}{V_\mathrm{Tat}}
@@ -17,15 +18,39 @@
 \today
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Modeling of Bilayer Structure}
+\section{Modeling the Bilayer Structure}
 Modeling of the bilayer structure was done similarly to the SDP model 
-\cite{ref:Kucerka08}. The lipid component groups are shown in Fig. We assigned
-two Gaussian functions for a headgroup, one representing a sum of phosphate
-and choline groups and another representing a sum of carbonyl and glycerol 
-groups. Another Gaussian was assigned to the terminal methyl group. The
-hydrocarbon was represented by an error function minus the terminal methyl 
-Gaussian. To avoid having too many parameters, we combined methylece 
-($\textrm{CH}_2$) and methine (CH). Tat was represented by a Gaussian.
+\cite{ref:Kucerka08}. Parsing of DOPC into lipid components is shown in
+Fig~\ref{fig:dopc_schematic}. The phosphate-choline (PC) and 
+carbonyl-glycerol (CG) groups together make up the lipid headgroup. The tail
+is divided into two components: the hydrocarbon chain and terminal methyl 
+groups. We combine the methylene ($\textrm{CH}_2$) and methine (CH) groups 
+in order to reduce
+the number of fitting parameters.
+%------------------------------------------------------------------------------
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.7]{./figures/dopc_schematic.pdf}
+  \caption{Schematic of DOPC showing each lipid component. The dot lines 
+           show where the lipid is divided into different components. 
+           The lipid headgroup
+           is divided into two components, phophate-choline and carbonyl-glycerol. 
+           The tail region is also divided
+           into two components, hydrocarbon chain and terminal methyl.
+           In the hydrocarbon chain group, not all 14 $\textrm{CH}_2$ groups
+           in each tail are shown.}
+  \label{fig:dopc_schematic}
+\end{figure}
+%------------------------------------------------------------------------------
+
+Figure shows a typical model for the electron density of DOPC.
+Describe the mathematical equations here. 
+This parsing leads to 12 parameters, but some of them are known a prior
+from other structral studies.
+
+Additionally, Tat is represented by a separate Gaussian. When this Tat 
+Gaussian is placed in the tail region, the hydrocarbon group is modified.
+
 In our modeling procedure, we assumed that the lipid headgroup is somewhat rigid,
 so that the distance between PC and CG groups is fixed as well as the distance
 between CG and the end of the hydrocarbon chains. These amounted to fixing
@@ -57,7 +82,9 @@ The headgroup volume was assumed to be the same phosphatidylcholine headgroup
 measured for the gel phase of DPPC \cite{ref:who?}. 
 
 Using the model described above, we first fitted the DOPC form factor. The
-result of the best fit is shown in Table. For fitting the data with Tat,
+fit is shown in Fig. The result of the best fit is shown in Table. 
+
+For fitting the data with Tat,
 we considered two cases: 1) free lipid component widths and 2) lipid component
 widths assumed to be greater than the corresponding pure DOPC values. The 
 second case avoided increasing the number of free parameters. In this case,
@@ -81,6 +108,8 @@ we were able to discard the interior position as an artifact of our
 modeling. The simulation results are discussed in section X.
 
 case 1 led to a deeper position of Tat inside the bilayer.
+
+Figure shows $\chi^2$ as a function of fixed $\ztat$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{MD simulation}
@@ -185,12 +214,14 @@ of a leaflet. The two leaflets are assumed to be decoupled.
 In the linear model, lipids are seprated into three regions: 
 suppressed, boundary, and unperturbed (see Fig. for the definitions
 of various quantities). 
+%------------------------------------------------------------------------------
 \begin{figure}
   \centering
   \includegraphics[scale=0.5]{./figures/linear_model.png}
   \caption{test}
   \label{fig:linear_model}
 \end{figure}
+%------------------------------------------------------------------------------
 In the suppressed region,
 lipids are uniformly compressed by Tat toward the center of the bilayer; 
 $h(r)$ is a constant, $\zphos$. In the boundary region, $h(r)$ is assumed to 
