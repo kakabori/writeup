@@ -85,12 +85,15 @@
 \subsection{Theory}
 This section briefly describes NFIT analysis. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Results}
 Show X-ray data. Show fitting boxes.
 Show the Kc values.
 Also, show the resultant
 form factors, which qualitatively show the membrane thinning.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Modeling the Bilayer Structure}
 In the case of X-rays, the features with the most contrast are the 
 electron-dense headgroups, providing the head-head spacing $\DHH$,
@@ -104,7 +107,8 @@ carbonyl/glycerol (CG) groups together make up the lipid headgroup
 whereas the hydrocarbon chain region
 is divided into two components, the methylene and methine groups 
 combination ($\CH{2}$+CH) and terminal methyl group ($\CH{3}$). 
-We combine methylene ($\CH{2}$) and methine groups (CH) in order to avoid proliferation of 
+We combine methylene ($\CH{2}$) and methine groups (CH) in order to avoid 
+proliferation of 
 fitting parameters.
 %------------------------------------------------------------------------------
 \begin{figure}[htbp]
@@ -120,12 +124,12 @@ fitting parameters.
 \end{figure}
 %------------------------------------------------------------------------------
 
-(Also, create a table for basic parameters like $\rho$).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Functional forms}
 Our model for electron density profile (EDP)
-of Tat/lipid bilayer system consists of six structrual subgroups (Fig.~\ref{fig:DOPC_Tat_EDP}).
+of Tat/lipid bilayer system consists of six structrual subgroups 
+(Fig.~\ref{fig:DOPC_EDP1}).
 The volume probability distributions of components PC, CG, terminal
 methyl groups ($\CH{3}$), and Tat are described by Gaussian functions,
 \begin{equation}
@@ -153,20 +157,28 @@ The volume probability distribution for the methylene and methine groups
 combination can then be expressed as
 \begin{equation}
   \PCHtwoCH(z) = \PHC(z)-\PCHthree(z).
+  \label{eq:modelA}
 \end{equation}
-This definition satisfies spatial conservation in the central hydrocarbon 
-region where the total probability $\PHC$ equals one. We also consider
-an alternative definition,
+This definition enforces the total probability $\PHC$ in the hydrocarbon
+chain region to equal one, which in turn means that placement of Tat in the  
+chain region is prohibited. We call the model defined by Eq.~(\ref{eq:modelA})
+model A (better name?). To allow Tat to be placed inside the hydrocarbon
+chain region, we also consider an alternative definition,
 \begin{equation}
   \PCHtwoCH(z) = \PHC(z)-\PCHthree(z) - \PTat(z),
 \end{equation}
-which allows Tat to be located inside the hydrocarbon chain region. 
-The spatial
-conservation requires the water volume probability distribution to be
-\begin{align}
-  \PW(z) &= 1-\PPC(z)-\PCG(z)-\PTat(z)-\PHC(z) \text{\quad(model A)} \\
-  \PW(z) &= 1-\PPC(z)-\PCG(z)-\PHC(z) \text{\quad(model B)}
-\end{align}
+where the volume probability of CH$_2$+CH combined group is reduced by 
+the Tat volume probability distribution. We call this model model B.
+The spatial conservation requires the water volume probability distribution 
+to be
+\begin{equation}
+  \PW(z) = 1-\PPC(z)-\PCG(z)-\PTat(z)-\PHC(z)
+\end{equation}
+for model A and
+\begin{equation}
+  \PW(z) = 1-\PPC(z)-\PCG(z)-\PHC(z)
+\end{equation}
+for model B.
 
 Because X-rays measure the contrast between the bilayer and surrounding solvents, 
 water, the experimental form factor is compared to the water subtracted model
@@ -237,6 +249,103 @@ these volumes to the calculated values in our model.
 %------------------------------------------------------------------------------
 \begin{table}[htbp]
   \centering
+  \begin{tabular}{ cc }
+  \hline
+    number of e/lipid & 434 \\ 
+    volume/lipid (\AA$^3$) & 1313.5 \\
+  \hline
+  \end{tabular}
+  \quad
+  \begin{tabular}{ cccc }
+    \hline
+    component & $n^e_i$ & $V_i$ (\AA$^3$) & $\rho_i$ (e/\AA$^3$) \\
+    \hline 
+    PC & 97 & 195.3 & 0.497 \\  
+    CG & 67 & 135.7 & 0.494 \\  
+    CH$_2$+CH & 7.875 & 27.3 & 0.288 \\
+    CH$_3$ & 9 & 53.9 & 0.167 \\
+    \hline
+  \end{tabular}
+  \caption{DOPC basic structural parameters. $n^e_i$ and $\rho_i$ are
+  the number of electrons and average electron density per component, 
+  respectively.}
+  \label{tb:DOPC_basic_params}
+\end{table}
+%------------------------------------------------------------------------------
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{ cc }
+  \hline
+    number of e/lipid & 410 \\ 
+    volume/lipid (\AA$^3$) & 1212.3 \\
+  \hline
+  \end{tabular}
+  \quad
+  \begin{tabular}{ cccc }
+    \hline
+    component & $n^e_i$ & $V_i$ (\AA$^3$) & $\rho_i$ (e/\AA$^3$) \\
+    \hline 
+    PE & 73 & 94.1 & 0.776 \\  
+    CG & 67 & 135.7 & 0.494 \\  
+    CH$_2$+CH & 7.875 & 27.3 & 0.288 \\
+    CH$_3$ & 9 & 53.9 & 0.167 \\
+    \hline
+  \end{tabular}
+  \caption{DOPE basic structural parameters. The notations are the same
+  as in Table~\ref{tb:DOPC_basic_params}.}
+  \label{tb:DOPE_basic_params}
+\end{table}
+%------------------------------------------------------------------------------
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{ cc }
+  \hline
+    number of e/lipid & 428 \\ 
+    volume/lipid (\AA$^3$) & 1288.2 \\
+  \hline
+  \end{tabular}
+  \quad
+  \begin{tabular}{ cccc }
+    \hline
+    component & $n^e_i$ & $V_i$ (\AA$^3$) & $\rho_i$ (e/\AA$^3$) \\
+    \hline 
+    PC/PE & 91 & 170 & 0.535 \\  
+    CG & 67 & 135.7 & 0.494 \\  
+    CH$_2$+CH & 7.875 & 27.3 & 0.288 \\
+    CH$_3$ & 9 & 53.9 & 0.167 \\
+    \hline
+  \end{tabular}
+  \caption{DOPC:DOPE (3:1) basic structural parameters. The notations are the same
+  as in Table~\ref{tb:DOPC_basic_params}.}
+  \label{tb:PCPE3:1_basic_params}
+\end{table}
+%------------------------------------------------------------------------------
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{ ccc }
+    \hline
+    number of e/Tat & 838 \\ 
+    volume/Tat (\AA$^3$) & 1877 \\
+    $\rho_\textrm{Tat}$ (e/\AA$^3$) & 0.446 \\
+    \hline
+  \end{tabular}
+  \quad
+  \begin{tabular}{ ccc }
+    \hline
+    ratio & $n^e_\textrm{Tat}$ & $\VTat$ (\AA$^3$) \\    
+    \hline
+    62:1 & 13.6 & 30.5 \\
+    28:1 & 29.5 & 66.1 \\
+    16:1 & 53.0 & 118.8 \\
+    \hline
+  \end{tabular}
+  \caption{Tat basic structural parameters. The notations are the same
+  as in Table~\ref{tb:DOPC_basic_params}.}
+  \label{tb:Tat_basic_params}
+\end{table}
+%------------------------------------------------------------------------------
+\begin{table}[htbp]
+  \centering
   \begin{tabular}{ |c|c|c|c|c|c|c|c| }
     \hline
      & DOPC & \multicolumn{2}{c|}{62:1} & \multicolumn{2}{c|}{28:1} & \multicolumn{2}{c|}{16:1} \\
@@ -260,6 +369,7 @@ these volumes to the calculated values in our model.
 %------------------------------------------------------------------------------
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \subsection{Results}
 Using the model described above, we fitted our measured X-ray form factors. 
 Figure~\ref{fig:DOPC_XFF1} shows that the best fit to the DOPC form factor
@@ -268,16 +378,16 @@ profile derived from the best fit.
 %------------------------------------------------------------------------------
 \begin{figure}[htbp]
   \centering
-  \includegraphics[scale=0.3]{./figures/SDP_Results/DOPC_XFF1.pdf}
-  \caption{DOPC form factor}
-  \label{fig:DOPC_XFF1}
+  \includegraphics[scale=0.3]{./figures/SDP_Results/DOPC_EDP1.pdf}
+  \caption{DOPC electron density (ED) profile}
+  \label{fig:DOPC_EDP1}
 \end{figure}
 %------------------------------------------------------------------------------
 \begin{figure}[htbp]
   \centering
-  \includegraphics[scale=0.3]{./figures/SDP_Results/DOPC_EDP1.pdf}
-  \caption{DOPC electron density (ED) profile}
-  \label{fig:DOPC_EDP1}
+  \includegraphics[scale=0.3]{./figures/SDP_Results/DOPC_XFF1.pdf}
+  \caption{DOPC form factor}
+  \label{fig:DOPC_XFF1}
 \end{figure}
 %------------------------------------------------------------------------------
 (Table ? shows the best fit parameters for DOPC bilayers. Explain the 
@@ -286,7 +396,8 @@ constraints on the distance between the headgroup components.)
 For fitting the form factors for systems with Tat, we fixed the width of Tat 
 Gaussian because we found that the best fits of this width was always 
 unphysically too small. We fitted with three different values of widths,
-2.5, 3.0, and 3.5, to study the range of variation due to the Tat width. The choice was made based on MD simulation results. (Check this again)
+2.5, 3.0, and 3.5, to study the range of variation due to the Tat width. 
+The choice was made based on MD simulation results. (Check this again)
 Figure~\ref{fig:DOPC_Tat_62to1_3.0_XFF1} shows the best fit to the 
 form factor for DOPC:Tat (62:1). 
 %------------------------------------------------------------------------------
@@ -307,7 +418,8 @@ form factor for DOPC:Tat (62:1).
 %------------------------------------------------------------------------------
 (Show all the results in a composite figure. Show results for DOPC:DOPE bilayers.)
 
-Figure~\ref{fig:DOPC_Tat_62to1_X2} shows $\chi^2$ as a function of fixed Tat position, $\zTat$. Generally, two minima were found. For DOPC bilayers, $\zTat$ in the 
+Figure~\ref{fig:DOPC_Tat_62to1_X2} shows $\chi^2$ as a function of fixed Tat position, 
+$\zTat$. Generally, two minima were found. For DOPC bilayers, $\zTat$ in the 
 headgroup region yielded the best fit. (Show plots for DOPC bilayers)
 %------------------------------------------------------------------------------
 \begin{figure}[htbp]
@@ -334,11 +446,13 @@ unfavorable as Tat is a hydrophilic molecule. With a help of MD simulations,
 we were able to discard the interior position as an artifact of our 
 modeling. The simulation results are discussed later.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Volume Measurements}
 (Maybe do this in appendix?)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagebreak
+\newpage
 \section{MD simulation}
 Three systems with different petpide concentrations (DOPC:Tat = 128:0, 128:2, and 128.4)
 were studied with Gromacs 4.6.1 package \cite{ref:Hess08}. DOPCs were modeled by Slipid 
@@ -506,7 +620,9 @@ with
 \end{equation}
 The model quantities calculated from the MD simulations are shown in Table.
 
-\section{Some Lipid Bilayer Data}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Discussion}
 We also estimated the structure by fitting the experimental form factors to a 
 model using the SDP method with the component groups identified in Fig. (what  
 The positions of 
@@ -556,7 +672,13 @@ studied.  These decreases in membrane chain order are compatible with the
 increase in softening of membranes by Tat observed by a decrease in the bending
 energy, KC, in Fig. 2.
 
+\section{Conclusion}
+
 \bibliography{Tat}
 \bibliographystyle{unsrt}
+%\bibliographystyle{plain}
+%\bibliographystyle{abbrv}
+%\bibliographystyle{alpha}
+%\printbibliography
 
 \end{document}

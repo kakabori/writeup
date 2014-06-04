@@ -44,10 +44,43 @@
 \today %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
+The ripple phase is the greatest thermodynamic phase of lipid bilayers.
+Sengupta et al suggested lipid chain packing in 2003 based on 
+average bilayer electron density (ED) profile calculated from low angle
+X-ray scattering. de Vrie et al suggested interdigitated chain in the
+minor side based on molecular dynamics (MD) simulations.
+Many theoretical work have been done to understand the origin of
+the ripple phase. These theories predict chain packing in both major
+and minor sides. It is obviously important to determine the packing
+in order to validate or invalidate those theories. However, this information
+is not completely known. WAXS is a direct probe of the chain packing.
+It is difficult because scattering is rather weak compared to gel phase. 
+
+Here, we report DMPC average structure calculated from
+low angle X-ray scattering data collected at a synchrotron.
+Careful analysis allowed us to derive a high resolution ED profile.
+The profile suggests WHAT? 
+
+We also report wide
+angle X-ray scattering, and suggest chain packing based on both LAXS and WAXS.
+Highly brilliant synchrotron X-ray allows high resolution study on 
+weak, possibly diffuse scattering.  We determined that the peak is off the 
+equator and tilted from the virtical $q_z$ axis.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
+High resolution was achieved by the use of Germanium monochromator, 0.01\% 
+energy dispersion. Low resolution data were taken with multilayer 
+monochromator with 1\% energy dispersion.
+
+To achieve small mosaic spread, samples were annealed at 60 \textcelsius for
+at least 6 hours right before the experiment. Silicon wafers were cleaned
+just before use. 2:1 methanol: chloroform was used to dissolve DMPC.
+Sample were rocked continuously during solvent evaporation and dried further
+inside a glove box. Samples were then dried under a hood for 24 hours 
+and in a vaccume chamber for 2 hours. Samples were stored in a refrigerator.
+
 A thin piece of molybdenum was used to attenuate the beam. The attenuation length
 $\mu$ of X-ray in Mo is 6.433 $\mu$m for 8 keV and 13.74 $\mu$m for 10.55 keV 
 \cite{ref:cxro}.
@@ -56,6 +89,16 @@ of $[\exp(-25/13.74)]^{-1} = 6.2$. The exact attenuation factor was determined
 by taking images with and without the attenuator and calculating a factor
 that needed to be multiplied for the images to match with each other.
 
+Low angle scattering was done with low resolution setup.
+
+25 $\mu$m silicon wafer was used to deposite our sample. This wafer absorbs
+only 20\% of the X-ray beam at 10.5 keV (Check this). This weak absorption
+allows transmission scattering. Trasmission experiment was done with
+low resolution setup.
+
+Grazing angle experiment was done with both high and low resolution setups.
+To minimize geometric broadening in grazing angle experiment, the sample
+was trimmed to either 1 or 2 mm. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lattice Structure}
@@ -85,8 +128,8 @@ Miller indices $(h,k)$ is
 \end{equation}
 so its Cartesian components are
 \begin{align}
-  & q_{hk}^x = q_{k}^x = \frac{2\pi k}{\lambda_r} \\
-  & q^y = 0 \\
+  & q_{k}^x \equiv q_{hk}^x = \frac{2\pi k}{\lambda_r} \\
+  & q_{hk}^y = 0 \\
   & \qz{hk} = \frac{2\pi h}{D} - \frac{2\pi k}{\lambda_r\tan\gamma}.
 \end{align}
 
@@ -152,7 +195,7 @@ From a model for the electron density of a lipid bilayer, one calculates
 a X-ray scattering intensity pattern, $I(\mathbf{q})$. Then, Eq.~(\ref{eq:qxqyqz})
 and (\ref{eq:XZ}) relate $I(\mathbf{q})$ to the experimentally measured
 intensity pattern, $I(X,Z)$. It is important to remember that a given pixel
-position, $(X,Z)$, corresponds to a triplet $(q^x, q^y, q^z)$. Fully exploring 
+position, $(X,Z)$, corresponds to a triplet $(q_x, q_y, q_z)$. Fully exploring 
 the sample $q$-space requires changing $\omega$ for a fixed wavelength, which was
 achieved by continuously rotating the sample with a motor. In the ripple phase, 
 because our sample has in-plane rotational symmetry,
@@ -160,15 +203,15 @@ the ripple side peaks make up Bragg rings while the main peaks are still
 delta function like (see Fig. X) in $q$-space. In order for the main peak to be
 observed, $\omega$ must be equal to $\theta_\mathrm{B}$, but the side peaks
 are observed at any $\omega$. Those side peaks get slightly smeared due to 
-integration over $\qy{}$.
+integration over $q_y$.
 
 For low angle x-ray scattering (LAXS), it is convenient to linearize the above
 equations in terms of $\theta$ and $\omega$. In the small angle approximation, 
 $\sin\phi \approx Z/(2S\theta)$ and $\cos\phi \approx X/(2S\theta)$, and
 \begin{align}
-  \qx{} &\approx \frac{4\pi\theta\cos\phi}{\lambda} \approx kX/S \nonumber\\
-  \qy{} &\approx q_z\omega -\frac{4\pi\theta^2}{\lambda} \approx q_z\omega - \frac{\lambda q_z^2}{4\pi}\nonumber\\
-  \qz{} &\approx \frac{4\pi\theta\sin\phi}{\lambda} \approx kZ/S,
+  q_x &\approx \frac{4\pi\theta\cos\phi}{\lambda} \approx kX/S \nonumber\\
+  q_y &\approx q_z\omega -\frac{4\pi\theta^2}{\lambda} \approx q_z\omega - \frac{\lambda q_z^2}{4\pi}\nonumber\\
+  q_z &\approx \frac{4\pi\theta\sin\phi}{\lambda} \approx kZ/S,
   \label{eq:qxqyqz_small}
 \end{align}
 with $k=2\pi/\lambda$. For wide angle X-ray scattering, the exact relations given
@@ -223,16 +266,16 @@ from a model for an electron density in the ripple phase.
 
 Mathematically, the rotation is  
 equivalent to an integration over $\omega$. In low angle X-ray scattering, 
-$\qz{}$ is constant at a given pixel as $\omega$ is changed, which can be seen from 
-Eq.~(\ref{eq:qxqyqz_small}). $\omega$ dependence appears only through $\qy{}$, 
-so rotating the sample is realized by integrating over $\qy{}$. 
+$q_z$ is constant at a given pixel as $\omega$ is changed, which can be seen from 
+Eq.~(\ref{eq:qxqyqz_small}). $\omega$ dependence appears only through $q_y$, 
+so rotating the sample is realized by integrating over $q_y$. 
 To derive the integration limits, let us consider two cases: (a) When $\omega \leq 0$,
 the incoming X-ray beam is blocked by the back of the substrate. This sets 
 the lower limit to 0. (b) When $\omega \geq 2\theta$, the substrate blocks 
 the outgoing X-ray. Within the small angle approximation, then, $\omega_{\text{max}}$
-is $2\times \lambda \qz{}/(4\pi)$ for scattering with $\qz{}$. 
+is $2\times \lambda q_z/(4\pi)$ for scattering with $q_z$. 
 Thus, the integration limits 
-for $\qy{}$ integration are $[-\lambda \qz{}^2/(4\pi), \lambda \qz{}^2/(4\pi)]$.
+for $q_y$ integration are $[-\lambda q_z^2/(4\pi), \lambda q_z^2/(4\pi)]$.
 We also need to integrate over $X$ and $Z$ to obtain integrated intensity. 
 These lead to the observed intensity
 written as,
@@ -240,7 +283,8 @@ written as,
   \Io{hk} 
     &\propto \int dX \int dZ \int d\omega |F_{hk}|^2 S_{hk}(\mathbf{q}) \nonumber \\
     &\propto |F_{hk}|^2 \int dq_x \int dq_z 
-             \int_{-\frac{\lambda \qz{}^2}{4\pi}}^{\frac{\lambda \qz{}^2}{4\pi}} \frac{d\qy{}}{\qz{}} 
+             \int_{-\frac{\lambda q_z^2}{4\pi}}^{\frac{\lambda q_z^2}{4\pi}} 
+             \frac{dq_y}{q_z} 
              S_{hk}(\mathbf{q}),
 \end{align}
 where $1/q_z$ factor in $q_y$ integration is the Lorentz polarization factor
@@ -249,7 +293,7 @@ in the small angle approximation.
 For a crystalline sample with the in-plane rotational symmetry, the
 structure factor is  
 \begin{equation}
-  S_{hk}(\mathbf{q}) = S_{hk}(\qr{},\qz{}) 
+  S_{hk}(\mathbf{q}) = S_{hk}(q_r,q_z) 
   = \frac{1}{2\pi q_r}\delta(q_r-q_{r,k})\delta(q_z-q_{z,hk}),
 \end{equation} 
 where $q_{r,k}=2\pi |k|/\lambda_r$. Thus, the scattering pattern in the 
@@ -301,52 +345,7 @@ on observed intensity rather than the geometrically corrected form factors.
 We avoid propagating the uncertainties by fitting a model to observed intensity. 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Data}
-Table~\ref{tb:lattice_const} summarizes data we analyzed. 
-%------------------------------------------------------------
-\begin{table}[htb]
-  \centering
-  \begin{tabular}{c c c c}
-       & $\lambda_r$ & $D$ & $\gamma$ \\
-    WW & 141.7 & 57.94 & 98.4\degree \\
-    S1 & 145   & 57.8  & 98.2\degree \\
-    S2 & ? & ? & ?
-  \end{tabular}
-  \caption{Lattice constants}
-  \label{tb:lattice_const}
-\end{table}
-%------------------------------------------------------------
-As shown, we measured scattering in a almost identical conditions as the
-Wack and Webb's. This data allowed us to check our data obtained by using
-an oriented sample against an unoriented sample. As discussed earlier, 
-these two types of samples give different Lorentz correction. We derived
-the Lorentz correction for our oriented sample. Applying the derived correction
-to our data and calculating the form factor, we were able to confirm our 
-correction. This check is shown in Table.
 
-Figure shows a LAXS pattern from DMPC at 18 \degC. $D=57.9$ \AA. Low
-resolution experiment. Up to $h=9$ orders were observed in this
-data set. Because of a non-negligible degree of mosaicity in the sample,
-strong orders cast their arcs over weaker orders. A care must be 
-taken to decompose the intensity at a given pixel to intensity due to
-a strong order's arc and to that due to a weak peak. This was achieved
-by taking a $q_z$ swath and fitting the intensity to two Gaussian
-functions whose widths were determined from the known instrumental 
-resolution. Figure shows an example of this operation. Table and
-Table show with and without the decomposition operation, respectively. 
-For many of the orders observed, errors one would expect from 
-neglecting the mosaicity effect were small. For higher orders, however,
-this was crucial to obtain the correct integrated intensity.
-
-In order to test the decomposition effect, fits were also performed
-for the sum of intensity for orders that overlap. 
-
-First, we fitted the data using only up to $h=3$ orders. What did we get?
-How did each model do? Any inconsistency witht
- Sun PNAS?
-
-Next, we fitted every peak we observed. Which model failed?
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -384,11 +383,12 @@ sides.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Delta Function Model}
+\section{Transbilayer Part of the Form Factor}
+\subsection{Delta Function Model}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{2G Hybrid Model}
+\subsection{2G Hybrid Model}
 In the hybrid model, the terminal methyl region of the bilayer is represented
 as a Gaussian function \cite{ref:Wiener89}. The headgroups are represented by one 
 and two Gaussian
@@ -464,6 +464,52 @@ the lipid tilt, and an overall scaling factor. The contour part of the
 form factor has four more parameters ($A$, $x_0$, $f_1$, and $f_2$).
 In total, the modified 2G hybrid model implements 14 structural parameters.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Data}
+Table~\ref{tb:lattice_const} summarizes data we analyzed. 
+%------------------------------------------------------------
+\begin{table}[htb]
+  \centering
+  \begin{tabular}{c c c c}
+       & $\lambda_r$ & $D$ & $\gamma$ \\
+    WW & 141.7 & 57.94 & 98.4\degree \\
+    S1 & 145   & 57.8  & 98.2\degree \\
+    S2 & ? & ? & ?
+  \end{tabular}
+  \caption{Lattice constants}
+  \label{tb:lattice_const}
+\end{table}
+%------------------------------------------------------------
+As shown, we measured scattering in a almost identical conditions as the
+Wack and Webb's. This data allowed us to check our data obtained by using
+an oriented sample against an unoriented sample. As discussed earlier, 
+these two types of samples give different Lorentz correction. We derived
+the Lorentz correction for our oriented sample. Applying the derived correction
+to our data and calculating the form factor, we were able to confirm our 
+correction. This check is shown in Table.
+
+Figure shows a LAXS pattern from DMPC at 18 \degC. $D=57.9$ \AA. Low
+resolution experiment. Up to $h=9$ orders were observed in this
+data set. Because of a non-negligible degree of mosaicity in the sample,
+strong orders cast their arcs over weaker orders. A care must be 
+taken to decompose the intensity at a given pixel to intensity due to
+a strong order's arc and to that due to a weak peak. This was achieved
+by taking a $q_z$ swath and fitting the intensity to two Gaussian
+functions whose widths were determined from the known instrumental 
+resolution. Figure shows an example of this operation. Table and
+Table show with and without the decomposition operation, respectively. 
+For many of the orders observed, errors one would expect from 
+neglecting the mosaicity effect were small. For higher orders, however,
+this was crucial to obtain the correct integrated intensity.
+
+In order to test the decomposition effect, fits were also performed
+for the sum of intensity for orders that overlap. 
+
+First, we fitted the data using only up to $h=3$ orders. What did we get?
+How did each model do? Any inconsistency witht
+ Sun PNAS?
+
+Next, we fitted every peak we observed. Which model failed?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Electron Density Profile}
@@ -481,8 +527,8 @@ I need to do actual fitting.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\appendix %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\appendix 
 \section{Rotation of a Two-Dimensional Function}
 Let us consider rotating a function, $f(x,z)$ in two dimensions by an angle, 
 $\psi$, in the counterclockwise direction (see Fig. X). This is easily 
