@@ -55,24 +55,33 @@
 
 
 \section{Area Compressibility}
-In thermodynamics, the volume compressibility is defined via its inverse, the volume susceptibility, by
+In thermodynamics, the volume compressibility is defined via its inverse, 
+the volume susceptibility, by
 \begin{equation}
   \chi_V \equiv -\frac{1}{V}\left( \frac{\partial V}{\partial P} \right)_T,
 \end{equation}
-where $\chi_V=1/K_V$. Analogously, one may define the area compressibility modulus via
+where $\chi_V=1/K_V$. Analogously, one may define the area compressibility 
+modulus via
 \begin{equation}
   \chi_A \equiv \frac{1}{A}\left( \frac{\partial A}{\partial\gamma} \right)_T,
 \end{equation}
-where $\chi_A=1/K_A$. There is no negative sign in this definition because positive surface tension means the system is being pulled, which is opposite of how pressure is conceived; positive pressure means the system is compressed. Inverting the above equation, we get
+where $\chi_A=1/K_A$. There is no negative sign in this definition because 
+positive surface tension means the system is being pulled, which is opposite of 
+how pressure is conceived; positive pressure means the system is compressed. 
+Inverting the above equation, we get
 \begin{equation}
-  K_A = A\left(\frac{\partial\gamma}{\partial A}\right)_T = \left(\frac{\partial\gamma}{\partial(\ln A)}\right)_T.
+  K_A = A\left(\frac{\partial\gamma}{\partial A}\right)_T 
+  = \left(\frac{\partial\gamma}{\partial(\ln A)}\right)_T.
 \end{equation}
 
-When $K_A$ is considered to be a spring constant in a harmonic potential, one can postulate the free energy, $F(A)$, to be
+When $K_A$ is considered to be a spring constant in a harmonic potential, one 
+can postulate the free energy, $F(A)$, to be
 \begin{equation}
   F(A) = \frac{1}{2}K_A\frac{(A-A_0)^2}{A_0},
 \end{equation}
-where $A_0$ is the free energy minimum. The denominator in the above equation is to have the right dimension. The surface tension, $\gamma$, can be defined as
+where $A_0$ is the free energy minimum. The denominator in the above equation 
+is to have the right dimension. The surface tension, $\gamma$, can be defined 
+as
 \begin{equation}
   \gamma \equiv \left(\frac{\partial F}{\partial A}\right)_T.
 \end{equation}
@@ -80,7 +89,18 @@ From Eq. and Eq. , $\gamma = K_A(A-A_0)/A_0$ and one arrives at
 \begin{equation}
   K_A = A_0\left(\frac{\partial \gamma}{\partial A}\right)_T,
 \end{equation}
-which is the definition of $K_A$ that has been used by many literatures.  When one attempts to obtain $K_A$ from MD simulations, there is an ambiguity in the value of $A_0$: whether the experimentally measured value should be used or the value from MD simulations. If latter, how does one determine $A_0$ is another question since often electron density profile from MD simulation does not agree with the experimentally determined one. If surface tension is applied to achieve a good match between the experimental and simulation form factors, one could consider using that value as $A_0$. Including the experimentally determined value, then, one has three choices. 
+which is the definition of $K_A$ that has been used by many literatures.  
+When one attempts to obtain $K_A$ from MD simulations, there is an ambiguity 
+in the value of $A_0$: whether the experimentally measured value should be 
+used or the value from MD simulations. If latter, how does one determine $A_0$ 
+is another question since often electron density profile from MD simulation 
+does not agree with the experimentally determined one. If surface tension is 
+applied to achieve a good match between the experimental and simulation form 
+factors, one could consider using that value as $A_0$. Including the 
+experimentally determined value, then, one has three choices. 
 
-The thermodynamically motivated definition of $K_A$ does not come with the above described issue. It seems that when deviation from the free energy minimum is large, this definition of $K_A$ is more appropriate: the harmonic potential approximation would fail away from the minimum. 
+The thermodynamically motivated definition of $K_A$ does not come with the 
+above described issue. It seems that when deviation from the free energy 
+minimum is large, this definition of $K_A$ is more appropriate: the harmonic 
+potential approximation would fail away from the minimum. 
 \end{document}
